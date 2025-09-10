@@ -9672,8 +9672,8 @@ Transform:
   m_GameObject: {fileID: 212109625}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9392453, z: -0, w: -0.34324682}
-  m_LocalPosition: {x: 368.2, y: 65.21, z: 631.85}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 377, y: 65.21, z: 642.3}
+  m_LocalScale: {x: 40, y: 40, z: 40}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2123020013}
@@ -9692,7 +9692,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 270187851}
-  lastRedrawNum: -2147483433
 --- !u!1 &212627747 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7251419278548054306, guid: 583cc05b950fc154ba134a7f437e54a3, type: 3}
@@ -12117,7 +12116,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.966937, z: -0, w: -0.25501552}
   m_LocalPosition: {x: 334.2, y: 65.21, z: 585.3}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2123020013}
@@ -12136,7 +12135,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 443095542}
-  lastRedrawNum: -2147483433
 --- !u!1001 &271642648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19468,7 +19466,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9974884, z: -0, w: -0.070830874}
   m_LocalPosition: {x: 306.3, y: 66.34, z: 526.32}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 40, y: 40, z: 40}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2123020013}
@@ -19487,7 +19485,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 2066542909}
-  lastRedrawNum: -2147483433
 --- !u!1001 &443156937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25885,7 +25882,7 @@ GameObject:
   - component: {fileID: 586708742}
   - component: {fileID: 586708741}
   m_Layer: 0
-  m_Name: WP5
+  m_Name: WP5R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25905,7 +25902,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 737778599}
-  lastRedrawNum: -2147483433
 --- !u!4 &586708742
 Transform:
   m_ObjectHideFlags: 0
@@ -25915,8 +25911,8 @@ Transform:
   m_GameObject: {fileID: 586708740}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9974884, z: -0, w: -0.070830874}
-  m_LocalPosition: {x: 221.6, y: 66.34, z: 312.8}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalPosition: {x: 217.7, y: 58.4, z: 313.4}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2123020013}
@@ -28267,7 +28263,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 212109627}
-  lastRedrawNum: -2147483433
 --- !u!4 &646778708
 Transform:
   m_ObjectHideFlags: 0
@@ -28278,7 +28273,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.23421581, z: -0, w: 0.97218466}
   m_LocalPosition: {x: 544, y: 136.2, z: 655}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2123020013}
@@ -32880,7 +32875,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 1870061433}
-  lastRedrawNum: -2147483433
 --- !u!4 &737778600
 Transform:
   m_ObjectHideFlags: 0
@@ -63478,6 +63472,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e02b3705af2d0b340a2213f48f313cbe, type: 3}
+--- !u!1 &1433500465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1433500467}
+  - component: {fileID: 1433500466}
+  m_Layer: 0
+  m_Name: WP5C
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1433500466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433500465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 737778599}
+--- !u!4 &1433500467
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433500465}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.9974884, z: -0, w: -0.070830874}
+  m_LocalPosition: {x: 277.2, y: 84.4, z: 273.4}
+  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2123020013}
+  m_LocalEulerAnglesHint: {x: 0, y: 188.123, z: 0}
 --- !u!1001 &1433541255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79464,7 +79504,7 @@ GameObject:
   - component: {fileID: 1824592467}
   - component: {fileID: 1824592466}
   m_Layer: 0
-  m_Name: WP5B
+  m_Name: WP5L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79484,7 +79524,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 737778599}
-  lastRedrawNum: -2147483433
 --- !u!4 &1824592467
 Transform:
   m_ObjectHideFlags: 0
@@ -79494,8 +79533,8 @@ Transform:
   m_GameObject: {fileID: 1824592465}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9974884, z: -0, w: -0.070830874}
-  m_LocalPosition: {x: 280.3, y: 66.34, z: 273}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalPosition: {x: 331.9, y: 66.34, z: 265.6}
+  m_LocalScale: {x: 40, y: 40, z: 40}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2123020013}
@@ -81638,7 +81677,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 646778707}
-  lastRedrawNum: -2147483433
 --- !u!4 &1870061434
 Transform:
   m_ObjectHideFlags: 0
@@ -81649,7 +81687,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.48825204, z: -0, w: 0.87270266}
   m_LocalPosition: {x: 453, y: 127.8, z: 177.1}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 80, y: 80, z: 80}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2123020013}
@@ -89915,7 +89953,7 @@ MonoBehaviour:
   next:
   - {fileID: 586708741}
   - {fileID: 1824592466}
-  lastRedrawNum: -2147483433
+  - {fileID: 1433500466}
 --- !u!4 &2066542910
 Transform:
   m_ObjectHideFlags: 0
@@ -89926,7 +89964,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9974884, z: -0, w: -0.070830874}
   m_LocalPosition: {x: 262.2, y: 66.34, z: 356.5}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 40, y: 40, z: 40}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2123020013}
@@ -91982,6 +92020,7 @@ Transform:
   - {fileID: 2066542910}
   - {fileID: 586708742}
   - {fileID: 1824592467}
+  - {fileID: 1433500467}
   - {fileID: 737778600}
   - {fileID: 1870061434}
   - {fileID: 646778708}

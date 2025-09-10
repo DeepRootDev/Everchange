@@ -5,10 +5,12 @@ using UnityEngine.InputSystem;
 
 public class WaypointDrive:MonoBehaviour {
 	private float runspeed = 90.0f;
+	float lateralSpeed = 12.5f;
 
 	private Waypoint prevWaypoint = null;
 	private Waypoint myWaypoint = null;
 	private float myTrackLaneOffset = 0.0f;
+	private float myTrackLaneOffsetAITarget = 0.0f;
 	private float percLeftToNextWP = 1.0f;
 	private float totalDistToNextWP = 0.0f;
 
@@ -54,17 +56,6 @@ public class WaypointDrive:MonoBehaviour {
 
     private void Update()
     {
-		if (AInow == AIMode.HumanControl)
-		{
-			myTrackLaneOffset += moveInput.x * Time.deltaTime * 1.5f;
-			myTrackLaneOffset = Mathf.Clamp(myTrackLaneOffset, -1.0f, 1.0f);
-		}
-
-		// transform.Rotate(Vector3.up, turnControl * 180.0f * Time.deltaTime);
-
-		float enginePower = runControl * runspeed;
-		Vector3 newPos = transform.position;
-
 		Vector3 nextWPTrackLeft = myWaypoint.trackPtForOffset(-1.0f);
 		Vector3 nextWPTrackRight = myWaypoint.trackPtForOffset(1.0f);
 
@@ -73,6 +64,26 @@ public class WaypointDrive:MonoBehaviour {
 
 		Vector3 positionLeft = Vector3.Lerp(nextWPTrackLeft, prevWPTrackLeft, percLeftToNextWP);
 		Vector3 positionRight = Vector3.Lerp(nextWPTrackRight, prevWPTrackRight, percLeftToNextWP);
+
+		if (AInow != AIMode.HumanControl)
+		{
+			float laneGoalDelta = myTrackLaneOffset - myTrackLaneOffsetAITarget;
+			if(Mathf.Abs(laneGoalDelta) > 0.1f)
+            {
+				moveInput.x = (myTrackLaneOffset < myTrackLaneOffsetAITarget ? 1.0f : -1.0f) * 0.7f;
+			} else
+            {
+				moveInput.x *= 0.8f; // technically not frame rate safe in update, I don't think it'll matter here
+			}
+		}
+		float trackWidthHere = Vector3.Distance(positionLeft, positionRight);
+		myTrackLaneOffset += moveInput.x * lateralSpeed * (2f / Mathf.Max(trackWidthHere, 1e-4f)) * Time.deltaTime;
+		myTrackLaneOffset = Mathf.Clamp(myTrackLaneOffset, -1.0f, 1.0f);
+
+		// transform.Rotate(Vector3.up, turnControl * 180.0f * Time.deltaTime);
+
+		float enginePower = runControl * runspeed;
+		Vector3 newPos = transform.position;
 
 		float WPSegmentLength = Vector3.Distance(myWaypoint.transform.position, prevWaypoint.transform.position);
 		if (WPSegmentLength > 0f)
@@ -109,33 +120,6 @@ public class WaypointDrive:MonoBehaviour {
 		}
 	}
 
-	private void Tick()
-	{
-		/*
-		SteerTowardPoint(myWaypoint.trackPtForOffset(myTrackLaneOffset));
-
-		Vector3 nextWPTrackLeft = myWaypoint.trackPtForOffset(-1.0f);
-		Vector3 nextWPTrackRight = myWaypoint.trackPtForOffset(1.0f);
-
-		Vector3 prevWPTrackLeft = prevWaypoint.trackPtForOffset(-1.0f);
-		Vector3 prevWPTrackRight = prevWaypoint.trackPtForOffset(1.0f);
-
-		Vector3 positionLeft = Vector3.Lerp(nextWPTrackLeft, prevWPTrackLeft, percLeftToNextWP);
-		Vector3 positionRight = Vector3.Lerp(nextWPTrackRight, prevWPTrackRight, percLeftToNextWP);
-
-		float angleFromLeftEdge = AngleAroundAxis(transform.position - prevWPTrackLeft,
-			nextWPTrackLeft - prevWPTrackLeft,Vector3.up);
-		if(angleFromLeftEdge > 0.0f) {
-			SteerTowardPoint(positionLeft);
-		}
-		float angleFromRightEdge = AngleAroundAxis(transform.position - prevWPTrackRight,
-			nextWPTrackRight - prevWPTrackRight,Vector3.up);
-		if(angleFromRightEdge < 0.0f) {
-			SteerTowardPoint(positionRight);
-		}
-		*/
-	}
-
 	// helper function borrowed from https://forum.unity3d.com/threads/turn-left-or-right-to-face-a-point.22235/
 	private float AngleAroundAxis(Vector3 dirA, Vector3 dirB, Vector3 axis)
 	{
@@ -154,22 +138,6 @@ public class WaypointDrive:MonoBehaviour {
 			}
 			if (Random.Range(1, 6) == 1) { randomTurningDecisionMaker = randomTurningDecisionMaker * -1; }
 			ResetDefaultDrivingControls();
-			/*
-			Vector3 nextWaypoint = FollowNextWaypoint();
-
-			Vector3 pathToSteerToward = nextWaypoint - transform.position;
-
-			Vector3 localDelta = transform.InverseTransformDirection(pathToSteerToward);
-
-			ShowDebugLines(transform.position, nextWaypoint, Color.yellow);
-			ShowDebugLines(transform.position, (transform.position + pathToSteerToward), Color.green);
-
-			float rightTurnAmount = Vector3.Angle(pathToSteerToward, transform.forward);
-			rightTurnAmount = rightTurnAmount / 80;
-			rightTurnAmount = Mathf.Clamp(rightTurnAmount, 0, maxHandlingTurnAngle);
-			if (localDelta.x < -0.001f) { turnControl = turnControl - rightTurnAmount; }
-			if (localDelta.x > 0.001f) { turnControl = turnControl + rightTurnAmount; }
-			*/
 
 			yield return new WaitForSeconds(Random.Range(0.1f, 0.25f));
 		}
@@ -207,25 +175,21 @@ public class WaypointDrive:MonoBehaviour {
 		}
 
 		return myWaypoint.trackPtForOffset(myTrackLaneOffset);
-		/*
-		Vector3 gotoPoint = myWaypoint.trackPtForOffset(myTrackLaneOffset);
-
-		gotoPoint.y = transform.position.y; // temporary hack to deal with height inelegantly
-		float distTo = Vector3.Distance(transform.position, gotoPoint);
-		float closeEnoughToWaypoint = 20.0f;
-		// percLeftToNextWP = distTo / totalDistToNextWP;
-
-		if(distTo < closeEnoughToWaypoint) {
-			AdvanceWP();
-		}
-
-		return gotoPoint;*/
 	}
 
 	void AdvanceWP()
     {
 		prevWaypoint = myWaypoint;
-		myWaypoint = myWaypoint.randNext();
+		int nextWPCount = myWaypoint.next.Length;
+		if (nextWPCount > 1)
+        {
+			myWaypoint = myWaypoint.nextWPNearestTrackOffset(myTrackLaneOffset);
+		}
+		else
+        {
+			myWaypoint = myWaypoint.next[0];
+		}
+
 		if (AInow != AIMode.HumanControl)
 		{
 			randomizeTrackLaneOffset();
@@ -236,7 +200,7 @@ public class WaypointDrive:MonoBehaviour {
 
 	private void randomizeTrackLaneOffset()
 	{
-		myTrackLaneOffset = Random.Range(-1.0f, 1.0f);
+		myTrackLaneOffsetAITarget = Random.Range(-1.0f, 1.0f);
 	}
 
 	// currently only aims for waypoint in ordered track maps, but could also point to targeted craft, or generated destination

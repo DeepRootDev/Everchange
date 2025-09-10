@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour {
 	public Waypoint[] next;
-	public long lastRedrawNum=-int.MaxValue;
+	private long lastRedrawNum=-int.MaxValue;
 
 	void Start() {
 		Vector3 pointToward = Vector3.zero;
@@ -17,6 +17,45 @@ public class Waypoint : MonoBehaviour {
 
 	public Waypoint randNext() {
 		return next[ Random.Range(0,next.Length) ];
+	}
+	// assumption: all the points are reasonably in front of you
+	public Waypoint nextWPNearestTrackOffset(float laneOffset)
+    {
+		const float angleTolerance = 0.1f;
+		int branches = next.Length;
+		// going from -1.0 to 1.0, scaling up to number of lanes, flooring for discrete option, prevent out of bounds
+		int k = Mathf.Clamp(Mathf.FloorToInt((laneOffset + 1f) * 0.5f * branches), 0, branches - 1);
+
+		int bestIdx = 0;
+		for (int i = 0; i < branches; i++)
+		{
+			// direction towards this path option
+			Vector3 li = transform.InverseTransformPoint(next[i].transform.position);
+			float ai = Mathf.Atan2(li.x, li.z);
+
+			// rank angle
+			int less = 0;
+			for (int j = 0; j < branches; j++)
+			{
+				if (j != i)
+				{
+					Vector3 lj = transform.InverseTransformPoint(next[j].transform.position);
+					float aj = Mathf.Atan2(lj.x, lj.z);
+
+					bool jIsLeft = (aj < ai - angleTolerance) ||
+						(Mathf.Abs(aj - ai) <= angleTolerance && j < i); // tie breaker to avoid edge case
+					if (jIsLeft) // counting how many branches are left of me
+					{
+						less++;
+					}
+				}
+			}
+			if (less == k) {
+				bestIdx = i;
+				break;
+			}
+		}
+		return next[bestIdx];
 	}
 	public Waypoint nextNum(int i)
 	{

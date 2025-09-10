@@ -10,7 +10,7 @@ public class WayPointManager : MonoBehaviour {
 
 	public bool showLinesInSceneView = true;
 
-	public long redrawNum = -int.MaxValue;
+	private long redrawNum = -int.MaxValue;
 
 	private void Awake()
     {
