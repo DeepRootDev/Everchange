@@ -4,24 +4,24 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class WaypointDrive:MonoBehaviour {
+	private float runspeed = 90.0f;
 
-	protected Waypoint prevWaypoint = null;
-	protected Waypoint myWaypoint = null;
-	protected float myTrackLaneOffset = 0.0f;
-	protected float percLeftToNextWP = 1.0f;
-	protected float totalDistToNextWP = 0.0f;
+	private Waypoint prevWaypoint = null;
+	private Waypoint myWaypoint = null;
+	private float myTrackLaneOffset = 0.0f;
+	private float percLeftToNextWP = 1.0f;
+	private float totalDistToNextWP = 0.0f;
 
-	protected float turnControl = 0.0f;
-	protected float runControl = 0.7f;
+	private float turnControl = 0.0f;
+	private float runControl = 0.7f;
 
 	private const float maxHandlingTurnAngle = 80f;
-	private bool pathIsClear = true;
 	private bool showLinesInSceneView = true;
 	private float obstacleSafetyThreshold;
 	private Transform[] obstacles;
 	private float randomTurningDecisionMaker = 1f;
 
-	Vector3 momentum = Vector3.zero;
+	Vector3 lookAheadPt;
 
 	Vector2 moveInput;
 
@@ -38,17 +38,7 @@ public class WaypointDrive:MonoBehaviour {
 	};
 	public AIMode AInow = AIMode.FollowTrack;
 
-	private float attackSightRange = 300.0f;
-
-	private static int uniqueID = 0; // just to number at time of spawn for easier identification
-
-	public static void ResetStatics() {
-		uniqueID = 0;
-	}
-
 	private void Start() {
-		name = "Driver #" + (uniqueID++);
-
 		myWaypoint = WayPointManager.instance.startWP;
 		prevWaypoint = myWaypoint;
 		myWaypoint = prevWaypoint.randNext();
@@ -56,25 +46,51 @@ public class WaypointDrive:MonoBehaviour {
 		StartCoroutine(AIbehavior());
 	}
 
-	private void FixedUpdate()
-	{
-		momentum *= 0.94f; // nonlinear, keeping it out of Update to avoid calc
-	}
+    private void FixedUpdate()
+    {
+		transform.rotation = Quaternion.Slerp(transform.rotation,
+			Quaternion.LookRotation(lookAheadPt - transform.position), 0.2f);
+    }
+
     private void Update()
     {
 		if (AInow == AIMode.HumanControl)
 		{
-			turnControl = moveInput.x;
+			myTrackLaneOffset += moveInput.x * Time.deltaTime * 1.5f;
+			myTrackLaneOffset = Mathf.Clamp(myTrackLaneOffset, -1.0f, 1.0f);
 		}
 
-		transform.Rotate(Vector3.up, turnControl * 180.0f * Time.deltaTime);
+		// transform.Rotate(Vector3.up, turnControl * 180.0f * Time.deltaTime);
 
-		float enginePower = runControl;
-		momentum += transform.forward * enginePower * 9.0f * Time.deltaTime;
+		float enginePower = runControl * runspeed;
 		Vector3 newPos = transform.position;
-		newPos += momentum;
-		newPos.y = Vector3.Lerp(myWaypoint.transform.position, prevWaypoint.transform.position, percLeftToNextWP).y;
-		transform.position = newPos;
+
+		Vector3 nextWPTrackLeft = myWaypoint.trackPtForOffset(-1.0f);
+		Vector3 nextWPTrackRight = myWaypoint.trackPtForOffset(1.0f);
+
+		Vector3 prevWPTrackLeft = prevWaypoint.trackPtForOffset(-1.0f);
+		Vector3 prevWPTrackRight = prevWaypoint.trackPtForOffset(1.0f);
+
+		Vector3 positionLeft = Vector3.Lerp(nextWPTrackLeft, prevWPTrackLeft, percLeftToNextWP);
+		Vector3 positionRight = Vector3.Lerp(nextWPTrackRight, prevWPTrackRight, percLeftToNextWP);
+
+		float WPSegmentLength = Vector3.Distance(myWaypoint.transform.position, prevWaypoint.transform.position);
+		if (WPSegmentLength > 0f)
+		{
+			percLeftToNextWP -= (enginePower / WPSegmentLength) * Time.deltaTime;
+			if(percLeftToNextWP <0f)
+            {
+				// advance to next waypoint
+				AdvanceWP();
+			}
+		}
+		else
+		{
+			Debug.LogWarning("Waypoints overlapped, error divide by zero avoided " + myWaypoint.name + ", " + prevWaypoint.name);
+		}
+		float trackLeftRightNormalized = (myTrackLaneOffset + 1.0f) * 0.5f; // math from -1 to 1 into 0.0-1.0
+		transform.position = Vector3.Lerp(positionLeft, positionRight, trackLeftRightNormalized);
+		lookAheadPt = Vector3.Lerp(nextWPTrackLeft, nextWPTrackRight, trackLeftRightNormalized);
 	}
 
 	float heightUnderMe(Vector3 atPos)
@@ -95,6 +111,7 @@ public class WaypointDrive:MonoBehaviour {
 
 	private void Tick()
 	{
+		/*
 		SteerTowardPoint(myWaypoint.trackPtForOffset(myTrackLaneOffset));
 
 		Vector3 nextWPTrackLeft = myWaypoint.trackPtForOffset(-1.0f);
@@ -115,7 +132,8 @@ public class WaypointDrive:MonoBehaviour {
 			nextWPTrackRight - prevWPTrackRight,Vector3.up);
 		if(angleFromRightEdge < 0.0f) {
 			SteerTowardPoint(positionRight);
-		}				
+		}
+		*/
 	}
 
 	// helper function borrowed from https://forum.unity3d.com/threads/turn-left-or-right-to-face-a-point.22235/
@@ -136,6 +154,7 @@ public class WaypointDrive:MonoBehaviour {
 			}
 			if (Random.Range(1, 6) == 1) { randomTurningDecisionMaker = randomTurningDecisionMaker * -1; }
 			ResetDefaultDrivingControls();
+			/*
 			Vector3 nextWaypoint = FollowNextWaypoint();
 
 			Vector3 pathToSteerToward = nextWaypoint - transform.position;
@@ -150,6 +169,7 @@ public class WaypointDrive:MonoBehaviour {
 			rightTurnAmount = Mathf.Clamp(rightTurnAmount, 0, maxHandlingTurnAngle);
 			if (localDelta.x < -0.001f) { turnControl = turnControl - rightTurnAmount; }
 			if (localDelta.x > 0.001f) { turnControl = turnControl + rightTurnAmount; }
+			*/
 
 			yield return new WaitForSeconds(Random.Range(0.1f, 0.25f));
 		}
@@ -181,33 +201,40 @@ public class WaypointDrive:MonoBehaviour {
 	Vector3 FollowNextWaypoint()
 	{ // returns a Waypoint
 		if(myWaypoint == null || // no waypoints were found in level
-			AInow != AIMode.FollowTrack || // some other behavior is overriding control
+			AInow == AIMode.ShortTermOverride || // some other behavior is overriding control
 			WayPointManager.instance.levelWayPointList == null) { // no waypoints defined  
 			return Vector3.zero; 
 		}
 
+		return myWaypoint.trackPtForOffset(myTrackLaneOffset);
+		/*
 		Vector3 gotoPoint = myWaypoint.trackPtForOffset(myTrackLaneOffset);
 
 		gotoPoint.y = transform.position.y; // temporary hack to deal with height inelegantly
 		float distTo = Vector3.Distance(transform.position, gotoPoint);
 		float closeEnoughToWaypoint = 20.0f;
-		percLeftToNextWP = distTo / totalDistToNextWP;
+		// percLeftToNextWP = distTo / totalDistToNextWP;
 
 		if(distTo < closeEnoughToWaypoint) {
-			prevWaypoint = myWaypoint;
-			myWaypoint = myWaypoint.randNext();
-			if(AInow != AIMode.HumanControl)
-            {
-				randomizeTrackLaneOffset();
-			}
-			totalDistToNextWP = Vector3.Distance(transform.position, myWaypoint.trackPtForOffset(myTrackLaneOffset));
-			percLeftToNextWP = 1.0f;
+			AdvanceWP();
 		}
 
-		return gotoPoint;
+		return gotoPoint;*/
 	}
 
-	protected void randomizeTrackLaneOffset()
+	void AdvanceWP()
+    {
+		prevWaypoint = myWaypoint;
+		myWaypoint = myWaypoint.randNext();
+		if (AInow != AIMode.HumanControl)
+		{
+			randomizeTrackLaneOffset();
+		}
+		totalDistToNextWP = Vector3.Distance(transform.position, myWaypoint.trackPtForOffset(myTrackLaneOffset));
+		percLeftToNextWP = 1.0f;
+	}
+
+	private void randomizeTrackLaneOffset()
 	{
 		myTrackLaneOffset = Random.Range(-1.0f, 1.0f);
 	}
