@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour {
 	public Waypoint[] next;
+	public long lastRedrawNum=-int.MaxValue;
 
 	void Start() {
 		Vector3 pointToward = Vector3.zero;
@@ -59,6 +60,31 @@ public class Waypoint : MonoBehaviour {
 		}
 		return null;
 	}
+
+	public void drawPathFromHere(long currentRedrawNum)
+    {
+		if(lastRedrawNum < currentRedrawNum)
+        {
+			lastRedrawNum = currentRedrawNum; // hack to preventing infinite loops
+
+			Vector3 currWPTrackLeft = trackPtForOffset(-1.0f);
+			Vector3 currWPTrackRight = trackPtForOffset(1.0f);
+
+			for (int branch = 0; branch < next.Length; branch++)
+			{
+				Waypoint nextWP = nextNum(branch);
+
+				Vector3 nextWPTrackLeft = nextWP.trackPtForOffset(-1.0f);
+				Vector3 nextWPTrackRight = nextWP.trackPtForOffset(1.0f);
+
+				Debug.DrawLine(currWPTrackLeft, nextWPTrackLeft, Color.green);
+				Debug.DrawLine(transform.position, nextWP.transform.position, Color.white);
+				Debug.DrawLine(currWPTrackRight, nextWPTrackRight, Color.yellow);
+
+				nextWP.drawPathFromHere(currentRedrawNum);
+			}
+		}
+    }
 
 	// -1.0f is left side of track, 1.0f is right side of track
 	public Vector3 trackPtForOffset(float offsetHere) {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDrive:MonoBehaviour {
+public class WaypointDrive:MonoBehaviour {
 
 	protected Waypoint prevWaypoint = null;
 	protected Waypoint myWaypoint = null;
@@ -19,14 +19,16 @@ public class EnemyDrive:MonoBehaviour {
 	private float obstacleSafetyThreshold;
 	private Transform[] obstacles;
 	private float randomTurningDecisionMaker = 1f;
-	[SerializeField] private GameObject headlights;  //assigned in inspector
+
+	Vector3 momentum = Vector3.zero;
 
 	public enum AIMode
 	{
 		FollowTrack,
-		ShortTermOverride
+		ShortTermOverride,
+		HumanControl // just doing player character as special case of AI driver, for debugging by switching control etc
 	};
-	private AIMode AInow = AIMode.FollowTrack;
+	public AIMode AInow = AIMode.FollowTrack;
 
 	private float attackSightRange = 300.0f;
 
@@ -39,9 +41,45 @@ public class EnemyDrive:MonoBehaviour {
 	private void Start() {
 		name = "Driver #" + (uniqueID++);
 
+		myWaypoint = WayPointManager.instance.startWP;
+
 		StartCoroutine(AIbehavior());
 	}
 
+	private void FixedUpdate()
+	{
+		momentum *= 0.94f; // nonlinear, keeping it out of Update to avoid calc
+	}
+    private void Update()
+    {
+		if (AInow != AIMode.HumanControl)
+        {
+			transform.Rotate(Vector3.up, turnControl * 180.0f * Time.deltaTime);
+		}
+
+		float enginePower = runControl;
+		momentum += transform.forward * enginePower * 5.0f * Time.deltaTime;
+		Vector3 newPos = transform.position;
+		newPos += momentum;
+		newPos.y = Vector3.Lerp(myWaypoint.transform.position, prevWaypoint.transform.position, percLeftToNextWP).y;
+		transform.position = newPos;
+	}
+
+	float heightUnderMe(Vector3 atPos)
+	{
+		int ignoreMask = 0;
+		float lookdownFromAboveHeight = 2.0f;
+		RaycastHit rhInfo;
+		if (Physics.Raycast(atPos + Vector3.up * lookdownFromAboveHeight,
+			-Vector3.up * lookdownFromAboveHeight, out rhInfo, 8.0f, ignoreMask))
+		{
+			return rhInfo.point.y;
+		}
+		else
+		{
+			return lookdownFromAboveHeight; // nothing underneath us
+		}
+	}
 
 	private void Tick()
 	{
@@ -87,33 +125,19 @@ public class EnemyDrive:MonoBehaviour {
 			if (Random.Range(1, 6) == 1) { randomTurningDecisionMaker = randomTurningDecisionMaker * -1; }
 			ResetDefaultDrivingControls();
 			Vector3 nextWaypoint = FollowNextWaypoint();
-			Vector3 safetyPoint = AvoidObstacles();
-			Vector3 pathToSteerToward = (safetyPoint - transform.position) + (nextWaypoint - transform.position);
-			ShowDebugLines(transform.position, nextWaypoint, Color.yellow);
-			ShowDebugLines(transform.position, safetyPoint, Color.blue);
-			ShowDebugLines(transform.position, (transform.position + pathToSteerToward), Color.green);
 
-			if(Player.instance) { // player exists
-				RaycastHit rhInfo;
-				Vector3 vectorToPlayer = Player.instance.transform.position - transform.position;
-				int ignoreLayerMask = 0;
-				if (vectorToPlayer.magnitude < attackSightRange) {
-					Ray hereToPlayer = new Ray(transform.position, vectorToPlayer);
-					if(Physics.Raycast(hereToPlayer, out rhInfo, ignoreLayerMask) == false) { // unobstructed line of sight?
-						Debug.Log("line of sign from " +gameObject.name + " to Player, if we care to do something");
-					}
-				}
-				
-			}
+			Vector3 pathToSteerToward = nextWaypoint - transform.position;
+
+			Vector3 localDelta = transform.InverseTransformDirection(pathToSteerToward);
+
+			ShowDebugLines(transform.position, nextWaypoint, Color.yellow);
+			ShowDebugLines(transform.position, (transform.position + pathToSteerToward), Color.green);
 
 			float rightTurnAmount = Vector3.Angle(pathToSteerToward, transform.forward);
 			rightTurnAmount = rightTurnAmount / 80;
 			rightTurnAmount = Mathf.Clamp(rightTurnAmount, 0, maxHandlingTurnAngle);
-			float leftTurnAmount = -rightTurnAmount;
-			if (pathToSteerToward.x < -0.001f) { turnControl = turnControl - leftTurnAmount; }
-			if (pathToSteerToward.x > 0.001f) { turnControl = turnControl + rightTurnAmount; }
-			if (pathIsClear == false && turnControl < 0.001f && pathToSteerToward.z < 0) { turnControl = randomTurningDecisionMaker; }
-			if (pathIsClear == false && pathToSteerToward.z < 0) { runControl = 0.1f; } else { runControl = 1f; }
+			if (localDelta.x < -0.001f) { turnControl = turnControl - rightTurnAmount; }
+			if (localDelta.x > 0.001f) { turnControl = turnControl + rightTurnAmount; }
 
 			yield return new WaitForSeconds(Random.Range(0.1f, 0.25f));
 		}
@@ -141,31 +165,6 @@ public class EnemyDrive:MonoBehaviour {
 			Gizmos.DrawWireSphere(transform.position, obstacleSafetyThreshold);
 		}
 	}
-
-	private Vector3 AvoidObstacles()
-	{
-		Vector3 vectorToDestination = Vector3.zero; //transform.forward * obstacleSafetyThreshold;
-		Vector3 destinationPoint = transform.position + vectorToDestination;
-		pathIsClear = true;
-		if(obstacles != null) {
-			foreach(Transform obstacle in obstacles) {
-				float obstacleDistance = Vector3.Distance(transform.position, obstacle.position);
-				if(obstacleDistance < obstacleSafetyThreshold) {
-					pathIsClear = false;
-					Vector3 vectorToObstacle = obstacle.position - transform.position;
-					Vector3 obstaclePoint = transform.position + vectorToObstacle;
-					ShowDebugLines(transform.position, obstaclePoint, Color.red);
-					Vector3 dirAwayFromObstacle = -vectorToObstacle.normalized;
-					Vector3 avoidancePoint = transform.position + (dirAwayFromObstacle * (obstacleSafetyThreshold - obstacleDistance));
-					Vector3 vectorToAvoidancePoint = avoidancePoint - transform.position;
-					Vector3 newDestinationVector = vectorToDestination + vectorToAvoidancePoint;
-					vectorToDestination = newDestinationVector;
-					destinationPoint = transform.position + vectorToDestination;
-				}
-			}
-		}
-		return destinationPoint;
-	}
 	
 	Vector3 FollowNextWaypoint()
 	{ // returns a Waypoint
@@ -179,7 +178,7 @@ public class EnemyDrive:MonoBehaviour {
 
 		gotoPoint.y = transform.position.y; // temporary hack to deal with height inelegantly
 		float distTo = Vector3.Distance(transform.position, gotoPoint);
-		float closeEnoughToWaypoint = 140.0f;
+		float closeEnoughToWaypoint = 20.0f;
 		percLeftToNextWP = distTo / totalDistToNextWP;
 
 		if(distTo < closeEnoughToWaypoint) {

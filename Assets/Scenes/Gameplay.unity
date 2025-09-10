@@ -9692,6 +9692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 270187851}
+  lastRedrawNum: -2147483433
 --- !u!1 &212627747 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7251419278548054306, guid: 583cc05b950fc154ba134a7f437e54a3, type: 3}
@@ -12135,6 +12136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 443095542}
+  lastRedrawNum: -2147483433
 --- !u!1001 &271642648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18688,6 +18690,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7daab333631c44c46b6ce036acde80f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &425662310 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2222591378143397302, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+  m_PrefabInstance: {fileID: 927524647}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &427511417 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8590505432671151626, guid: 78537a53f69af7244b8a394cd1bce7a0, type: 3}
@@ -19469,6 +19476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 2066542909}
+  lastRedrawNum: -2147483433
 --- !u!1001 &443156937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25886,6 +25894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 737778599}
+  lastRedrawNum: -2147483433
 --- !u!4 &586708742
 Transform:
   m_ObjectHideFlags: 0
@@ -28247,6 +28256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 212109627}
+  lastRedrawNum: -2147483433
 --- !u!4 &646778708
 Transform:
   m_ObjectHideFlags: 0
@@ -32859,6 +32869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 1870061433}
+  lastRedrawNum: -2147483433
 --- !u!4 &737778600
 Transform:
   m_ObjectHideFlags: 0
@@ -40883,6 +40894,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5076210876439815949, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076210876439815949, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.02
+      objectReference: {fileID: 0}
     - target: {fileID: 7836629899972180629, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: m_IsKinematic
       value: 1
@@ -40890,7 +40909,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2184425476445289418, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1758201715}
   m_SourcePrefab: {fileID: 100100000, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
 --- !u!1 &928431444 stripped
 GameObject:
@@ -58620,6 +58642,7 @@ GameObject:
   - component: {fileID: 1324589299}
   - component: {fileID: 1324589298}
   - component: {fileID: 1324589297}
+  - component: {fileID: 1324589301}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -58745,6 +58768,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1324589301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324589296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5137cd69b6049418676a834703ed7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseTarget: {fileID: 425662310}
+  lookPoint: {fileID: 1738680597}
 --- !u!1 &1325010597 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6925463453308640631, guid: 583cc05b950fc154ba134a7f437e54a3, type: 3}
@@ -75963,6 +76000,11 @@ Transform:
   - {fileID: 1027988587}
   m_Father: {fileID: 1348746067}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1738680597 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5076210876439815949, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+  m_PrefabInstance: {fileID: 927524647}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1738792872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76516,6 +76558,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6165c425f29c0ba46b8238a9be5d8851, type: 3}
+--- !u!1 &1758201714 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2184425476445289418, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+  m_PrefabInstance: {fileID: 927524647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1758201715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758201714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236d1bbacda4d47e583e75293ec85ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AInow: 0
 --- !u!4 &1760466635 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5270999914402479033, guid: c51abacb05fdb104d90d98ffeef8efd2, type: 3}
@@ -79298,6 +79358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 737778599}
+  lastRedrawNum: -2147483433
 --- !u!4 &1824592467
 Transform:
   m_ObjectHideFlags: 0
@@ -81451,6 +81512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 646778707}
+  lastRedrawNum: -2147483433
 --- !u!4 &1870061434
 Transform:
   m_ObjectHideFlags: 0
@@ -89727,6 +89789,7 @@ MonoBehaviour:
   next:
   - {fileID: 586708741}
   - {fileID: 1824592466}
+  lastRedrawNum: -2147483433
 --- !u!4 &2066542910
 Transform:
   m_ObjectHideFlags: 0
@@ -91771,10 +91834,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0435c41ddd4624d69923dce0a2106a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelWayPointList:
-  - {fileID: 212109627}
-  - {fileID: 270187851}
-  - {fileID: 443095542}
+  levelWayPointList: []
+  startWP: {fileID: 212109627}
   showLinesInSceneView: 1
 --- !u!4 &2123020013
 Transform:
