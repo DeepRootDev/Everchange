@@ -7,6 +7,8 @@ public class WaypointDrive:MonoBehaviour {
 	private float runspeed = 90.0f;
 	float lateralSpeed = 12.5f;
 
+	private bool inAir = false;
+
 	private Waypoint prevWaypoint = null;
 	private Waypoint myWaypoint = null;
 	private float myTrackLaneOffset = 0.0f;
@@ -22,6 +24,8 @@ public class WaypointDrive:MonoBehaviour {
 	private float obstacleSafetyThreshold;
 	private Transform[] obstacles;
 	private float randomTurningDecisionMaker = 1f;
+
+	ParticleSystem feetDust;
 
 	Vector3 lookAheadPt;
 
@@ -41,14 +45,28 @@ public class WaypointDrive:MonoBehaviour {
 	public AIMode AInow = AIMode.FollowTrack;
 
 	private void Start() {
+		feetDust = GetComponent<ParticleSystem>();
 		myWaypoint = WayPointManager.instance.startWP;
 		prevWaypoint = myWaypoint;
+		UpdateAirOrGroundState();
 		myWaypoint = prevWaypoint.randNext();
 
 		StartCoroutine(AIbehavior());
 	}
 
-    private void FixedUpdate()
+	private void UpdateAirOrGroundState()
+    {
+		if(inAir)
+        {
+			inAir = prevWaypoint.inAir; // turn off upon landing
+		} else
+        {
+			inAir = myWaypoint.inAir; // turn on upon leaving ground
+		}
+		feetDust.emissionRate = (inAir ? 0 : 200);
+	}
+
+	private void FixedUpdate()
     {
 		transform.rotation = Quaternion.Slerp(transform.rotation,
 			Quaternion.LookRotation(lookAheadPt - transform.position), 0.2f);
@@ -93,6 +111,7 @@ public class WaypointDrive:MonoBehaviour {
             {
 				// advance to next waypoint
 				AdvanceWP();
+				UpdateAirOrGroundState();
 			}
 		}
 		else

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour {
 	public Waypoint[] next;
+	public bool inAir = false;
 	private long lastRedrawNum=-int.MaxValue;
 
 	void Start() {
