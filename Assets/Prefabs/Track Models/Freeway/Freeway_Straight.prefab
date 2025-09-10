@@ -75,9 +75,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794251714344785726}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 0
-  m_Shape: 0
   m_Color: {r: 0.972549, g: 0.8811606, b: 0.21568625, a: 1}
   m_Intensity: 320.2
   m_Range: 57.9
@@ -127,8 +126,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!114 &3728405275179528398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,9 +196,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3849621097543063615}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 0
-  m_Shape: 0
   m_Color: {r: 0.972549, g: 0.8811606, b: 0.21568625, a: 1}
   m_Intensity: 320.2
   m_Range: 57.9
@@ -245,8 +247,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!114 &783401982057901409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,9 +351,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4593264451658535412}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 0
-  m_Shape: 0
   m_Color: {r: 0.972549, g: 0.8811606, b: 0.21568625, a: 1}
   m_Intensity: 320.2
   m_Range: 57.9
@@ -397,8 +402,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!114 &8502064184968034579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,7 +671,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForcedJumpPad
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7336264284985191253, guid: 6396cbf7a54aa514f867ed9770847282, type: 3}
+    - {fileID: 7336264284829352701, guid: 6396cbf7a54aa514f867ed9770847282, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
