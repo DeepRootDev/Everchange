@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WaypointDrive:MonoBehaviour {
 
@@ -22,6 +23,13 @@ public class WaypointDrive:MonoBehaviour {
 
 	Vector3 momentum = Vector3.zero;
 
+	Vector2 moveInput;
+
+	public void OnMove(InputAction.CallbackContext ctx)
+	{
+		moveInput = ctx.ReadValue<Vector2>();
+	}
+
 	public enum AIMode
 	{
 		FollowTrack,
@@ -42,6 +50,8 @@ public class WaypointDrive:MonoBehaviour {
 		name = "Driver #" + (uniqueID++);
 
 		myWaypoint = WayPointManager.instance.startWP;
+		prevWaypoint = myWaypoint;
+		myWaypoint = prevWaypoint.randNext();
 
 		StartCoroutine(AIbehavior());
 	}
@@ -52,13 +62,15 @@ public class WaypointDrive:MonoBehaviour {
 	}
     private void Update()
     {
-		if (AInow != AIMode.HumanControl)
-        {
-			transform.Rotate(Vector3.up, turnControl * 180.0f * Time.deltaTime);
+		if (AInow == AIMode.HumanControl)
+		{
+			turnControl = moveInput.x;
 		}
 
+		transform.Rotate(Vector3.up, turnControl * 180.0f * Time.deltaTime);
+
 		float enginePower = runControl;
-		momentum += transform.forward * enginePower * 5.0f * Time.deltaTime;
+		momentum += transform.forward * enginePower * 9.0f * Time.deltaTime;
 		Vector3 newPos = transform.position;
 		newPos += momentum;
 		newPos.y = Vector3.Lerp(myWaypoint.transform.position, prevWaypoint.transform.position, percLeftToNextWP).y;
@@ -184,7 +196,10 @@ public class WaypointDrive:MonoBehaviour {
 		if(distTo < closeEnoughToWaypoint) {
 			prevWaypoint = myWaypoint;
 			myWaypoint = myWaypoint.randNext();
-			randomizeTrackLaneOffset();
+			if(AInow != AIMode.HumanControl)
+            {
+				randomizeTrackLaneOffset();
+			}
 			totalDistToNextWP = Vector3.Distance(transform.position, myWaypoint.trackPtForOffset(myTrackLaneOffset));
 			percLeftToNextWP = 1.0f;
 		}
