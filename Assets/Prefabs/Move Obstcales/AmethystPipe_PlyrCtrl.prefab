@@ -281,8 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45fd0b2cf151149a9a839fc59c072a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posRot1: {fileID: 6512754755474941150}
-  posRot2: {fileID: 6712497243879483499}
+  pos1: {fileID: 6512754755474941150}
+  pos2: {fileID: 6712497243879483499}
 --- !u!4 &599422618804297552 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 41b94d8fbd9b20746961fba826eb94c3, type: 3}

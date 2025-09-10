@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class WaypointDrive:MonoBehaviour {
-	private float runspeed = 90.0f;
+	private float runSpeed = 80.0f;
+	private float flySpeed = 130.0f;
 	float lateralSpeed = 12.5f;
+	float flyVerticalSpeed = 0.5f;
+	float flyRange = 18.0f;
 
 	private bool inAir = false;
 
@@ -30,6 +33,7 @@ public class WaypointDrive:MonoBehaviour {
 	Vector3 lookAheadPt;
 
 	Vector2 moveInput;
+	float verticalOffset = 0.0f;
 
 	public void OnMove(InputAction.CallbackContext ctx)
 	{
@@ -63,7 +67,9 @@ public class WaypointDrive:MonoBehaviour {
         {
 			inAir = myWaypoint.inAir; // turn on upon leaving ground
 		}
-		feetDust.emissionRate = (inAir ? 0 : 200);
+		ParticleSystem.EmissionModule emission = feetDust.emission;
+
+		emission.rateOverTime = (inAir ? 0 : 200);
 	}
 
 	private void FixedUpdate()
@@ -94,13 +100,24 @@ public class WaypointDrive:MonoBehaviour {
 				moveInput.x *= 0.8f; // technically not frame rate safe in update, I don't think it'll matter here
 			}
 		}
+
+		if(inAir)
+        {
+			verticalOffset += moveInput.y * flyVerticalSpeed * Time.deltaTime;
+			verticalOffset = Mathf.Clamp(verticalOffset, -1.0f, 1.0f);
+
+		} else
+        {
+			verticalOffset = 0.0f;
+		}
+
 		float trackWidthHere = Vector3.Distance(positionLeft, positionRight);
 		myTrackLaneOffset += moveInput.x * lateralSpeed * (2f / Mathf.Max(trackWidthHere, 1e-4f)) * Time.deltaTime;
 		myTrackLaneOffset = Mathf.Clamp(myTrackLaneOffset, -1.0f, 1.0f);
 
 		// transform.Rotate(Vector3.up, turnControl * 180.0f * Time.deltaTime);
 
-		float enginePower = runControl * runspeed;
+		float enginePower = runControl * (inAir ? flySpeed : runSpeed);
 		Vector3 newPos = transform.position;
 
 		float WPSegmentLength = Vector3.Distance(myWaypoint.transform.position, prevWaypoint.transform.position);
@@ -119,7 +136,7 @@ public class WaypointDrive:MonoBehaviour {
 			Debug.LogWarning("Waypoints overlapped, error divide by zero avoided " + myWaypoint.name + ", " + prevWaypoint.name);
 		}
 		float trackLeftRightNormalized = (myTrackLaneOffset + 1.0f) * 0.5f; // math from -1 to 1 into 0.0-1.0
-		transform.position = Vector3.Lerp(positionLeft, positionRight, trackLeftRightNormalized);
+		transform.position = Vector3.Lerp(positionLeft, positionRight, trackLeftRightNormalized) + Vector3.up* verticalOffset*flyRange;
 		lookAheadPt = Vector3.Lerp(nextWPTrackLeft, nextWPTrackRight, trackLeftRightNormalized);
 	}
 
