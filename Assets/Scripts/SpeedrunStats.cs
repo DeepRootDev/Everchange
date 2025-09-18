@@ -12,14 +12,17 @@ using System.IO;
 ///////////////////////////////////////////////////////////////
 public class SpeedrunStats : MonoBehaviour
 {
-    // just for testing
-    public bool debug_mode = true;
-
     // file to save in your user documents folder
+    [Header("Filename to save data to:")]
     public string dbFilename = "Everchange-results.csv";
 
     // where to draw the timer and scoreboard
+    [Header("Which GUI text component to use?")]
     public TextMeshProUGUI timerTXT;
+
+    // just for testing
+    [Header("Start immediately and save with T key?")]
+    public bool debug_mode = true;
 
     // the database file is a .csv located in a folder we're allowed to write to
     // it is a text file with rows on each new line with data separated by commas
@@ -40,7 +43,7 @@ public class SpeedrunStats : MonoBehaviour
         dbFilepath = Application.persistentDataPath + "/" + dbFilename;
         csvReadFile();
         // JUST FOR DEBUGGING: start the timer right on game start!
-        startSpeedrun();
+        if (debug_mode) startSpeedrun();
     }
 
     ///////////////////////////////////////////////////////////////
@@ -131,7 +134,12 @@ public class SpeedrunStats : MonoBehaviour
             {
                 List<string> row = new List<string>();
                 string[] fields = record.Split(colSeparator);
-                foreach (string field in fields) { row.Add(field); }
+                foreach (string field in fields)
+                {
+                    // remove any quotes or trailing or leading whitespace
+                    string cleanedString = field.Trim().Trim('\"'); 
+                    row.Add(cleanedString);
+                }
                 result.Add(row);
             }
         }
@@ -147,8 +155,18 @@ public class SpeedrunStats : MonoBehaviour
     {
         try
         {
+            if (!File.Exists(filename))
+            {
+                Debug.Log("Creating new stats db file: " + filename);
+                // make the first row a "header row"
+                File.AppendAllText(filename, "\"DATE:\",\"RESULT:\"");
+            }
             string data = rowSeparator.ToString();
-            foreach (string value in values) { data += value + colSeparator; }
+            foreach (string value in values)
+            {
+                // for strings to import nicely, add quotes around them
+                data += "\"" + value + "\"" + colSeparator;
+            }
             File.AppendAllText(filename, data);
             // is this needed?
             // #if UNITY_EDITOR
