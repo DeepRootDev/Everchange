@@ -12,7 +12,12 @@ using System.IO;
 ///////////////////////////////////////////////////////////////
 public class SpeedrunStats : MonoBehaviour
 {
+    // safe for web builds:
+    [Header("Check this to not create any files:")]
+    public bool usePlayerPrefs = true;
+
     // file to save in your user documents folder
+    // only used if usePlayerPrefsNotFiles is false
     [Header("Filename to save data to:")]
     public string dbFilename = "Everchange-results.csv";
 
@@ -126,9 +131,22 @@ public class SpeedrunStats : MonoBehaviour
         List<List<string>> result = new List<List<string>>();
         try
         {
-            var source = new StreamReader(filename);
-            var fileContents = source.ReadToEnd();
-            source.Close();
+
+            string fileContents;
+
+            if (usePlayerPrefs)
+            {
+                // we use the "filename" as the prefs key name
+                fileContents = PlayerPrefs.GetString(filename, "");
+            }
+            else
+            {
+                // FILE VERSION
+                var source = new StreamReader(filename);
+                fileContents = source.ReadToEnd();
+                source.Close();
+            }
+
             var records = fileContents.Split(rowSeparator);
             foreach (string record in records)
             {
@@ -155,23 +173,28 @@ public class SpeedrunStats : MonoBehaviour
     {
         try
         {
-            if (!File.Exists(filename))
-            {
-                Debug.Log("Creating new stats db file: " + filename);
-                // make the first row a "header row"
-                File.AppendAllText(filename, "\"DATE:\",\"RESULT:\"");
-            }
             string data = rowSeparator.ToString();
             foreach (string value in values)
             {
                 // for strings to import nicely, add quotes around them
                 data += "\"" + value + "\"" + colSeparator;
             }
-            File.AppendAllText(filename, data);
-            // is this needed?
-            // #if UNITY_EDITOR
-            // 	UnityEditor.AssetDatabase.Refresh ();
-            // #endif
+
+            if (usePlayerPrefs)
+            {
+                // use the filename as the prefs key
+                string oldData = PlayerPrefs.GetString(filename, "");
+                PlayerPrefs.SetString(filename, oldData+data);
+            }
+            else
+            {
+                if (!File.Exists(filename))
+                {   // make the first row a "header row"
+                    Debug.Log("Creating new stats db file: " + filename);
+                    File.AppendAllText(filename, "\"DATE:\",\"RESULT:\"");
+                }
+                File.AppendAllText(filename, data);
+            }
         }
         catch (Exception /* ex */)
         {
