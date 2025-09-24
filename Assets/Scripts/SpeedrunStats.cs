@@ -213,7 +213,7 @@ public class SpeedrunStats : MonoBehaviour
         int maxLines = 20; // only show the last few attempts
         if (databaseData != null)
         {
-            prevstr += databaseData.Count + " Previous Runs:\n";
+            prevstr += databaseData.Count + " Previous Runs: (T=save)";
             // start at end of data and work backwards
             for (int n = databaseData.Count - 1; n >= Math.Max(0, databaseData.Count - maxLines); n--)
             {
@@ -222,10 +222,11 @@ public class SpeedrunStats : MonoBehaviour
             }
         }
         timerTXT.text =
-            "SPEEDRUN TIMER:\n\n" +
+            //"SPEEDRUN TIMER:\n\n" +
             "Elapsed Time: " + timespanFormat(elapsed) + "\n\n" +
-            prevstr +
-            "\n\n" + dbFilepath;
+            prevstr
+            //+ "\n\n" + dbFilepath
+            ;
 
         if (debug_mode)
         {
