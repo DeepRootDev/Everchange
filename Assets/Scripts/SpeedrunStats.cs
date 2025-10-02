@@ -41,6 +41,7 @@ public class SpeedrunStats : MonoBehaviour
 
     // the current run start time!
     private float startTimestamp = 0f;
+    private int triggerCount = 0;
 
     ///////////////////////////////////////////////////////////////
     void Start()
@@ -74,9 +75,14 @@ public class SpeedrunStats : MonoBehaviour
         // fixme: respawn player
     }
 
+    public void increaseTriggerCount()
+    {
+        triggerCount++;
+    }
+
     ///////////////////////////////////////////////////////////////
-    // force a number to be two digits like "01"
-    string pad0(int x)
+        // force a number to be two digits like "01"
+        string pad0(int x)
     {
         if (x < 10) return "0" + x;
         return "" + x;
@@ -223,8 +229,13 @@ public class SpeedrunStats : MonoBehaviour
         }
         timerTXT.text =
             //"SPEEDRUN TIMER:\n\n" +
-            "Elapsed Time: " + timespanFormat(elapsed) + "\n\n" +
-            prevstr
+            "Position: 1st - " +
+            "Time: " + timespanFormat(elapsed) + " - " +
+            "Trigger Count:  " + triggerCount
+
+            // show all the highscores, too? nah 
+            //+ "\n\n" +
+            // prevstr
             //+ "\n\n" + dbFilepath
             ;
 

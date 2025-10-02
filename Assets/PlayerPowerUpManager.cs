@@ -7,6 +7,7 @@ public class PlayerPowerUpManager : MonoBehaviour
 
     private bool   allowAcitvation = false;
     private ActivatorArea activatorArea;
+    public SpeedrunStats myStats;
 
     void Update()
     {
@@ -15,6 +16,7 @@ public class PlayerPowerUpManager : MonoBehaviour
             if (Input.GetKeyDown(activatorArea.GetKeyType()) && allowAcitvation)
             {
                 activatorArea.Toggle();
+                if (myStats!=null) myStats.increaseTriggerCount();
             }
 
         }
