@@ -41446,6 +41446,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1936372685678754903, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: boostSpeed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2184425476445289418, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -41539,9 +41543,37 @@ PrefabInstance:
       value: 3.02
       objectReference: {fileID: 0}
     - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1758201715}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1758201715}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSprint
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WaypointDrive, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7836629899972180629, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: m_IsKinematic
       value: 1
@@ -59480,8 +59512,9 @@ GameObject:
   - component: {fileID: 1324589298}
   - component: {fileID: 1324589297}
   - component: {fileID: 1324589301}
+  - component: {fileID: 1324589302}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59619,6 +59652,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseTarget: {fileID: 425662310}
   lookPoint: {fileID: 1738680597}
+--- !u!114 &1324589302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324589296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d2bac42d3a1c249939129c492672b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boostFOV: 80
 --- !u!1 &1325010597 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6925463453308640631, guid: 583cc05b950fc154ba134a7f437e54a3, type: 3}
