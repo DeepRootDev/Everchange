@@ -2,12 +2,22 @@ using UnityEngine;
 
 public class PlayerPowerUpManager : MonoBehaviour
 {
-    [SerializeField] private LayerMask layerMask = LayerMask.NameToLayer("Obstacles");
+
+    // we aren't allowed to access layer names at editor startup
+    // (only after awake or start)
+    //[SerializeField] private LayerMask layerMask = LayerMask.NameToLayer("Obstacles");
+    [SerializeField] private LayerMask layerMask;
     [SerializeField] private float rayCastDistance = 1000;
 
     private bool   allowAcitvation = false;
     private ActivatorArea activatorArea;
     public SpeedrunStats myStats;
+
+    void Awake()
+    {
+        Debug.Log("Missing layerMask in PlayerPowerUpManager - assuming Obstacles layer.");
+        if (layerMask == null) layerMask = LayerMask.NameToLayer("Obstacles");
+    }
 
     void Update()
     {
