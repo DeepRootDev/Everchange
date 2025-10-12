@@ -15,13 +15,13 @@ public class MainCamera : MonoBehaviour
 
     private void Update()
     {
-        if (WaypointDrive.isBoosting)
+        if (BoostAbility.isBoosting)
         {
-            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, boostFOV, Time.deltaTime * WaypointDrive.toReachBoostSpeed);
+            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, boostFOV, Time.deltaTime * BoostAbility.toReachBoostSpeed);
         }
         else
         {
-            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, normalFOV, Time.deltaTime * WaypointDrive.toReachBoostSpeed);
+            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, normalFOV, Time.deltaTime * BoostAbility.toReachBoostSpeed);
         }
 
     }

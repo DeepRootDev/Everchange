@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class WaypointDrive:MonoBehaviour {
-	private float runSpeed = 80.0f;
-	public static bool isBoosting = false;
-	[SerializeField] private float currentSpeed = 0;
-	[SerializeField] private float boostSpeed = 150;
-	public static float	 toReachBoostSpeed = 5;
+
+	public float defaultSpeed = 80.0f;
+	public float currentSpeed = 0;
+
 	private float flySpeed = 130.0f;
 	float lateralSpeed = 12.5f;
 	float flyVerticalSpeed = 0.5f;
@@ -41,13 +40,14 @@ public class WaypointDrive:MonoBehaviour {
 
     private void Awake()
     {
-		currentSpeed = runSpeed;
+		currentSpeed = defaultSpeed;
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
 	{
 		moveInput = ctx.ReadValue<Vector2>();
 	}
+
 
 	public enum AIMode
 	{
@@ -65,21 +65,13 @@ public class WaypointDrive:MonoBehaviour {
 		myWaypoint = prevWaypoint.randNext();
 
 		StartCoroutine(AIbehavior());
+
 	}
 
-	public void OnSprint(InputAction.CallbackContext ctx)
-	{
-		if(ctx.action.WasPerformedThisFrame())
-		{
-			isBoosting = true;
-		}
-        if (ctx.action.WasReleasedThisFrame())
-        {
-			isBoosting = false;
-        }
-    }
+    
 
-	private void UpdateAirOrGroundState()
+
+    private void UpdateAirOrGroundState()
     {
 		if(inAir)
         {
@@ -98,6 +90,7 @@ public class WaypointDrive:MonoBehaviour {
 		transform.rotation = Quaternion.Slerp(transform.rotation,
 			Quaternion.LookRotation(lookAheadPt - transform.position), 0.2f);
     }
+
 
     private void Update()
     {
@@ -160,14 +153,7 @@ public class WaypointDrive:MonoBehaviour {
 		transform.position = Vector3.Lerp(positionLeft, positionRight, trackLeftRightNormalized) + Vector3.up* verticalOffset*flyRange;
 		lookAheadPt = Vector3.Lerp(nextWPTrackLeft, nextWPTrackRight, trackLeftRightNormalized);
 
-		if (isBoosting && AInow == AIMode.HumanControl)
-		{
-			currentSpeed =  Mathf.Lerp(currentSpeed, boostSpeed, Time.deltaTime *  toReachBoostSpeed);
-		}
-		else
-		{
-            currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, Time.deltaTime * toReachBoostSpeed);
-        }
+		
     }
 
 	float heightUnderMe(Vector3 atPos)
