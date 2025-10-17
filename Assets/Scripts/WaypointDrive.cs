@@ -94,7 +94,13 @@ public class WaypointDrive:MonoBehaviour {
 
     private void Update()
     {
-		Vector3 nextWPTrackLeft = myWaypoint.trackPtForOffset(-1.0f);
+        if (!myWaypoint)
+        {
+            Debug.Log("ERROR in WaypointDrive.Update(): myWaypoint is null. Maybe the WayPointManager has no startWP?");
+            // FIXME: maybe search for the right wp entity by name
+            return; // do nothing! 
+        }
+        Vector3 nextWPTrackLeft = myWaypoint.trackPtForOffset(-1.0f);
 		Vector3 nextWPTrackRight = myWaypoint.trackPtForOffset(1.0f);
 
 		Vector3 prevWPTrackLeft = prevWaypoint.trackPtForOffset(-1.0f);
