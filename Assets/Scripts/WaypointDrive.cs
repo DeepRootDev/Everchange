@@ -13,7 +13,7 @@ public class WaypointDrive:MonoBehaviour {
 	float flyVerticalSpeed = 0.5f;
 	float flyRange = 18.0f;
 
-	private bool inAir = false;
+	public bool inAir = false; // public so that PlayerSounds knows about it
 
 	private Waypoint prevWaypoint = null;
 	private Waypoint myWaypoint = null;
