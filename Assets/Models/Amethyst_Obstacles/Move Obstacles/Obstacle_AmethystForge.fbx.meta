@@ -3,7 +3,22 @@ guid: 316a9859bfe17f84e993e3c481300c7f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Amethyst_Gem
+    second: {fileID: 2100000, guid: 62ddebe58b4c19c40bd98c5bb8e057af, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ForgeObstcle_GlowGem
+    second: {fileID: 2100000, guid: 7c7a6fd05828a044da68285b2043017a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ForgeObstcle_Stream
+    second: {fileID: 2100000, guid: 16d61752716b72547aa0cb4b3b2b8bfe, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -35,7 +50,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1
