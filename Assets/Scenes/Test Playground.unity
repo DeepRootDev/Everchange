@@ -3983,11 +3983,31 @@ PrefabInstance:
       value: 3.02
       objectReference: {fileID: 0}
     - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_ActionId
+      value: 84168ae8-0b6b-49d4-bd8b-4c872bb72682
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_ActionName
+      value: 'Player/Fly[/Mouse/leftButton]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
@@ -3999,7 +4019,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1758201715}
     - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1758201717}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
@@ -4007,11 +4035,23 @@ PrefabInstance:
       value: OnSprint
       objectReference: {fileID: 0}
     - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnFly
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: WaypointDrive, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FlightManger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583291160001005776, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7836629899972180629, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
@@ -4025,12 +4065,47 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2184425476445289418, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1758201716}
+    - targetCorrespondingSourceObject: {fileID: 2184425476445289418, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1758201717}
+    - targetCorrespondingSourceObject: {fileID: 796850621512866954, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 927524651}
   m_SourcePrefab: {fileID: 100100000, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
 --- !u!1 &927524648 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2184425476445289418, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
   m_PrefabInstance: {fileID: 927524647}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &927524649 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 796850621512866954, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+  m_PrefabInstance: {fileID: 927524647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &927524650 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5885985336990943701, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+  m_PrefabInstance: {fileID: 927524647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927524649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &927524651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927524649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3979cf1e7c0fc954aa2f8ce8731939eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flightIcon: {fileID: 927524650}
 --- !u!1 &965373827
 GameObject:
   m_ObjectHideFlags: 0
@@ -7031,6 +7106,19 @@ MonoBehaviour:
     m_Bits: 64
   rayCastDistance: 500
   myStats: {fileID: 1475288540}
+--- !u!114 &1758201717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927524648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291a79a9c2ac7504d87c664b255897de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flightDuration: 5
 --- !u!1 &1770595087
 GameObject:
   m_ObjectHideFlags: 0
