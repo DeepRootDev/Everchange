@@ -13,7 +13,10 @@ public class Waypoint : MonoBehaviour
         Vector3 pointToward = Vector3.zero;
         for (int ii = 0; ii < next.Length; ii++)
         {
-            pointToward += next[ii].transform.position;
+            if (next[ii] != null) // this avoids a unity error message on the first frame
+            {
+                pointToward += next[ii].transform.position;
+            }
         }
         pointToward /= next.Length;
         //transform.LookAt(pointToward);
