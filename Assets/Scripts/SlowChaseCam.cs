@@ -5,8 +5,26 @@ public class SlowChase : MonoBehaviour
     public Transform chaseTarget;
     public Transform lookPoint;
 
+    public bool mouseLookEnabled = true;
+    public bool hideMouseCursor = true;
+    public float mouseLookSpeedX = 2f;
+    public float mouseLookSpeedY = 2f;
+    public float mouseLookVertRange = 80f; // degrees + or -
+
+    private float rotationX = 0f;
+    private float rotationY = 0f;
+    
     private float posHalfLife = 0.05f;
     private float rotHalfLife = 0.10f;
+
+    void Start()
+    {
+        if (hideMouseCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
 
     private void LateUpdate()
     {
@@ -18,6 +36,27 @@ public class SlowChase : MonoBehaviour
 
         transform.rotation = Quaternion.Slerp(transform.rotation,
             Quaternion.LookRotation(lookPoint.position - transform.position), rotT);
+
+        if (mouseLookEnabled)
+        {
+            rotationX += Input.GetAxis("Mouse X") * mouseLookSpeedX;
+            rotationY += -1 * Input.GetAxis("Mouse Y") * mouseLookSpeedY;
+            rotationY = Mathf.Clamp(rotationY, -mouseLookVertRange, mouseLookVertRange);
+
+            // adds just this frame's movement: works great
+            // howeverwe lerp back once we stop moving the mouse
+            transform.Rotate(rotationY, rotationX, 0f);
+            rotationX = 0f;
+            rotationY = 0f;
+
+            // alternate way - not quite working
+            // add the rotational offset fresh every frame without resetting
+            // Quaternion QuatOffsetX = Quaternion.AngleAxis(rotationX, Vector3.up);
+            // Quaternion QuatOffsetY = Quaternion.AngleAxis(rotationY, Vector3.left);
+            // transform.rotation *= QuatOffsetX;
+            // transform.rotation *= QuatOffsetY;
+
+        }
 
         transform.position = Vector3.Slerp(transform.position, chaseTarget.position, posT);
 
