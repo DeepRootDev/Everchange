@@ -15,8 +15,11 @@ public class PlayerPowerUpManager : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("Missing layerMask in PlayerPowerUpManager - assuming Obstacles layer.");
-        if (layerMask == null) layerMask = LayerMask.NameToLayer("Obstacles");
+        if (layerMask == 0)
+        {
+            Debug.Log("Missing layerMask in PlayerPowerUpManager - assuming Obstacles layer.");
+            layerMask = LayerMask.NameToLayer("Obstacles");
+        }
     }
 
     void Update()

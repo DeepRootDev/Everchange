@@ -3,25 +3,28 @@ using UnityEngine;
 public class MainCamera : MonoBehaviour
 {
     [SerializeField] private float boostFOV;
-    private Camera camera;
+    // renamed to "mycamera" to avoid unity compiler warning
+    // why does this happen?
+    // because unity already uses it so the names collide
+    private Camera mycamera; 
     private float normalFOV;
 
     private void Awake()
     {
-        camera = GetComponent<Camera>();
+        mycamera = GetComponent<Camera>();
 
-        normalFOV = camera.fieldOfView;
+        normalFOV = mycamera.fieldOfView;
     }
 
     private void Update()
     {
         if (BoostAbility.isBoosting)
         {
-            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, boostFOV, Time.deltaTime * BoostAbility.toReachBoostSpeed);
+            mycamera.fieldOfView = Mathf.Lerp(mycamera.fieldOfView, boostFOV, Time.deltaTime * BoostAbility.toReachBoostSpeed);
         }
         else
         {
-            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, normalFOV, Time.deltaTime * BoostAbility.toReachBoostSpeed);
+            mycamera.fieldOfView = Mathf.Lerp(mycamera.fieldOfView, normalFOV, Time.deltaTime * BoostAbility.toReachBoostSpeed);
         }
 
     }
