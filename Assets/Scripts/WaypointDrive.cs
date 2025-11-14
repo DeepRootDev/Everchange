@@ -64,7 +64,9 @@ public class WaypointDrive:MonoBehaviour {
 		UpdateAirOrGroundState();
 		myWaypoint = prevWaypoint.randNext();
 
-		StartCoroutine(AIbehavior());
+		// FIXME: maybe we need to do this:
+        // if (AInow != AIMode.HumanControl)
+        StartCoroutine(AIbehavior());
 
 	}
 
@@ -73,6 +75,9 @@ public class WaypointDrive:MonoBehaviour {
 
     private void UpdateAirOrGroundState()
     {
+        // FIXME: for non AI players we might need
+        // to use heightUnderMe() function rather than waypoint data
+
 		if(inAir)
         {
 			inAir = prevWaypoint.inAir; // turn off upon landing

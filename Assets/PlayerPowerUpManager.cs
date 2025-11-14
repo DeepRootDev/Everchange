@@ -9,7 +9,7 @@ public class PlayerPowerUpManager : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float rayCastDistance = 1000;
 
-    private bool   allowAcitvation = false;
+    private bool   allowActivation = false;
     private ActivatorArea activatorArea;
     public SpeedrunStats myStats;
 
@@ -26,7 +26,7 @@ public class PlayerPowerUpManager : MonoBehaviour
     {
         if (activatorArea != null)
         {
-            if (Input.GetKeyDown(activatorArea.GetKeyType()) && allowAcitvation)
+            if (Input.GetKeyDown(activatorArea.GetKeyType()) && allowActivation)
             {
                 activatorArea.Toggle();
                 if (myStats!=null) myStats.increaseTriggerCount();
@@ -37,6 +37,8 @@ public class PlayerPowerUpManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // FIXME: a tree or decoration might be in the way:
+        // should we instead use something like Physics.SphereCast()
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, rayCastDistance,layerMask))
         {
@@ -45,13 +47,13 @@ public class PlayerPowerUpManager : MonoBehaviour
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
                 Debug.Log("Did Hit");
                 this.activatorArea  = activatorArea;
-                allowAcitvation=true;
+                allowActivation=true;
             }
             
         }
         else
         {
-            allowAcitvation=false;
+            allowActivation=false;
             if(activatorArea != null)
                 activatorArea = null;
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
