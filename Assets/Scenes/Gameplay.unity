@@ -555,6 +555,54 @@ MonoBehaviour:
   next:
   - {fileID: 702899174}
   inAir: 0
+--- !u!1 &7531045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7531046}
+  - component: {fileID: 7531047}
+  m_Layer: 0
+  m_Name: WP71_A-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7531046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7531045}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.5124252, z: -0, w: 0.8587319}
+  m_LocalPosition: {x: -36944.1, y: 570, z: 3231}
+  m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1769634197}
+  m_LocalEulerAnglesHint: {x: 0, y: 61.651, z: 0}
+--- !u!114 &7531047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7531045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 1205546919}
+  - {fileID: 1349269717}
+  inAir: 0
 --- !u!4 &7829055 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fbdfcf465b0ab2c4e8934e32c4c45f87, type: 3}
@@ -3239,6 +3287,53 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &52249475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 52249476}
+  - component: {fileID: 52249477}
+  m_Layer: 0
+  m_Name: WP74_B-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &52249476
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52249475}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.8745737, z: -0, w: 0.48489264}
+  m_LocalPosition: {x: -36948, y: 570, z: 2923}
+  m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2009253146}
+  m_LocalEulerAnglesHint: {x: 0, y: 121.989, z: 0}
+--- !u!114 &52249477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52249475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 0}
+  inAir: 0
 --- !u!1 &52651834 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1060169338781423550, guid: 583cc05b950fc154ba134a7f437e54a3, type: 3}
@@ -8144,7 +8239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   next:
-  - {fileID: 0}
+  - {fileID: 782885774}
+  - {fileID: 1008963898}
   inAir: 0
 --- !u!4 &146233922
 Transform:
@@ -21600,6 +21696,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a67a71cef22048a428511cb84ca864d6, type: 3}
   m_PrefabInstance: {fileID: 409624429}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &410238911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 410238912}
+  - component: {fileID: 410238913}
+  m_Layer: 0
+  m_Name: WP73_A-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &410238912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410238911}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.73848796, z: -0, w: 0.67426676}
+  m_LocalPosition: {x: -36257.3, y: 570, z: 3473.6}
+  m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1769634197}
+  m_LocalEulerAnglesHint: {x: 0, y: 95.206, z: 0}
+--- !u!114 &410238913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410238911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 703115507}
+  inAir: 0
 --- !u!1001 &411548331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26335,6 +26478,53 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &486680136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 486680137}
+  - component: {fileID: 486680138}
+  m_Layer: 0
+  m_Name: WP76_C-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &486680137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486680136}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.85746104, z: -0, w: 0.5145489}
+  m_LocalPosition: {x: -35957, y: 327.4, z: 3218}
+  m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1548772593}
+  m_LocalEulerAnglesHint: {x: 0, y: 118.065, z: 0}
+--- !u!114 &486680138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486680136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 0}
+  inAir: 0
 --- !u!1 &487701344 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4204852170688106852, guid: 583cc05b950fc154ba134a7f437e54a3, type: 3}
@@ -38986,6 +39176,53 @@ MonoBehaviour:
   next:
   - {fileID: 26377540}
   inAir: 0
+--- !u!1 &703115505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 703115506}
+  - component: {fileID: 703115507}
+  m_Layer: 0
+  m_Name: WP74_A-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &703115506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703115505}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.802093, z: -0, w: 0.59719914}
+  m_LocalPosition: {x: -36141, y: 570, z: 3448}
+  m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1769634197}
+  m_LocalEulerAnglesHint: {x: 0, y: 106.661, z: 0}
+--- !u!114 &703115507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703115505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 1089532874}
+  inAir: 0
 --- !u!1001 &705985893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43475,6 +43712,53 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &782885772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 782885773}
+  - component: {fileID: 782885774}
+  m_Layer: 0
+  m_Name: WP69_A-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &782885773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782885772}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.6995724, z: -0, w: 0.71456176}
+  m_LocalPosition: {x: -37272.8, y: 570, z: 3142.6}
+  m_LocalScale: {x: 78.09907, y: 78.099075, z: 78.09907}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1769634197}
+  m_LocalEulerAnglesHint: {x: 0, y: 88.785, z: 0}
+--- !u!114 &782885774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782885772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 1819393508}
+  inAir: 0
 --- !u!4 &783776620 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8663258239865750236, guid: 583cc05b950fc154ba134a7f437e54a3, type: 3}
@@ -54960,6 +55244,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0e24265cf78487148b66fb9a0e4730be, type: 3}
   m_PrefabInstance: {fileID: 1007424054}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1008963897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1008963899}
+  - component: {fileID: 1008963898}
+  m_Layer: 0
+  m_Name: WP70_B-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1008963898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008963897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 1618360839}
+  inAir: 0
+--- !u!4 &1008963899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008963897}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7192742, z: -0, w: 0.6947263}
+  m_LocalPosition: {x: -37268, y: 570, z: 3021.4}
+  m_LocalScale: {x: 78.09907, y: 78.099075, z: 78.09907}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2009253146}
+  m_LocalEulerAnglesHint: {x: 0, y: 91.989, z: 0}
 --- !u!1001 &1009111352
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59266,6 +59597,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c2565a4b17e306241a8ed524dd665e71, type: 3}
   m_PrefabInstance: {fileID: 1089518696}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1089532872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1089532873}
+  - component: {fileID: 1089532874}
+  m_Layer: 0
+  m_Name: WP75_A-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1089532873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089532872}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.8633995, z: -0, w: 0.5045209}
+  m_LocalPosition: {x: -35797.1, y: 570, z: 3259.2}
+  m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1769634197}
+  m_LocalEulerAnglesHint: {x: 0, y: 119.401, z: 0}
+--- !u!114 &1089532874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089532872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 0}
+  inAir: 0
 --- !u!1001 &1091885980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66417,6 +66795,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a67a71cef22048a428511cb84ca864d6, type: 3}
   m_PrefabInstance: {fileID: 1204420140}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1205546917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1205546918}
+  - component: {fileID: 1205546919}
+  m_Layer: 0
+  m_Name: WP72_A-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1205546918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205546917}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.5124252, z: -0, w: 0.8587319}
+  m_LocalPosition: {x: -36417.3, y: 570, z: 3466.1}
+  m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1769634197}
+  m_LocalEulerAnglesHint: {x: 0, y: 61.651, z: 0}
+--- !u!114 &1205546919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205546917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 410238913}
+  inAir: 0
 --- !u!1001 &1206564416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74048,6 +74473,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e57c2e9225d51ad44ba8477673dce123, type: 3}
   m_PrefabInstance: {fileID: 1349215842}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1349269715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1349269716}
+  - component: {fileID: 1349269717}
+  m_Layer: 0
+  m_Name: WP73_C-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1349269716
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349269715}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.5124252, z: -0, w: 0.8587319}
+  m_LocalPosition: {x: -36736, y: 506, z: 3322}
+  m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1548772593}
+  m_LocalEulerAnglesHint: {x: 0, y: 61.651, z: 0}
+--- !u!114 &1349269717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349269715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 1742852639}
+  inAir: 0
 --- !u!4 &1352229737 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8663258239865750236, guid: 583cc05b950fc154ba134a7f437e54a3, type: 3}
@@ -82064,6 +82536,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0e24265cf78487148b66fb9a0e4730be, type: 3}
   m_PrefabInstance: {fileID: 1496727378}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1496887442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1496887443}
+  - component: {fileID: 1496887444}
+  m_Layer: 0
+  m_Name: WP75_C-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1496887443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496887442}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.8054322, z: -0, w: 0.592688}
+  m_LocalPosition: {x: -36298, y: 327.4, z: 3403}
+  m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1548772593}
+  m_LocalEulerAnglesHint: {x: 0, y: 107.304, z: 0}
+--- !u!114 &1496887444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496887442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 486680138}
+  inAir: 0
 --- !u!4 &1498002373 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8628674454833420371, guid: 1cd156378f85b3d4aa100de712d5a4f3, type: 3}
@@ -84762,6 +85281,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a67a71cef22048a428511cb84ca864d6, type: 3}
   m_PrefabInstance: {fileID: 1548751085}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1548772592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1548772593}
+  m_Layer: 0
+  m_Name: C-Track Waypoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1548772593
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548772592}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1349269716}
+  - {fileID: 1742852638}
+  - {fileID: 1496887443}
+  - {fileID: 486680137}
+  m_Father: {fileID: 2041676893}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1550472027 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0e24265cf78487148b66fb9a0e4730be, type: 3}
@@ -87525,6 +88079,53 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &1618360838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1618360840}
+  - component: {fileID: 1618360839}
+  m_Layer: 0
+  m_Name: WP71_B-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1618360839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618360838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 2128161903}
+  inAir: 0
+--- !u!4 &1618360840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618360838}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.8038006, z: -0, w: 0.59489894}
+  m_LocalPosition: {x: -37070.6, y: 570, z: 2984.3}
+  m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2009253146}
+  m_LocalEulerAnglesHint: {x: 0, y: 106.989, z: 0}
 --- !u!1001 &1618692845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93458,6 +94059,53 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb9d848ca9ada634c95c445fb33e5999, type: 3}
+--- !u!1 &1734728464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1734728465}
+  - component: {fileID: 1734728466}
+  m_Layer: 0
+  m_Name: WP73_B-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1734728465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734728464}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.8745737, z: -0, w: 0.48489264}
+  m_LocalPosition: {x: -36948, y: 570, z: 2923}
+  m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2009253146}
+  m_LocalEulerAnglesHint: {x: 0, y: 121.989, z: 0}
+--- !u!114 &1734728466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734728464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 0}
+  inAir: 0
 --- !u!1001 &1734839115
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93721,6 +94369,53 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &1742852637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1742852638}
+  - component: {fileID: 1742852639}
+  m_Layer: 0
+  m_Name: WP74_C-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1742852638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742852637}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.6434398, z: -0, w: 0.76549673}
+  m_LocalPosition: {x: -36481.5, y: 399, z: 3422}
+  m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1548772593}
+  m_LocalEulerAnglesHint: {x: 0, y: 80.098, z: 0}
+--- !u!114 &1742852639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742852637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 1496887444}
+  inAir: 0
 --- !u!114 &1743738566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94055,6 +94750,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a67a71cef22048a428511cb84ca864d6, type: 3}
   m_PrefabInstance: {fileID: 1568339227}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1756037346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1756037347}
+  - component: {fileID: 1756037348}
+  m_Layer: 0
+  m_Name: WP75_B-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1756037347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756037346}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.8745737, z: -0, w: 0.48489264}
+  m_LocalPosition: {x: -36948, y: 570, z: 2923}
+  m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2009253146}
+  m_LocalEulerAnglesHint: {x: 0, y: 121.989, z: 0}
+--- !u!114 &1756037348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756037346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 0}
+  inAir: 0
 --- !u!1001 &1758096467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95038,6 +95780,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2041676893}
   m_LocalEulerAnglesHint: {x: 0, y: 138.519, z: 0}
+--- !u!1 &1769634196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1769634197}
+  m_Layer: 0
+  m_Name: A-Track Waypoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1769634197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769634196}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 782885773}
+  - {fileID: 1819393507}
+  - {fileID: 7531046}
+  - {fileID: 1205546918}
+  - {fileID: 410238912}
+  - {fileID: 703115506}
+  - {fileID: 1089532873}
+  m_Father: {fileID: 2041676893}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1769811868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ff714f348a8a9404fb603d974bf1e56d, type: 3}
@@ -97642,6 +98422,53 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2565a4b17e306241a8ed524dd665e71, type: 3}
+--- !u!1 &1819393506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1819393507}
+  - component: {fileID: 1819393508}
+  m_Layer: 0
+  m_Name: WP70_A-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1819393507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819393506}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.6199931, z: -0, w: 0.78460735}
+  m_LocalPosition: {x: -37099, y: 570, z: 3161}
+  m_LocalScale: {x: 78.09908, y: 78.099075, z: 78.09908}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1769634197}
+  m_LocalEulerAnglesHint: {x: 0, y: 76.631, z: 0}
+--- !u!114 &1819393508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819393506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 7531047}
+  inAir: 0
 --- !u!1001 &1819401014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97966,6 +98793,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1250450957}
   m_LocalEulerAnglesHint: {x: 1.257, y: 351.875, z: 179.821}
+--- !u!1 &1825463652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1825463653}
+  - component: {fileID: 1825463654}
+  m_Layer: 0
+  m_Name: WP76_B-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1825463653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825463652}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.8745737, z: -0, w: 0.48489264}
+  m_LocalPosition: {x: -36948, y: 570, z: 2923}
+  m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2009253146}
+  m_LocalEulerAnglesHint: {x: 0, y: 121.989, z: 0}
+--- !u!114 &1825463654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825463652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 0}
+  inAir: 0
 --- !u!1 &1825849121 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 922932618610467472, guid: 583cc05b950fc154ba134a7f437e54a3, type: 3}
@@ -108105,6 +108979,44 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a67a71cef22048a428511cb84ca864d6, type: 3}
   m_PrefabInstance: {fileID: 2007990549}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2009253145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2009253146}
+  m_Layer: 0
+  m_Name: B-Track Wapoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2009253146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009253145}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1008963899}
+  - {fileID: 1618360840}
+  - {fileID: 2128161904}
+  - {fileID: 1734728465}
+  - {fileID: 52249476}
+  - {fileID: 1756037347}
+  - {fileID: 1825463653}
+  m_Father: {fileID: 2041676893}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2009632195 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8b44ca6c5044b314e9809afc94b67c6d, type: 3}
@@ -109789,6 +110701,9 @@ Transform:
   - {fileID: 1421199072}
   - {fileID: 508467818}
   - {fileID: 146233922}
+  - {fileID: 1769634197}
+  - {fileID: 2009253146}
+  - {fileID: 1548772593}
   m_Father: {fileID: 2123020013}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2042721689 stripped
@@ -113847,6 +114762,53 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &2128161902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2128161904}
+  - component: {fileID: 2128161903}
+  m_Layer: 0
+  m_Name: WP72_B-Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2128161903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128161902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 0}
+  inAir: 0
+--- !u!4 &2128161904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128161902}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.8745737, z: -0, w: 0.48489264}
+  m_LocalPosition: {x: -36948, y: 570, z: 2923}
+  m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2009253146}
+  m_LocalEulerAnglesHint: {x: 0, y: 121.989, z: 0}
 --- !u!1001 &2130312958
 PrefabInstance:
   m_ObjectHideFlags: 0
