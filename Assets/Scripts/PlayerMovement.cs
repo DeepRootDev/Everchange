@@ -67,12 +67,12 @@ public class PlayerMovement : MonoBehaviour
 
         // Limit horizontal velocity to prevent excessive speed
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-        currentSpeed = flatVel.magnitude;
-        if (currentSpeed > targetSpeed)
+        if (flatVel.magnitude > targetSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * targetSpeed;
             rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
         }
+        currentSpeed = rb.linearVelocity.magnitude; // now test the result for debugging
 
         // add in our fake gravity
         if (!isGrounded) rb.AddForce(new Vector3(0, gravityPower, 0), ForceMode.Acceleration);        
