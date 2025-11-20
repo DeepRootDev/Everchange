@@ -21,10 +21,11 @@ public class PlayerSounds : MonoBehaviour
     
     void Update()
     {
-        //if (!myWPD) return;
+        // don't crash if any of these are null
+        if (!myWPD) return;
         //if (!myBoost) return;
-        //if (!runningSound) return;
-        //if (!boostSound) return;
+        if (!runningSound) return;
+        if (!boostSound) return;
 
         if (myWPD.inAir)
         {
