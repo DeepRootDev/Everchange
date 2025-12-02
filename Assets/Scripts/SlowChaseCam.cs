@@ -4,6 +4,11 @@ public class SlowChase : MonoBehaviour
 {
     public Transform chaseTarget;
     public Transform lookPoint;
+    public Transform introStartAt;
+    public Transform introEndAt;
+    public Transform introLookAt;
+    public float introLengthInSeconds = 3f; // set to zero for no intro
+    private float introTimeleft;
 
     public bool mouseLookEnabled = true;
     public bool hideMouseCursor = true;
@@ -19,6 +24,8 @@ public class SlowChase : MonoBehaviour
 
     void Start()
     {
+        introTimeleft = introLengthInSeconds;
+
         if (hideMouseCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -58,7 +65,15 @@ public class SlowChase : MonoBehaviour
 
         }
 
-        transform.position = Vector3.Slerp(transform.position, chaseTarget.position, posT);
-
+        if (introTimeleft > 0f && introStartAt != null) // intro flyby time?
+        {
+            // do a face closeup camera effect during the 3..2..1
+            introTimeleft -= Time.deltaTime;
+            transform.position = Vector3.Slerp(introStartAt.position, introEndAt.position, 1f-(introTimeleft/introLengthInSeconds));
+            transform.rotation = Quaternion.LookRotation(introLookAt.position - transform.position);
+        } else {    
+            // follow the normal gameplay chase camera target
+            transform.position = Vector3.Slerp(transform.position, chaseTarget.position, posT);
+        }
     }
 }

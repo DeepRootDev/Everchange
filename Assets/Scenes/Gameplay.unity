@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.0005
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.38811746, g: 0.44323134, b: 0.55345905, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientGroundColor: {r: 0.4528302, g: 0.40204105, b: 0.30046278, a: 1}
   m_AmbientIntensity: 1.45
-  m_AmbientMode: 0
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.13714845, g: 0.4339623, b: 0.3617417, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 20ddd99bea66b49549996e86d3bf53fc, type: 2}
   m_HaloStrength: 0.5
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 0.049
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 1399823921}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -37194,6 +37194,11 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!4 &671280826 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4372570227500981913, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+  m_PrefabInstance: {fileID: 927524647}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &671527850 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6217176170607622974, guid: 583cc05b950fc154ba134a7f437e54a3, type: 3}
@@ -53513,6 +53518,11 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!4 &970802751 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1971142896415304737, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+  m_PrefabInstance: {fileID: 927524647}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &971210219
 GameObject:
   m_ObjectHideFlags: 0
@@ -72806,6 +72816,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a67a71cef22048a428511cb84ca864d6, type: 3}
   m_PrefabInstance: {fileID: 1317566951}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1318482032 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1810391200691691094, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
+  m_PrefabInstance: {fileID: 927524647}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1319349264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73257,6 +73272,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseTarget: {fileID: 425662310}
   lookPoint: {fileID: 1738680597}
+  introStartAt: {fileID: 1318482032}
+  introEndAt: {fileID: 671280826}
+  introLookAt: {fileID: 970802751}
+  introLengthInSeconds: 3
   mouseLookEnabled: 1
   hideMouseCursor: 1
   mouseLookSpeedX: 2
