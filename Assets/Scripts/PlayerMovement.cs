@@ -7,19 +7,29 @@ public class PlayerMovement : MonoBehaviour
     public float maxSpeed = 100f;
     public float turnSpeed = 1f;
     public float acceleration = 500f;
+    public float corneringTiltDegreesMax = 45f;
+    public float corneringTiltDegreesPerSec = 45f;
     public float gravityPower = -150f;
     public float jumpPower = 10f;
     public float wallRunStickiness = 10f;
+    public float wallrunMaxDistance = 3f;
+    public float wallrunTiltDegreesMax = 65f;
+    public float wallrunTiltDegreesPerSec = 65f;
     public float glideTime = 3f;
     public float boostPower = 50f;
     public float gravity = 10f;
     public float driftFriction = 1f;
- public Transform groundCheck;
+    public float driftTiltDegreesMax = 65f;
+    public float driftTiltDegreesPerSec = 65f;
+    public Transform thePlayerMesh; // so we cal tilt it without tilting this rb
+    public Transform groundCheck;
     public LayerMask groundLayer;
     public float groundCheckRadius = 0.2f;
     private Vector3 moveDirection;
     private Rigidbody rb;
-    private bool isGrounded;
+    
+    public bool isGrounded = false;
+    public bool isWallRunning = false;
 
     void Start()
     {
@@ -52,6 +62,38 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
+
+        handleWallRun();
+    }
+
+    void handleWallRun()
+    {
+        Ray rayLeft = new Ray(transform.position, -transform.right);
+        Ray rayRight = new Ray(transform.position, transform.right);
+        RaycastHit hitData;
+        isWallRunning = Physics.Raycast(rayLeft, out hitData, wallrunMaxDistance);
+        if (!isWallRunning) isWallRunning = Physics.Raycast(rayRight, out hitData, wallrunMaxDistance);
+        if (isWallRunning)
+        {
+            float hitAngle = Vector3.Angle(hitData.normal, transform.up) - 90f;
+            Debug.Log("WALL RUNNING on " + hitData.collider.name + " at point: " + hitData.point + " angle:"+hitAngle+" dist:"+hitData.distance);
+            // while wall running, there's no gravity applied in update function
+        }        
+
+        // tilt the player if required
+        // FIXME: gimbal lock wierdness
+        /*
+        if (thePlayerMesh)
+        {
+            Quaternion target = transform.rotation; //Quaternion.Euler(-90f, 0f, 0f);
+            target.x = -90f; // fwd/back tilt based on art
+            if (isWallRunning) {
+                target.z = wallrunTiltDegreesMax;
+            }
+            thePlayerMesh.transform.rotation = target; //Quaternion.Slerp(thePlayerMesh.transform.rotation, target,  Time.deltaTime * wallrunTiltDegreesPerSec);
+        }
+        */
+
     }
 
     void FixedUpdate()
@@ -74,8 +116,8 @@ public class PlayerMovement : MonoBehaviour
         }
         currentSpeed = rb.linearVelocity.magnitude; // now test the result for debugging
 
-        // add in our fake gravity
-        if (!isGrounded) rb.AddForce(new Vector3(0, gravityPower, 0), ForceMode.Acceleration);        
+        // add in our fake gravity unless we're on the ground or a wall
+        if (!isGrounded && !isWallRunning) rb.AddForce(new Vector3(0, gravityPower, 0), ForceMode.Acceleration);        
 
     }
 
