@@ -9,16 +9,18 @@ public class MainCamera : MonoBehaviour
     private Camera mycamera; 
     private float normalFOV;
 
+    public PlayerMovement myPlayerMovement;
+
     private void Awake()
     {
         mycamera = GetComponent<Camera>();
-
         normalFOV = mycamera.fieldOfView;
     }
 
     private void Update()
     {
-        if (BoostAbility.isBoosting)
+        if (BoostAbility.isBoosting || 
+            (myPlayerMovement&&myPlayerMovement.isBoosting))
         {
             mycamera.fieldOfView = Mathf.Lerp(mycamera.fieldOfView, boostFOV, Time.deltaTime * BoostAbility.toReachBoostSpeed);
         }

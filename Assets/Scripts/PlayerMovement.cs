@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     
     public bool isGrounded = false;
     public bool isWallRunning = false;
+    public bool isGrinding = false;
+    public bool isBoosting = false;
 
     void Start()
     {
@@ -103,6 +105,9 @@ public class PlayerMovement : MonoBehaviour
         if (BoostAbility.isBoosting) targetSpeed = maxSpeed;
         // ok fake it here
         if (Input.GetKey(KeyCode.LeftShift)) targetSpeed = maxSpeed;
+        // but tell the world
+        isBoosting = (targetSpeed == maxSpeed);
+
 
         // Apply Movement Force
         rb.AddForce(moveDirection * acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);

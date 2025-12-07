@@ -5,6 +5,8 @@ public class SpeedLines : MonoBehaviour
     public float particlesPerSecWhenBoosting = 100f;
     public float particlesPerSecWhenNotBoosting = 0f;
     private ParticleSystem.EmissionModule emission;
+    public PlayerMovement myPlayerMovement;
+    public bool isCurrentlyOn = false; // only used for debug!
     
     void Start()
     {
@@ -13,6 +15,12 @@ public class SpeedLines : MonoBehaviour
 
     void Update()
     {
-        emission.rateOverTime = (BoostAbility.isBoosting ? particlesPerSecWhenBoosting : particlesPerSecWhenNotBoosting);
+        if (BoostAbility.isBoosting||(myPlayerMovement&&myPlayerMovement.isBoosting)) {
+            isCurrentlyOn = true;
+            emission.rateOverTime = particlesPerSecWhenBoosting;
+        } else {
+            isCurrentlyOn = false;
+            emission.rateOverTime = particlesPerSecWhenNotBoosting;
+        }
     }
 }
