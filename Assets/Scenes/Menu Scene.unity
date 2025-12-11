@@ -766,8 +766,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Menu Header Test
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b6897a33f232d5b4789064e104229a94, type: 2}
-  m_sharedMaterial: {fileID: 5409091690804245179, guid: b6897a33f232d5b4789064e104229a94, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 49a8e8d55da623f4390a34ffaf039142, type: 2}
+  m_sharedMaterial: {fileID: -779161683426089576, guid: 49a8e8d55da623f4390a34ffaf039142, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
