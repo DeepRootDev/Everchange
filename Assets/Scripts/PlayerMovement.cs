@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public float maxSpeed = 100f;
     public float turnSpeed = 1f;
     public float acceleration = 500f;
-    public float corneringTiltDegreesMax = 45f;
-    public float corneringTiltDegreesPerSec = 45f;
+    public float corneringTiltDegreesMax = 15f;
+    public float corneringTiltDegreesPerSec = 15f;
     public float gravityPower = -150f;
     public float jumpPower = 10f;
     public float wallRunStickiness = 10f;
@@ -21,10 +21,17 @@ public class PlayerMovement : MonoBehaviour
     public float driftFriction = 1f;
     public float driftTiltDegreesMax = 65f;
     public float driftTiltDegreesPerSec = 65f;
-    public Transform thePlayerMesh; // so we cal tilt it without tilting this rb
+
+    // a gameobject at pos 0,0,0 rot 0,0,0 and scale 1,1,1
+    // that holds the scaled and rotated player mesh
+    // this way we can tilt it without tilting the rigidbody etc
+    public Transform thePlayerVisuals; 
+
+    // FIXME: spherecast is broken? use raycast?
     public Transform groundCheck;
     public LayerMask groundLayer;
     public float groundCheckRadius = 0.2f;
+    
     private Vector3 moveDirection;
     private Rigidbody rb;
     
@@ -40,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Ground Check
+        // Ground Check - FIXME: doesn't work for arbitrary polygons without layer/tags
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
 
         // Get Input
@@ -57,10 +64,29 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = transform.forward;
         moveDirection.Normalize(); // Normalize to prevent faster diagonal movement
 
+        // tilt player mesh a little when we are cornering
+        if (thePlayerVisuals)
+        {
+            thePlayerVisuals.transform.localRotation = Quaternion.Euler(
+                thePlayerVisuals.transform.localRotation.x,
+                thePlayerVisuals.transform.localRotation.y,
+                -1*horizontalInput*corneringTiltDegreesMax);
+
+            // GIMBAL LOCK!!!!! arghhhhhhhhhhhhhhhh no tilting is possible....... MATH
+            //thePlayerMesh.transform.Rotate(transform.up,horizontalInput*corneringTiltDegreesMax);
+            //thePlayerMesh.transform.localRotation = Quaternion.Euler(thePlayerMesh.transform.localRotation.x,thePlayerMesh.transform.localRotation.y,horizontalInput*corneringTiltDegreesMax);
+
+            // hack to avoid gimbal lock ( the problem is the mesh needs -90 x rot)
+            // Create rotation 90 degrees around my up vector
+            // Quaternion delta = Quaternion.AngleAxis(horizontalInput*corneringTiltDegreesMax, thePlayerMesh.transform.forward);
+            // Rotate my foward vector by delta
+            // thePlayerMesh.transform.up = delta * thePlayerMesh.transform.up;
+        }
+
         // Jump Input
-        if (Input.GetButtonDown("Jump") || // hmm not working
-            Input.GetKey(KeyCode.Space) // oldschool
-            && isGrounded)
+        if (isGrounded &&
+            Input.GetButtonDown("Jump") || // hmm not working
+            Input.GetKey(KeyCode.Space)) // oldschool
         {
             Jump();
         }
@@ -107,7 +133,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift)) targetSpeed = maxSpeed;
         // but tell the world
         isBoosting = (targetSpeed == maxSpeed);
-
 
         // Apply Movement Force
         rb.AddForce(moveDirection * acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);
