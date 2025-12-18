@@ -2,22 +2,38 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("PLAYER MOVEMENT")]
+    public bool debugMode = true; // for future use w gizmos etc
+    public bool isGrounded = false;
+    public bool isWallRunning = false;
+    public bool isGrinding = false;
+    public bool isBoosting = false;
     public float currentSpeed = 0f; // public only to help debugging =)
+
+    [Header("Movement Settings:")]
     public float minSpeed = 50f;
     public float maxSpeed = 100f;
-    public float turnSpeed = 1f;
     public float acceleration = 500f;
-    public float corneringTiltDegreesMax = 15f;
-    public float corneringTiltDegreesPerSec = 15f;
     public float gravityPower = -150f;
     public float jumpPower = 10f;
+    [Header("Turning and Tilting:")]
+    public float turnSpeed = 1f;
+    public float corneringTiltDegreesMax = 15f;
+    public float corneringTiltDegreesPerSec = 15f;
+    [Header("Wall Run:")]
     public float wallRunStickiness = 10f;
     public float wallrunMaxDistance = 3f;
     public float wallrunTiltDegreesMax = 65f;
     public float wallrunTiltDegreesPerSec = 65f;
+    [Header("Wingsuit-style Gliding:")]
     public float glideTime = 3f;
+    public float glideSpeedBoost = 30f;
+    [Header("Speed Boost:")]
     public float boostPower = 50f;
-    public float gravity = 10f;
+    public float boostTimespan = 3f;
+    [Header("Drifting Turns:")]
+    public float driftTriggerSpeed = 1f;
+    public float driftTriggerAngle = 15f;
     public float driftFriction = 1f;
     public float driftTiltDegreesMax = 65f;
     public float driftTiltDegreesPerSec = 65f;
@@ -25,9 +41,11 @@ public class PlayerMovement : MonoBehaviour
     // a gameobject at pos 0,0,0 rot 0,0,0 and scale 1,1,1
     // that holds the scaled and rotated player mesh
     // this way we can tilt it without tilting the rigidbody etc
+    [Header("Something we can tilt without affecting physics")]
     public Transform thePlayerVisuals; 
 
     // FIXME: spherecast is broken? use raycast?
+    [Header("FIXME: replace with a simple raycast")]
     public Transform groundCheck;
     public LayerMask groundLayer;
     public float groundCheckRadius = 0.2f;
@@ -35,11 +53,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection;
     private Rigidbody rb;
     
-    public bool isGrounded = false;
-    public bool isWallRunning = false;
-    public bool isGrinding = false;
-    public bool isBoosting = false;
-
     void Start()
     {
         rb = GetComponent<Rigidbody>();
