@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isWallRunning = false;
     public bool isGrinding = false;
     public bool isBoosting = false;
+    public bool isGliding = false;
     public float currentSpeed = 0f; // public only to help debugging =)
 
     [Header("Movement Settings:")]
@@ -16,10 +17,12 @@ public class PlayerMovement : MonoBehaviour
     public float acceleration = 500f;
     public float gravityPower = -150f;
     public float jumpPower = 10f;
+    
     [Header("Turning and Tilting:")]
     public float turnSpeed = 1f;
     public float corneringTiltDegreesMax = 15f;
     public float corneringTiltDegreesPerSec = 15f;
+    
     [Header("Wall Run:")]
     public float wallRunStickiness = 10f;
     public float wallrunMaxDistance = 3f;
@@ -27,7 +30,10 @@ public class PlayerMovement : MonoBehaviour
     public float wallrunTiltDegreesPerSec = 65f;
     [Header("Wingsuit-style Gliding:")]
     public float glideTime = 3f;
-    public float glideSpeedBoost = 30f;
+    public float glideSpeed = 75f;
+    public float glideLeanAngle = 90;
+    public float glideLeanSpeed = 1;
+
     [Header("Speed Boost:")]
     public float boostPower = 50f;
     public float boostTimespan = 3f;
@@ -80,20 +86,23 @@ public class PlayerMovement : MonoBehaviour
         // tilt player mesh a little when we are cornering
         if (thePlayerVisuals)
         {
+            // tilt the player left and right as we turn
             thePlayerVisuals.transform.localRotation = Quaternion.Euler(
                 thePlayerVisuals.transform.localRotation.x,
                 thePlayerVisuals.transform.localRotation.y,
                 -1*horizontalInput*corneringTiltDegreesMax);
 
-            // GIMBAL LOCK!!!!! arghhhhhhhhhhhhhhhh no tilting is possible....... MATH
-            //thePlayerMesh.transform.Rotate(transform.up,horizontalInput*corneringTiltDegreesMax);
-            //thePlayerMesh.transform.localRotation = Quaternion.Euler(thePlayerMesh.transform.localRotation.x,thePlayerMesh.transform.localRotation.y,horizontalInput*corneringTiltDegreesMax);
-
-            // hack to avoid gimbal lock ( the problem is the mesh needs -90 x rot)
-            // Create rotation 90 degrees around my up vector
-            // Quaternion delta = Quaternion.AngleAxis(horizontalInput*corneringTiltDegreesMax, thePlayerMesh.transform.forward);
-            // Rotate my foward vector by delta
-            // thePlayerMesh.transform.up = delta * thePlayerMesh.transform.up;
+            // tilt the player forwards to glide like a wingsuit
+            if (isGliding) {
+                // counteract gravity?
+                // rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z); 
+                // lean forward
+                thePlayerVisuals.transform.localRotation = Quaternion.Euler(
+                    glideLeanAngle, // FIXME: tween using glideLeanSpeed
+                    thePlayerVisuals.transform.localRotation.y,
+                    thePlayerVisuals.transform.localRotation.z
+                    );
+            }
         }
 
         // Jump Input
@@ -147,6 +156,13 @@ public class PlayerMovement : MonoBehaviour
         // but tell the world
         isBoosting = (targetSpeed == maxSpeed);
 
+        // FIXME:use new input system
+        isGliding = (!isGrounded && Input.GetMouseButton(1));
+        if (isGliding) { 
+            // glide also has a speed boost
+            targetSpeed = glideSpeed;
+        }
+
         // Apply Movement Force
         rb.AddForce(moveDirection * acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);
 
@@ -159,8 +175,8 @@ public class PlayerMovement : MonoBehaviour
         }
         currentSpeed = rb.linearVelocity.magnitude; // now test the result for debugging
 
-        // add in our fake gravity unless we're on the ground or a wall
-        if (!isGrounded && !isWallRunning) rb.AddForce(new Vector3(0, gravityPower, 0), ForceMode.Acceleration);        
+        // add gravity unless we're touching ground or wall, or gliding
+        if (!isGrounded && !isWallRunning && !isGliding) rb.AddForce(new Vector3(0, gravityPower, 0), ForceMode.Acceleration);        
 
     }
 

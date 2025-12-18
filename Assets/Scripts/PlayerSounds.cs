@@ -32,6 +32,10 @@ public class PlayerSounds : MonoBehaviour
         Debug.Log("We need 4 audiosources and have "+GetComponents<AudioSource>().Length);
         runningSound = GetComponents<AudioSource>()[0];
         boostSound = GetComponents<AudioSource>()[1];
+        // FIXME: we get strange errors here on the first frame
+        // as if unity has not finished loading these sounds
+        // but after inits it works!!
+        // seems like Start() is being called TWICE?
         wallrunSound = GetComponents<AudioSource>()[2];
         grindingSound = GetComponents<AudioSource>()[3];
     }
