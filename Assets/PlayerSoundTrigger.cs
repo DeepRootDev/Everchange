@@ -3,14 +3,15 @@ using UnityEngine;
 public class PlayerSoundTrigger : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource soundToPlay;
-    public string b;
+    private AudioClip soundToPlay;
+    [SerializeField]
+    private PlayerVoicePlayerBox playerVoicePlayerBox;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            soundToPlay.Play();
+            playerVoicePlayerBox.PlaySound(soundToPlay);
         }
     }
 }

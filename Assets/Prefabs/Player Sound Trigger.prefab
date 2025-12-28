@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 0}
-  b: 
+  playerVoicePlayerBox: {fileID: 0}
 --- !u!65 &2710429752518972397
 BoxCollider:
   m_ObjectHideFlags: 0
