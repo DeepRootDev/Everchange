@@ -13497,6 +13497,14 @@ PrefabInstance:
       propertyPath: myStats
       value: 
       objectReference: {fileID: 1475288540}
+    - target: {fileID: 3413980288437706520, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811405904607633522, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6428980938801350228, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -13535,6 +13543,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428980938801350228, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340303042136039828, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8939655125504027311, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
+      propertyPath: m_Volume
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

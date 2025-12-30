@@ -113,7 +113,7 @@ public class PlayerSounds : MonoBehaviour
         wasBoostingLastFrame = (BoostAbility.isBoosting|| 
             (myPlayerMovement&&myPlayerMovement.isBoosting));
 
-    // debug
+    // for debug only!!!! 
     currentRunVol = runningSound.volume;
     currentBoostVol = boostSound.volume;
     currentWallrunVol = wallrunSound.volume;

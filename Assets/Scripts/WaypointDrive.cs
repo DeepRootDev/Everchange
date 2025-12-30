@@ -101,7 +101,7 @@ public class WaypointDrive:MonoBehaviour {
     {
         if (!myWaypoint)
         {
-            Debug.Log("ERROR in WaypointDrive.Update(): myWaypoint is null. Maybe the WayPointManager has no startWP?");
+            //Debug.Log("ERROR in WaypointDrive.Update(): myWaypoint is null. Maybe the WayPointManager has no startWP?");
             // FIXME: maybe search for the right wp entity by name
             return; // do nothing! 
         }

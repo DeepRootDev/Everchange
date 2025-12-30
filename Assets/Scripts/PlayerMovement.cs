@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isGliding = false;
     public bool justJumped = false; // only true on the frame we started jumping
     public float currentSpeed = 0f; // public only to help debugging =)
+    public float currentAltitude = 0f; // ground check result dist
 
     [Header("Movement Settings:")]
     public float minSpeed = 50f;
@@ -18,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float acceleration = 500f;
     public float gravityPower = -150f;
     public float jumpPower = 10f;
+    public float groundedMaxAltitude = 7f; // dist from waist to ground (avg 4-6)
     
     [Header("Turning and Tilting:")]
     public float turnSpeed = 1f;
@@ -65,10 +67,21 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    void checkGrounded()
+    {
+        Ray rayDown = new Ray(transform.position, -transform.up);
+        RaycastHit hitData;
+        Physics.Raycast(rayDown, out hitData, 999f);
+        currentAltitude = hitData.distance;
+        isGrounded = currentAltitude <= groundedMaxAltitude;
+
+    }
+
     void Update()
     {
         // Ground Check - FIXME: doesn't work for arbitrary polygons without layer/tags
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+        // isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+        checkGrounded(); // uses a simple raycast instead
 
         // Get Input
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -108,8 +121,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Jump Input
         if (isGrounded &&
-            Input.GetButtonDown("Jump") || // hmm not working
-            Input.GetKey(KeyCode.Space)) // oldschool
+            (Input.GetButtonDown("Jump") || // hmm not working
+            Input.GetKey(KeyCode.Space))
+            ) // oldschool
         {
             Jump();
             justJumped = true;
@@ -186,6 +200,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
+        Debug.Log("JUMP! isGrounded="+isGrounded); // should always be true!!
         // Reset vertical velocity before jumping to ensure consistent jump height
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z); 
         rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
