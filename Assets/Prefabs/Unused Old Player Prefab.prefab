@@ -6381,7 +6381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4753218811088129953
 Transform:
   m_ObjectHideFlags: 0
@@ -6409,8 +6409,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e302adc85efef439560991864526eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myPlayerMovement: {fileID: 0}
   runningSoundVolume: 1
   boostSoundVolume: 1
+  wallrunSoundVolume: 1
+  grindingSoundVolume: 1
+  glidingSoundVolume: 1
+  jumpSoundVolume: 1
+  currentRunVol: 0
+  currentBoostVol: 0
+  currentWallrunVol: 0
+  currentGrindingVol: 0
 --- !u!82 &3318997565578894896
 AudioSource:
   m_ObjectHideFlags: 0

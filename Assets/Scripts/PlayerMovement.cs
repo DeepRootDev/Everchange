@@ -25,12 +25,15 @@ public class PlayerMovement : MonoBehaviour
     public float turnSpeed = 1f;
     public float corneringTiltDegreesMax = 15f;
     public float corneringTiltDegreesPerSec = 15f;
+    public float minTiltToBeGrinding = 14f;
+
     
     [Header("Wall Run:")]
     public float wallRunStickiness = 10f;
     public float wallrunMaxDistance = 3f;
     public float wallrunTiltDegreesMax = 65f;
     public float wallrunTiltDegreesPerSec = 65f;
+
     [Header("Wingsuit-style Gliding:")]
     public float glideTime = 3f;
     public float glideSpeed = 75f;
@@ -85,6 +88,13 @@ public class PlayerMovement : MonoBehaviour
 
         // Get Input
         float horizontalInput = Input.GetAxis("Horizontal");
+
+        // tilt as we turn sharper
+        float myTiltNow = -1*horizontalInput*corneringTiltDegreesMax;
+
+        // we grind if we're tilting a lot (due to a sharp turn held for a long time)
+        isGrinding = myTiltNow <= -minTiltToBeGrinding || myTiltNow >= minTiltToBeGrinding;
+
         // float verticalInput = 1;//  always going forward! Input.GetAxis("Vertical");
         // normal platformer movement - strafe and fwd+back:
         // moveDirection = transform.right * horizontalInput + transform.forward * verticalInput;
@@ -104,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
             thePlayerVisuals.transform.localRotation = Quaternion.Euler(
                 thePlayerVisuals.transform.localRotation.x,
                 thePlayerVisuals.transform.localRotation.y,
-                -1*horizontalInput*corneringTiltDegreesMax);
+                myTiltNow);
 
             // tilt the player forwards to glide like a wingsuit
             if (isGliding) {

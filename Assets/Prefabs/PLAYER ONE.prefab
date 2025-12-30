@@ -6380,7 +6380,7 @@ MonoBehaviour:
   maxSpeed: 100
   acceleration: 500
   gravityPower: -150
-  jumpPower: 75
+  jumpPower: 25
   groundedMaxAltitude: 7
   turnSpeed: 2
   corneringTiltDegreesMax: 15
