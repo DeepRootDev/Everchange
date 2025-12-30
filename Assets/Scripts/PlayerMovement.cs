@@ -93,7 +93,9 @@ public class PlayerMovement : MonoBehaviour
         float myTiltNow = -1*horizontalInput*corneringTiltDegreesMax;
 
         // we grind if we're tilting a lot (due to a sharp turn held for a long time)
-        isGrinding = myTiltNow <= -minTiltToBeGrinding || myTiltNow >= minTiltToBeGrinding;
+        isGrinding = isGrounded && // only grind when not in the air!!
+            ((myTiltNow <= -minTiltToBeGrinding) || (myTiltNow >= minTiltToBeGrinding)
+        );
 
         // float verticalInput = 1;//  always going forward! Input.GetAxis("Vertical");
         // normal platformer movement - strafe and fwd+back:
