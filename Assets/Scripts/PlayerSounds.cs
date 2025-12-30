@@ -7,6 +7,8 @@ public class PlayerSounds : MonoBehaviour
     public float boostSoundVolume = 1f;
     public float wallrunSoundVolume = 1f;
     public float grindingSoundVolume = 1f;
+    public float glidingSoundVolume = 1f;
+    public float jumpSoundVolume = 1f;
 
     // the waypoint way - FIXME:
     // private WaypointDrive myWPD;
@@ -15,6 +17,8 @@ public class PlayerSounds : MonoBehaviour
     private AudioSource boostSound;
     private AudioSource wallrunSound;
     private AudioSource grindingSound;
+    private AudioSource glidingSound;
+    private AudioSource jumpSound;
     private bool wasBoostingLastFrame = false;
 
     // only used for debug vis in editor
@@ -26,53 +30,76 @@ public class PlayerSounds : MonoBehaviour
     // not Awake - this is fired twice?!
     void Start()
     {
-        //myWPD = transform.parent.GetComponent<WaypointDrive>();
-        //myBoost = GetComponent<BoostAbility>();
-       
-        Debug.Log("We need 4 audiosources and have "+GetComponents<AudioSource>().Length);
-        runningSound = GetComponents<AudioSource>()[0];
-        boostSound = GetComponents<AudioSource>()[1];
         // FIXME: we get strange errors here on the first frame
         // as if unity has not finished loading these sounds
         // but after inits it works!!
         // seems like Start() is being called TWICE?
+        Debug.Log("We need 6 audiosources (run boost, wallrun, grind, glide, jump) and have "+GetComponents<AudioSource>().Length);
+        runningSound = GetComponents<AudioSource>()[0];
+        boostSound = GetComponents<AudioSource>()[1];
         wallrunSound = GetComponents<AudioSource>()[2];
         grindingSound = GetComponents<AudioSource>()[3];
+        glidingSound = GetComponents<AudioSource>()[4];
+        jumpSound = GetComponents<AudioSource>()[5];
     }
     
     void Update()
     {
         // don't crash if any of these are null
         if (!myPlayerMovement) return;
-        //if (!myWPD) return;
-        //if (!myBoost) return;
-        //if (!runningSound) return;
-        //if (!boostSound) return;
 
+        // during the awake and start events, we don't always have all six
+        // so keep trying until they are ready to use
+        if (GetComponents<AudioSource>().Length==6) {
+            if (!runningSound) runningSound = GetComponents<AudioSource>()[0];
+            if (!boostSound) boostSound = GetComponents<AudioSource>()[1];
+            if (!wallrunSound) wallrunSound = GetComponents<AudioSource>()[2];
+            if (!grindingSound) grindingSound = GetComponents<AudioSource>()[3];
+            if (!glidingSound) glidingSound = GetComponents<AudioSource>()[4];
+            if (!jumpSound) jumpSound = GetComponents<AudioSource>()[5];
+        } else
+        {
+            Debug.Log("ERROR: Not enough audiosources on PlayerSounds! We need six: run boost wallrun grind glide jump"); 
+            return; // do nothing! no sounds!
+        }
         //if (myWPD.inAir)
         if (!myPlayerMovement.isGrounded)
         {
-            runningSound.volume = 0;
+            if (runningSound) runningSound.volume = 0;
         }
         else
         {
-            runningSound.volume = runningSoundVolume;
+            if (runningSound) runningSound.volume = runningSoundVolume;
         }
 
         if (myPlayerMovement.isWallRunning)
         {
-            wallrunSound.volume = wallrunSoundVolume;
+            if (wallrunSound) wallrunSound.volume = wallrunSoundVolume;
         } else
         {
-            wallrunSound.volume = 0;
+            if (wallrunSound) wallrunSound.volume = 0;
         }
 
         if (myPlayerMovement.isGrinding)
         {
-            grindingSound.volume = grindingSoundVolume;
+            if (grindingSound) grindingSound.volume = grindingSoundVolume;
         } else
         {
-            grindingSound.volume = 0;
+            if (grindingSound) grindingSound.volume = 0;
+        }
+
+        if (myPlayerMovement.isGliding)
+        {
+            if (glidingSound) glidingSound.volume = glidingSoundVolume;
+        } else
+        {
+            if (glidingSound) glidingSound.volume = 0;
+        }
+
+        if (myPlayerMovement.justJumped)
+        {
+            if (jumpSound) jumpSound.volume = jumpSoundVolume;
+            if (jumpSound) jumpSound.Play();
         }
 
         if ((BoostAbility.isBoosting) || 
@@ -80,7 +107,7 @@ public class PlayerSounds : MonoBehaviour
         {
             if (!wasBoostingLastFrame)
             {
-                boostSound.Play();
+                if (boostSound) boostSound.Play();
             }
         }
         wasBoostingLastFrame = (BoostAbility.isBoosting|| 

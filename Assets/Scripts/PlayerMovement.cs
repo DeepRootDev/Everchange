@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrinding = false;
     public bool isBoosting = false;
     public bool isGliding = false;
+    public bool justJumped = false; // only true on the frame we started jumping
     public float currentSpeed = 0f; // public only to help debugging =)
 
     [Header("Movement Settings:")]
@@ -111,6 +112,9 @@ public class PlayerMovement : MonoBehaviour
             Input.GetKey(KeyCode.Space)) // oldschool
         {
             Jump();
+            justJumped = true;
+        } else {
+            justJumped = false;
         }
 
         handleWallRun();
