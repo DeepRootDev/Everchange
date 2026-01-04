@@ -4,6 +4,7 @@ public class ActivatorArea : MonoBehaviour
 {
     [SerializeField] private Obstacle[] obstacle;
     [SerializeField] private KeyCode keyCode = KeyCode.None;
+    [SerializeField] private PickUpItemColors areaColor;
 
     public void Toggle()
     {
@@ -16,6 +17,11 @@ public class ActivatorArea : MonoBehaviour
     public KeyCode GetKeyType()
     {
         return keyCode;
+    }
+
+    public PickUpItemColors GetAreaColor()
+    {
+        return areaColor;
     }
 
 }

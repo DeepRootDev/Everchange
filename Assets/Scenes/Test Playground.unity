@@ -524,6 +524,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 032a8b6232e24ae43abc160a0b3cfd4d, type: 3}
   m_PrefabInstance: {fileID: 99155201}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &91680807
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1276660451205505169, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
+      propertyPath: m_Name
+      value: Pickup-Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599654608473688302, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599654608473688302, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599654608473688302, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599654608473688302, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599654608473688302, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599654608473688302, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 129.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599654608473688302, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599654608473688302, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599654608473688302, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599654608473688302, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599654608473688302, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599654608473688302, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2599654608473688302, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
 --- !u!1001 &99155201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10727,6 +10796,10 @@ PrefabInstance:
       value: Blue activator
       objectReference: {fileID: 0}
     - target: {fileID: 6385688239170516667, guid: a6d7c1e9bc016a74190c95e416ec4df7, type: 3}
+      propertyPath: areaColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385688239170516667, guid: a6d7c1e9bc016a74190c95e416ec4df7, type: 3}
       propertyPath: obstacle.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -12360,6 +12433,10 @@ PrefabInstance:
     - target: {fileID: 2019226613235731340, guid: b9f97de59fafabb41879d59dad32fe3f, type: 3}
       propertyPath: m_Name
       value: Red activator
+      objectReference: {fileID: 0}
+    - target: {fileID: 4550529569444253612, guid: b9f97de59fafabb41879d59dad32fe3f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6385688239170516667, guid: b9f97de59fafabb41879d59dad32fe3f, type: 3}
       propertyPath: obstacle.Array.size
@@ -14075,3 +14152,4 @@ SceneRoots:
   - {fileID: 862645526}
   - {fileID: 861104638}
   - {fileID: 1074371506}
+  - {fileID: 91680807}

@@ -74,9 +74,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6134670184438524219}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 2
-  m_Shape: 0
   m_Color: {r: 0.8773585, g: 0.67516404, b: 0.16967781, a: 1}
   m_Intensity: 0.82
   m_Range: 0.9
@@ -126,8 +125,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!114 &7774472702660960958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,10 +244,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fe7402ab5bbfd5840ae7e807a1f313b0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6178839326937046038}
+      addedObject: {fileID: 2026917535700949372}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fe7402ab5bbfd5840ae7e807a1f313b0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2026917535700949372}
+      addedObject: {fileID: 6688155032822447516}
   m_SourcePrefab: {fileID: 100100000, guid: fe7402ab5bbfd5840ae7e807a1f313b0, type: 3}
 --- !u!4 &8173106804025756129 stripped
 Transform:
@@ -256,23 +259,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fe7402ab5bbfd5840ae7e807a1f313b0, type: 3}
   m_PrefabInstance: {fileID: 8567548709942193674}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6178839326937046038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8802116118181892955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a364f3e830d257143913740feb9c5267, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activated: {r: 0, g: 1, b: 0, a: 1}
-  unactivated: {r: 1, g: 0, b: 0, a: 1}
-  typeToSpawn: 0
-  playerTag: Player
-  botTag: Bot
 --- !u!135 &2026917535700949372
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -294,3 +280,16 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 5.94
   m_Center: {x: 0, y: 4.1436105, z: 0}
+--- !u!114 &6688155032822447516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8802116118181892955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c324acbbd777af4f9af4f71d8718d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomColor: 0
