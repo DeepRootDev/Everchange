@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
     public bool debugMode = true; // for future use w gizmos etc
     public bool isGrounded = false;
     public bool isWallRunning = false;
+    public bool isWallRunningLeft = false;
+    public bool isWallRunningRight = false;
     public bool isGrinding = false;
     public bool isBoosting = false;
     public bool isGliding = false;
@@ -56,11 +58,19 @@ public class PlayerMovement : MonoBehaviour
     [Header("Something we can tilt without affecting physics")]
     public Transform thePlayerVisuals; 
 
+    [Header("Effects:")]
+    public ParticleSystem groundedParticles;
+    public ParticleSystem grindingParticles;
+    public ParticleSystem wallrunLeftParticles;
+    public ParticleSystem wallrunRightParticles;
+
     // FIXME: spherecast is broken? use raycast?
+    /*
     [Header("FIXME: replace with a simple raycast")]
     public Transform groundCheck;
     public LayerMask groundLayer;
     public float groundCheckRadius = 0.2f;
+    */
     
     private Vector3 moveDirection;
     private Rigidbody rb;
@@ -144,6 +154,33 @@ public class PlayerMovement : MonoBehaviour
         }
 
         handleWallRun();
+
+        // adjust particles depending on state
+        updateParticleFX();
+    }
+
+    void updateParticleFX()
+    {
+        if (groundedParticles)
+        {
+            var em = groundedParticles.emission;
+            em.rateOverTime = isGrounded ? 100 : 0;
+        }
+        if (grindingParticles)
+        {
+            var em = grindingParticles.emission;
+            em.rateOverTime = isGrinding ? 1000 : 0;
+        }
+        if (wallrunLeftParticles)
+        {
+            var em = wallrunLeftParticles.emission;
+            em.rateOverTime = isWallRunningLeft ? 1000 : 0;
+        }
+        if (wallrunRightParticles)
+        {
+            var em = wallrunRightParticles.emission;
+            em.rateOverTime = isWallRunningRight ? 1000 : 0;
+        }
     }
 
     void handleWallRun()
@@ -151,8 +188,16 @@ public class PlayerMovement : MonoBehaviour
         Ray rayLeft = new Ray(transform.position, -transform.right);
         Ray rayRight = new Ray(transform.position, transform.right);
         RaycastHit hitData;
+        // left arm
         isWallRunning = Physics.Raycast(rayLeft, out hitData, wallrunMaxDistance);
-        if (!isWallRunning) isWallRunning = Physics.Raycast(rayRight, out hitData, wallrunMaxDistance);
+        isWallRunningLeft = isWallRunning;
+        // right arm
+        if (!isWallRunning) 
+        { 
+            isWallRunning = Physics.Raycast(rayRight, out hitData, wallrunMaxDistance);
+            isWallRunningRight = isWallRunning;
+        }
+        // either
         if (isWallRunning)
         {
             float hitAngle = Vector3.Angle(hitData.normal, transform.up) - 90f;
