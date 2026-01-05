@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerSounds : MonoBehaviour
 {
     public PlayerMovement myPlayerMovement;
+    public float soundFadeInSpeed = 2f; // percent fade per second so 4 means 0.25 sec from 0 to max
     public float runningSoundVolume = 1f;
     public float boostSoundVolume = 1f;
     public float wallrunSoundVolume = 1f;
@@ -65,35 +66,51 @@ public class PlayerSounds : MonoBehaviour
         //if (myWPD.inAir)
         if (!myPlayerMovement.isGrounded)
         {
-            if (runningSound) runningSound.volume = 0;
+            if (runningSound) runningSound.volume = 0f; // instant
+                // fade out
+                //Mathf.Lerp(runningSound.volume,0f,soundFadeInSpeed*Time.deltaTime);
         }
         else
         {
             if (runningSound) runningSound.volume = runningSoundVolume;
+                // fade in
+                //Mathf.Lerp(runningSound.volume,runningSoundVolume,soundFadeInSpeed*Time.deltaTime);
         }
 
         if (myPlayerMovement.isWallRunning)
         {
-            if (wallrunSound) wallrunSound.volume = wallrunSoundVolume;
+            if (wallrunSound) wallrunSound.volume = //wallrunSoundVolume;
+                // fade in
+                Mathf.Lerp(wallrunSound.volume,wallrunSoundVolume,soundFadeInSpeed*Time.deltaTime);
         } else
         {
-            if (wallrunSound) wallrunSound.volume = 0;
+            if (wallrunSound) wallrunSound.volume = //0f;
+                // fade out
+                Mathf.Lerp(wallrunSound.volume,0f,soundFadeInSpeed*Time.deltaTime);
         }
 
         if (myPlayerMovement.isGrinding)
         {
-            if (grindingSound) grindingSound.volume = grindingSoundVolume;
+            if (grindingSound) grindingSound.volume = //grindingSoundVolume;
+                // fade in
+                Mathf.Lerp(grindingSound.volume,grindingSoundVolume,soundFadeInSpeed*Time.deltaTime);
         } else
         {
-            if (grindingSound) grindingSound.volume = 0;
+            if (grindingSound) grindingSound.volume = //0f;
+                // fade out
+                Mathf.Lerp(grindingSound.volume,0f,soundFadeInSpeed*Time.deltaTime);
         }
 
         if (myPlayerMovement.isGliding)
         {
-            if (glidingSound) glidingSound.volume = glidingSoundVolume;
+            if (glidingSound) glidingSound.volume = //glidingSoundVolume;
+                // fade in
+                Mathf.Lerp(glidingSound.volume,glidingSoundVolume,soundFadeInSpeed*Time.deltaTime);
         } else
         {
-            if (glidingSound) glidingSound.volume = 0;
+            if (glidingSound) glidingSound.volume = //0f;
+                // fade out
+                Mathf.Lerp(glidingSound.volume,0f,soundFadeInSpeed*Time.deltaTime);
         }
 
         if (myPlayerMovement.justJumped)

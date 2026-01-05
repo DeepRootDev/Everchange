@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPlayerMovement: {fileID: 1088541510760150509}
+  soundFadeInSpeed: 2
   runningSoundVolume: 1
   boostSoundVolume: 1
   wallrunSoundVolume: 0.5
