@@ -2568,15 +2568,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428980938801350228, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1434
+      value: -42263
       objectReference: {fileID: 0}
     - target: {fileID: 6428980938801350228, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.54
+      value: 634
       objectReference: {fileID: 0}
     - target: {fileID: 6428980938801350228, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 112
+      value: 3083.7
       objectReference: {fileID: 0}
     - target: {fileID: 6428980938801350228, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -57998,6 +57998,63 @@ MonoBehaviour:
   next:
   - {fileID: 1254550917}
   inAir: 0
+--- !u!1001 &830406008
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1790993097}
+    m_Modifications:
+    - target: {fileID: 893677675132641036, guid: 34ca21b6eadb6bd48b41a74afae2080a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -178.8003
+      objectReference: {fileID: 0}
+    - target: {fileID: 893677675132641036, guid: 34ca21b6eadb6bd48b41a74afae2080a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 893677675132641036, guid: 34ca21b6eadb6bd48b41a74afae2080a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4059.356
+      objectReference: {fileID: 0}
+    - target: {fileID: 893677675132641036, guid: 34ca21b6eadb6bd48b41a74afae2080a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.86602366
+      objectReference: {fileID: 0}
+    - target: {fileID: 893677675132641036, guid: 34ca21b6eadb6bd48b41a74afae2080a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 893677675132641036, guid: 34ca21b6eadb6bd48b41a74afae2080a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.50000304
+      objectReference: {fileID: 0}
+    - target: {fileID: 893677675132641036, guid: 34ca21b6eadb6bd48b41a74afae2080a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 893677675132641036, guid: 34ca21b6eadb6bd48b41a74afae2080a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 893677675132641036, guid: 34ca21b6eadb6bd48b41a74afae2080a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 893677675132641036, guid: 34ca21b6eadb6bd48b41a74afae2080a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159351737478893435, guid: 34ca21b6eadb6bd48b41a74afae2080a, type: 3}
+      propertyPath: m_Name
+      value: Blue Obstacle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 34ca21b6eadb6bd48b41a74afae2080a, type: 3}
 --- !u!1 &831179749
 GameObject:
   m_ObjectHideFlags: 0
@@ -113425,6 +113482,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8663258239865750236, guid: 583cc05b950fc154ba134a7f437e54a3, type: 3}
   m_PrefabInstance: {fileID: 1460535478}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1607139235 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 893677675132641036, guid: 34ca21b6eadb6bd48b41a74afae2080a, type: 3}
+  m_PrefabInstance: {fileID: 830406008}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1607343801 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6134670184438524219, guid: 98b3f8edf6b54ef4f908540278cbf85f, type: 3}
@@ -123352,6 +123414,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   rayCastDistance: 500
+  maxNumberOfPickUpItems: 2
   myStats: {fileID: 1475288540}
 --- !u!114 &1758201725
 MonoBehaviour:
@@ -125955,6 +126018,7 @@ Transform:
   - {fileID: 115389831}
   - {fileID: 910019721}
   - {fileID: 1482721025}
+  - {fileID: 1607139235}
   m_Father: {fileID: 352474289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1791483522 stripped
