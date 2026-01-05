@@ -153,9 +153,9 @@ MonoBehaviour:
   myPlayerMovement: {fileID: 1088541510760150509}
   runningSoundVolume: 1
   boostSoundVolume: 1
-  wallrunSoundVolume: 1
-  grindingSoundVolume: 1
-  glidingSoundVolume: 1
+  wallrunSoundVolume: 0.5
+  grindingSoundVolume: 0.5
+  glidingSoundVolume: 0.75
   jumpSoundVolume: 1
   currentRunVol: 0
   currentBoostVol: 0
@@ -6341,6 +6341,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   rayCastDistance: 500
+  maxNumberOfPickUpItems: 2
   myStats: {fileID: 0}
 --- !u!114 &1634083182764889136
 MonoBehaviour:
