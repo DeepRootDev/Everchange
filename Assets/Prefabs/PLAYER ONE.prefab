@@ -11222,7 +11222,7 @@ MonoBehaviour:
   justJumped: 0
   currentSpeed: 0
   currentAltitude: 0
-  minSpeed: 50
+  minSpeed: 0
   maxSpeed: 100
   acceleration: 500
   gravityPower: -150

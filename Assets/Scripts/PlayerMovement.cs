@@ -16,8 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public float currentAltitude = 0f; // ground check result dist
 
     [Header("Movement Settings:")]
-    public float minSpeed = 50f;
-    public float maxSpeed = 100f;
+    public float runSpeed = 50f;
+    public float boostSpeed = 100f;
     public float acceleration = 500f;
     public float gravityPower = -150f;
     public float jumpPower = 10f;
@@ -223,13 +223,18 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        float targetSpeed = minSpeed;
+        float targetSpeed = 0f;
+
+        if (Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)) {
+            targetSpeed = runSpeed;
+        }
+
         // hmm this is never true...
-        if (BoostAbility.isBoosting) targetSpeed = maxSpeed;
+        if (BoostAbility.isBoosting) targetSpeed = boostSpeed;
         // ok fake it here
-        if (Input.GetKey(KeyCode.LeftShift)) targetSpeed = maxSpeed;
+        if (Input.GetKey(KeyCode.LeftShift)) targetSpeed = boostSpeed;
         // but tell the world
-        isBoosting = (targetSpeed == maxSpeed);
+        isBoosting = (targetSpeed == boostSpeed);
 
         // FIXME:use new input system
         isGliding = (!isGrounded && Input.GetMouseButton(1));
@@ -239,14 +244,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Apply Movement Force
-        rb.AddForce(moveDirection * acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);
-
-        // Limit horizontal velocity to prevent excessive speed
-        Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-        if (flatVel.magnitude > targetSpeed)
-        {
-            Vector3 limitedVel = flatVel.normalized * targetSpeed;
-            rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
+        if (targetSpeed>0) {
+            rb.AddForce(moveDirection * acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            // Limit horizontal velocity to prevent excessive speed
+            Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+            if (flatVel.magnitude > targetSpeed)
+            {
+                Vector3 limitedVel = flatVel.normalized * targetSpeed;
+                rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
+            }
         }
         currentSpeed = rb.linearVelocity.magnitude; // now test the result for debugging
 
