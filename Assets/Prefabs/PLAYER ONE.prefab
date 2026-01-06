@@ -11253,6 +11253,7 @@ MonoBehaviour:
   grindingParticles: {fileID: 5476970440991732045}
   wallrunLeftParticles: {fileID: 4951171119072544239}
   wallrunRightParticles: {fileID: 536008214006660400}
+  animator: {fileID: 6975417632941208329}
 --- !u!1 &3269701388404813298
 GameObject:
   m_ObjectHideFlags: 0

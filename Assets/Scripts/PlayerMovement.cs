@@ -75,9 +75,15 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection;
     private Rigidbody rb;
     
+    [Header("Drag the player's animated mesh here")]
+    public Animator animator;
+    private float globalPlaybackSpeed = 1.0f;    
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        // this won't work as it's on a child object
+        if (!animator) animator = GetComponent<Animator>();
     }
 
     void checkGrounded()
@@ -160,6 +166,15 @@ public class PlayerMovement : MonoBehaviour
 
         // adjust particles depending on state
         updateParticleFX();
+
+        // change animations depending on state
+        if (animator) {
+            // TODO: scale depending on rb velocity
+            animator.speed = globalPlaybackSpeed;
+            // TODO: actually change animation
+            if (isGrinding) animator.speed = 0f;
+            if (isGliding) animator.speed = 0f;
+        }
     }
 
     void updateParticleFX()
