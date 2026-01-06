@@ -104,8 +104,9 @@ public class PlayerMovement : MonoBehaviour
 
         // we grind if we're tilting a lot (due to a sharp turn held for a long time)
         isGrinding = isGrounded && // only grind when not in the air!!
-            ((myTiltNow <= -minTiltToBeGrinding) || (myTiltNow >= minTiltToBeGrinding)
-        );
+            // this decides we are grinding if we are tilting a lot
+            // ((myTiltNow <= -minTiltToBeGrinding) || (myTiltNow >= minTiltToBeGrinding)
+            Input.GetMouseButton(1); // right mouse button
 
         // float verticalInput = 1;//  always going forward! Input.GetAxis("Vertical");
         // normal platformer movement - strafe and fwd+back:
@@ -237,7 +238,7 @@ public class PlayerMovement : MonoBehaviour
         isBoosting = (targetSpeed == boostSpeed);
 
         // FIXME:use new input system
-        isGliding = (!isGrounded && Input.GetMouseButton(1));
+        isGliding = (!isGrounded && Input.GetMouseButton(0));
         if (isGliding) { 
             // glide also has a speed boost
             targetSpeed = glideSpeed;
