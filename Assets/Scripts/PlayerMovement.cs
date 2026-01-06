@@ -169,8 +169,8 @@ public class PlayerMovement : MonoBehaviour
 
         // change animations depending on state
         if (animator) {
-            // TODO: scale depending on rb velocity
-            animator.speed = globalPlaybackSpeed;
+            // scale depending on rb velocity
+            animator.speed = rb.linearVelocity.magnitude/runSpeed*globalPlaybackSpeed;
             // TODO: actually change animation
             if (isGrinding) animator.speed = 0f;
             if (isGliding) animator.speed = 0f;
