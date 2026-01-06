@@ -104,7 +104,9 @@ public class PlayerMovement : MonoBehaviour
 
         // we grind if we're tilting a lot (due to a sharp turn held for a long time)
         isGrinding = isGrounded && // only grind when not in the air!!
-            // this decides we are grinding if we are tilting a lot
+            // can can't grind if we are moving straight
+            horizontalInput != 0f &&
+            //this decides we are grinding if we are tilting a lot
             // ((myTiltNow <= -minTiltToBeGrinding) || (myTiltNow >= minTiltToBeGrinding)
             Input.GetMouseButton(1); // right mouse button
 
