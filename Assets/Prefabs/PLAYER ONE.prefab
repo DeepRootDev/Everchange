@@ -34,6 +34,7 @@ Transform:
   - {fileID: 8064426301965112905}
   - {fileID: 6277830801818042798}
   - {fileID: 7121483700501969396}
+  - {fileID: 2764273876890616679}
   - {fileID: 4327392799153244798}
   - {fileID: 8685726632961238568}
   m_Father: {fileID: 6428980938801350228}
@@ -11222,8 +11223,8 @@ MonoBehaviour:
   justJumped: 0
   currentSpeed: 0
   currentAltitude: 0
-  minSpeed: 0
-  maxSpeed: 100
+  runSpeed: 50
+  boostSpeed: 100
   acceleration: 500
   gravityPower: -150
   jumpPower: 25
@@ -11338,6 +11339,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3885338415778357404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2764273876890616679}
+  m_Layer: 0
+  m_Name: 'GrindChaseCamPoint '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2764273876890616679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885338415778357404}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.25, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9159120666335409518}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3951053059896185394
 GameObject:
   m_ObjectHideFlags: 0

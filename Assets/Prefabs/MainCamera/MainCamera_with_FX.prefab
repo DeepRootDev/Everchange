@@ -5077,4 +5077,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boostFOV: 90
+  grindFOV: 120
   myPlayerMovement: {fileID: 0}

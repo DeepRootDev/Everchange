@@ -2,14 +2,21 @@ using UnityEngine;
 
 public class SlowChase : MonoBehaviour
 {
+    [Header("Normal Camera Position")]
     public Transform chaseTarget;
     public Transform lookPoint;
+
+    [Header("Camera Pos When Grinding")]
+    public Transform grindChaseTarget;
+
+    [Header("Game Intro Flyby")]
     public Transform introStartAt;
     public Transform introEndAt;
     public Transform introLookAt;
     public float introLengthInSeconds = 3f; // set to zero for no intro
     private float introTimeleft;
 
+    [Header("Mouse Look")]
     public bool mouseLookEnabled = true;
     public bool hideMouseCursor = true;
     public float mouseLookSpeedX = 2f;
@@ -21,6 +28,8 @@ public class SlowChase : MonoBehaviour
     
     private float posHalfLife = 0.05f;
     private float rotHalfLife = 0.10f;
+
+    public PlayerMovement myPlayerMovement;
 
     void Start()
     {
@@ -71,6 +80,9 @@ public class SlowChase : MonoBehaviour
             introTimeleft -= Time.deltaTime;
             transform.position = Vector3.Slerp(introStartAt.position, introEndAt.position, 1f-(introTimeleft/introLengthInSeconds));
             transform.rotation = Quaternion.LookRotation(introLookAt.position - transform.position);
+        } else if (myPlayerMovement&&myPlayerMovement.isGrinding&&grindChaseTarget) {
+            // move back a bit during grinding
+            transform.position = Vector3.Slerp(transform.position, grindChaseTarget.position, posT);
         } else {    
             // follow the normal gameplay chase camera target
             transform.position = Vector3.Slerp(transform.position, chaseTarget.position, posT);
