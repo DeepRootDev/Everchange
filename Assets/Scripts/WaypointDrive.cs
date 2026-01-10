@@ -92,8 +92,15 @@ public class WaypointDrive:MonoBehaviour {
 
 	private void FixedUpdate()
     {
+	    // NOTE(marvin): If on ground, only looking left and right is relevant, which is the Y axis.
+	    Quaternion targetRotation = Quaternion.LookRotation(lookAheadPt - transform.position);
+	    if (!inAir)
+	    {
+		    targetRotation.x = 0;
+		    targetRotation.z = 0;
+	    }
 		transform.rotation = Quaternion.Slerp(transform.rotation,
-			Quaternion.LookRotation(lookAheadPt - transform.position), 0.2f);
+			targetRotation, 0.2f);
     }
 
 
@@ -161,10 +168,10 @@ public class WaypointDrive:MonoBehaviour {
 			Debug.LogWarning("Waypoints overlapped, error divide by zero avoided " + myWaypoint.name + ", " + prevWaypoint.name);
 		}
 		float trackLeftRightNormalized = (myTrackLaneOffset + 1.0f) * 0.5f; // math from -1 to 1 into 0.0-1.0
-		transform.position = Vector3.Lerp(positionLeft, positionRight, trackLeftRightNormalized) + Vector3.up* verticalOffset*flyRange;
+		// NOTE(marvin): If on ground, only changes x and z so that Unity's gravity physics can continue to work on y.
+		var targetPosition = Vector3.Lerp(positionLeft, positionRight, trackLeftRightNormalized) + Vector3.up* verticalOffset*flyRange;
+		transform.position = inAir ? targetPosition : new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
 		lookAheadPt = Vector3.Lerp(nextWPTrackLeft, nextWPTrackRight, trackLeftRightNormalized);
-
-		
     }
 
 	float heightUnderMe(Vector3 atPos)
