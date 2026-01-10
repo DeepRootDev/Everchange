@@ -5,7 +5,6 @@ using static WaypointDrive;
 
 public class BoostAbility : MonoBehaviour
 {
-    [SerializeField] private WaypointDrive waypointDrive;
 
     [SerializeField] private bool allowBoost = false;
     public static event System.Action<float> OnBoostValueChange;
@@ -41,7 +40,6 @@ public class BoostAbility : MonoBehaviour
 
             OnBoostValueChange?.Invoke(boostValue);
 
-            waypointDrive.currentSpeed = Mathf.Lerp(waypointDrive.currentSpeed, boostSpeed, Time.deltaTime * toReachBoostSpeed);
         }
         else
         {
@@ -50,7 +48,6 @@ public class BoostAbility : MonoBehaviour
 
             boostValue += Time.deltaTime / boostFillDuration;
 
-            waypointDrive.currentSpeed = Mathf.Lerp(waypointDrive.currentSpeed, waypointDrive.defaultSpeed, Time.deltaTime * toReachBoostSpeed);
         }
     }
 }

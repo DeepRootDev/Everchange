@@ -3870,7 +3870,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Thanks for eperiencing the story!
+  m_text: Thanks for experiencing the story!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}
   m_sharedMaterial: {fileID: 390810934111521873, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}

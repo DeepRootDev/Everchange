@@ -250,9 +250,9 @@ public class PlayerMovement : MonoBehaviour
         // hmm this is never true...
         if (BoostAbility.isBoosting) targetSpeed = boostSpeed;
         // ok fake it here
-        if (Input.GetKey(KeyCode.LeftShift)) targetSpeed = boostSpeed;
+        //if (Input.GetKey(KeyCode.LeftShift)) targetSpeed = boostSpeed;
         // but tell the world
-        isBoosting = (targetSpeed == boostSpeed);
+        //isBoosting = (targetSpeed == boostSpeed);
 
         // FIXME:use new input system
         isGliding = (!isGrounded && Input.GetMouseButton(0));

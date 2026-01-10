@@ -10924,10 +10924,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: f99380139eb564b4d9abcf58d25b1c42, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -10948,6 +10948,7 @@ GameObject:
   - component: {fileID: 2788404471172673276}
   - component: {fileID: 1634083182764889136}
   - component: {fileID: 1088541510760150509}
+  - component: {fileID: 4555534710643616994}
   m_Layer: 0
   m_Name: PLAYER ONE
   m_TagString: Player
@@ -11094,8 +11095,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Next[/Keyboard/2]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: WaypointDrive, Assembly-CSharp
+      - m_Target: {fileID: 4555534710643616994}
+        m_TargetAssemblyTypeName: BoostAbility, Assembly-CSharp
         m_MethodName: OnSprint
         m_Mode: 0
         m_Arguments:
@@ -11254,6 +11255,23 @@ MonoBehaviour:
   wallrunLeftParticles: {fileID: 4951171119072544239}
   wallrunRightParticles: {fileID: 536008214006660400}
   animator: {fileID: 6975417632941208329}
+--- !u!114 &4555534710643616994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2501931446074969495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea3312e714ae3c488326c921216a8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allowBoost: 1
+  boostSpeed: 150
+  boostValue: 1
+  boostFillDuration: 15
+  boostDepelateDuration: 5
 --- !u!1 &3269701388404813298
 GameObject:
   m_ObjectHideFlags: 0
@@ -17137,6 +17155,7 @@ GameObject:
   - component: {fileID: 4479472229252433961}
   - component: {fileID: 764809161117597419}
   - component: {fileID: 3270957886098215832}
+  - component: {fileID: 6811423032011799163}
   m_Layer: 5
   m_Name: Bar UI
   m_TagString: Untagged
@@ -17202,6 +17221,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6811423032011799163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6751253523445568677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb88a8f11490b4f428c526e8fe9ec3a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boostFillImage: {fileID: 9072493968887702680}
 --- !u!1 &6796954517621740311
 GameObject:
   m_ObjectHideFlags: 0
