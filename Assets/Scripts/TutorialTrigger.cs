@@ -7,6 +7,11 @@ public class TutorialTrigger : MonoBehaviour
     [SerializeField] GameObject tutorialToDisplay;
     [SerializeField] float displayDuration = 3f;
 
+    void Start()
+    {
+        tutorialToDisplay.SetActive(false);
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<PlayerMovement>() == null) return;
@@ -17,10 +22,6 @@ public class TutorialTrigger : MonoBehaviour
     private IEnumerator DisplayTutorialForDuration()
     {
         rootTutorialObject.SetActive(true);
-        foreach(Transform child in rootTutorialObject.transform)
-        {
-            child.gameObject.SetActive(false);
-        }
         tutorialToDisplay.SetActive(true);
 
         yield return new WaitForSeconds(displayDuration);
