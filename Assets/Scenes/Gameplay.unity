@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1.45
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.13714845, g: 0.4339623, b: 0.3617417, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: b673924f1524e684f81626774135008d, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: a7e363a2cddd7604eab1861397df786a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -94006,6 +94006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseTarget: {fileID: 425662310}
   lookPoint: {fileID: 1738680597}
+  grindChaseTarget: {fileID: 0}
   introStartAt: {fileID: 1318482032}
   introEndAt: {fileID: 671280826}
   introLookAt: {fileID: 970802751}
@@ -94015,6 +94016,7 @@ MonoBehaviour:
   mouseLookSpeedX: 2
   mouseLookSpeedY: 2
   mouseLookVertRange: 80
+  myPlayerMovement: {fileID: 0}
 --- !u!114 &1324589302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94028,6 +94030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boostFOV: 80
+  grindFOV: 0
   myPlayerMovement: {fileID: 0}
 --- !u!1 &1325010597 stripped
 GameObject:
@@ -123428,7 +123431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ea3312e714ae3c488326c921216a8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointDrive: {fileID: 1758201715}
   allowBoost: 1
   boostSpeed: 150
   boostValue: 1
