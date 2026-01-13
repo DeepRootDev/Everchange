@@ -280,7 +280,21 @@ public class PlayerMovement : MonoBehaviour
         currentSpeed = rb.linearVelocity.magnitude; // now test the result for debugging
 
         // add gravity unless we're touching ground or wall, or gliding
-        if (!isGrounded && !isWallRunning && !isGliding) rb.AddForce(new Vector3(0, gravityPower, 0), ForceMode.Acceleration);        
+        if (!isGrounded && !isWallRunning && !isGliding) rb.AddForce(new Vector3(0, gravityPower, 0), ForceMode.Acceleration);
+
+        // fly up or down while gliding
+        if (isGliding)
+        {
+            if (Input.GetKey(KeyCode.S))
+            {
+                rb.AddForce(new Vector3(0, gravityPower, 0), ForceMode.Acceleration);
+            }
+            if (Input.GetKey(KeyCode.Space))
+            {
+                rb.AddForce(new Vector3(0, -gravityPower, 0), ForceMode.Acceleration);
+            }
+
+        }
 
     }
 
