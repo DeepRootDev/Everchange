@@ -26,7 +26,7 @@ public class MainCamera : MonoBehaviour
         {
             mycamera.fieldOfView = Mathf.Lerp(mycamera.fieldOfView, boostFOV, Time.deltaTime * BoostAbility.toReachBoostSpeed);
         }
-        else if (myPlayerMovement&&myPlayerMovement.isGrinding)
+        else if (myPlayerMovement&&myPlayerMovement.isDrifting)
         {
             mycamera.fieldOfView = Mathf.Lerp(mycamera.fieldOfView, grindFOV, Time.deltaTime * BoostAbility.toReachBoostSpeed);
         }

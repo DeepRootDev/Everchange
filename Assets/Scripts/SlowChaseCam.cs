@@ -6,8 +6,8 @@ public class SlowChase : MonoBehaviour
     public Transform chaseTarget;
     public Transform lookPoint;
 
-    [Header("Camera Pos When Grinding")]
-    public Transform grindChaseTarget;
+    [Header("Camera Pos When Drifting")]
+    public Transform driftChaseTarget;
 
     [Header("Game Intro Flyby")]
     public Transform introStartAt;
@@ -80,9 +80,9 @@ public class SlowChase : MonoBehaviour
             introTimeleft -= Time.deltaTime;
             transform.position = Vector3.Slerp(introStartAt.position, introEndAt.position, 1f-(introTimeleft/introLengthInSeconds));
             transform.rotation = Quaternion.LookRotation(introLookAt.position - transform.position);
-        } else if (myPlayerMovement&&myPlayerMovement.isGrinding&&grindChaseTarget) {
-            // move back a bit during grinding
-            transform.position = Vector3.Slerp(transform.position, grindChaseTarget.position, posT);
+        } else if (myPlayerMovement&&myPlayerMovement.isDrifting&&driftChaseTarget) {
+            // move back a bit during drifting
+            transform.position = Vector3.Slerp(transform.position, driftChaseTarget.position, posT);
         } else {    
             // follow the normal gameplay chase camera target
             transform.position = Vector3.Slerp(transform.position, chaseTarget.position, posT);

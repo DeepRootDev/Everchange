@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isWallRunning = false;
     public bool isWallRunningLeft = false;
     public bool isWallRunningRight = false;
-    public bool isGrinding = false;
+    public bool isDrifting = false;
     public bool isBoosting = false;
     public bool isGliding = false;
     public bool justJumped = false; // only true on the frame we started jumping
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public float turnSpeed = 1f;
     public float corneringTiltDegreesMax = 15f;
     public float corneringTiltDegreesPerSec = 15f;
-    public float minTiltToBeGrinding = 14f;
+    //public float minTiltToBeDrifting = 14f;
 
     
     [Header("Wall Run:")]
@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Effects:")]
     public ParticleSystem groundedParticles;
-    public ParticleSystem grindingParticles;
+    public ParticleSystem driftingParticles;
     public ParticleSystem wallrunLeftParticles;
     public ParticleSystem wallrunRightParticles;
 
@@ -108,12 +108,12 @@ public class PlayerMovement : MonoBehaviour
         // tilt as we turn sharper
         float myTiltNow = -1*horizontalInput*corneringTiltDegreesMax;
 
-        // we grind if we're tilting a lot (due to a sharp turn held for a long time)
-        isGrinding = isGrounded && // only grind when not in the air!!
-            // can can't grind if we are moving straight
+        // we drift if we're tilting a lot (due to a sharp turn held for a long time)
+        isDrifting = isGrounded && // only drift when not in the air!!
+            // can can't drift if we are moving straight
             horizontalInput != 0f &&
-            //this decides we are grinding if we are tilting a lot
-            // ((myTiltNow <= -minTiltToBeGrinding) || (myTiltNow >= minTiltToBeGrinding)
+            //this decides we are drifting if we are tilting a lot
+            // ((myTiltNow <= -minTiltToBeDrifting) || (myTiltNow >= minTiltToBeDrifting)
             Input.GetMouseButton(1); // right mouse button
 
         // float verticalInput = 1;//  always going forward! Input.GetAxis("Vertical");
@@ -172,7 +172,7 @@ public class PlayerMovement : MonoBehaviour
             // scale depending on rb velocity
             animator.speed = rb.linearVelocity.magnitude/runSpeed*globalPlaybackSpeed;
             // TODO: actually change animation
-            if (isGrinding) animator.speed = 0f;
+            if (isDrifting) animator.speed = 0f;
             if (isGliding) animator.speed = 0f;
         }
     }
@@ -184,10 +184,10 @@ public class PlayerMovement : MonoBehaviour
             var em = groundedParticles.emission;
             em.rateOverTime = isGrounded ? 100 : 0;
         }
-        if (grindingParticles)
+        if (driftingParticles)
         {
-            var em = grindingParticles.emission;
-            em.rateOverTime = isGrinding ? 1000 : 0;
+            var em = driftingParticles.emission;
+            em.rateOverTime = isDrifting ? 1000 : 0;
         }
         if (wallrunLeftParticles)
         {

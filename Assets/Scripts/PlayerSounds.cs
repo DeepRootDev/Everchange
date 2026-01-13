@@ -7,7 +7,7 @@ public class PlayerSounds : MonoBehaviour
     public float runningSoundVolume = 1f;
     public float boostSoundVolume = 1f;
     public float wallrunSoundVolume = 1f;
-    public float grindingSoundVolume = 1f;
+    public float driftingSoundVolume = 1f;
     public float glidingSoundVolume = 1f;
     public float jumpSoundVolume = 1f;
 
@@ -17,7 +17,7 @@ public class PlayerSounds : MonoBehaviour
     private AudioSource runningSound;
     private AudioSource boostSound;
     private AudioSource wallrunSound;
-    private AudioSource grindingSound;
+    private AudioSource driftingSound;
     private AudioSource glidingSound;
     private AudioSource jumpSound;
     private bool wasBoostingLastFrame = false;
@@ -26,7 +26,7 @@ public class PlayerSounds : MonoBehaviour
     public float currentRunVol = 0f;
     public float currentBoostVol = 0f;
     public float currentWallrunVol = 0f;
-    public float currentGrindingVol = 0f;
+    public float currentDriftingVol = 0f;
 
     // not Awake - this is fired twice?!
     void Start()
@@ -39,7 +39,7 @@ public class PlayerSounds : MonoBehaviour
         runningSound = GetComponents<AudioSource>()[0];
         boostSound = GetComponents<AudioSource>()[1];
         wallrunSound = GetComponents<AudioSource>()[2];
-        grindingSound = GetComponents<AudioSource>()[3];
+        driftingSound = GetComponents<AudioSource>()[3];
         glidingSound = GetComponents<AudioSource>()[4];
         jumpSound = GetComponents<AudioSource>()[5];
     }
@@ -55,7 +55,7 @@ public class PlayerSounds : MonoBehaviour
             if (!runningSound) runningSound = GetComponents<AudioSource>()[0];
             if (!boostSound) boostSound = GetComponents<AudioSource>()[1];
             if (!wallrunSound) wallrunSound = GetComponents<AudioSource>()[2];
-            if (!grindingSound) grindingSound = GetComponents<AudioSource>()[3];
+            if (!driftingSound) driftingSound = GetComponents<AudioSource>()[3];
             if (!glidingSound) glidingSound = GetComponents<AudioSource>()[4];
             if (!jumpSound) jumpSound = GetComponents<AudioSource>()[5];
         } else
@@ -89,16 +89,16 @@ public class PlayerSounds : MonoBehaviour
                 Mathf.Lerp(wallrunSound.volume,0f,soundFadeInSpeed*Time.deltaTime);
         }
 
-        if (myPlayerMovement.isGrinding)
+        if (myPlayerMovement.isDrifting)
         {
-            if (grindingSound) grindingSound.volume = //grindingSoundVolume;
+            if (driftingSound) driftingSound.volume = //grindingSoundVolume;
                 // fade in
-                Mathf.Lerp(grindingSound.volume,grindingSoundVolume,soundFadeInSpeed*Time.deltaTime);
+                Mathf.Lerp(driftingSound.volume,driftingSoundVolume,soundFadeInSpeed*Time.deltaTime);
         } else
         {
-            if (grindingSound) grindingSound.volume = //0f;
+            if (driftingSound) driftingSound.volume = //0f;
                 // fade out
-                Mathf.Lerp(grindingSound.volume,0f,soundFadeInSpeed*Time.deltaTime);
+                Mathf.Lerp(driftingSound.volume,0f,soundFadeInSpeed*Time.deltaTime);
         }
 
         if (myPlayerMovement.isGliding)
@@ -134,7 +134,7 @@ public class PlayerSounds : MonoBehaviour
     currentRunVol = runningSound.volume;
     currentBoostVol = boostSound.volume;
     currentWallrunVol = wallrunSound.volume;
-    currentGrindingVol = grindingSound.volume;
+    currentDriftingVol = driftingSound.volume;
 
 
     }

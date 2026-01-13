@@ -156,13 +156,13 @@ MonoBehaviour:
   runningSoundVolume: 1
   boostSoundVolume: 1
   wallrunSoundVolume: 0.5
-  grindingSoundVolume: 0.5
+  driftingSoundVolume: 1
   glidingSoundVolume: 0.75
   jumpSoundVolume: 1
   currentRunVol: 0
   currentBoostVol: 0
   currentWallrunVol: 0
-  currentGrindingVol: 0
+  currentDriftingVol: 0
 --- !u!82 &8340303042136039828
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11218,7 +11218,7 @@ MonoBehaviour:
   isWallRunning: 0
   isWallRunningLeft: 0
   isWallRunningRight: 0
-  isGrinding: 0
+  isDrifting: 0
   isBoosting: 0
   isGliding: 0
   justJumped: 0
@@ -11233,7 +11233,6 @@ MonoBehaviour:
   turnSpeed: 2
   corneringTiltDegreesMax: 15
   corneringTiltDegreesPerSec: 15
-  minTiltToBeGrinding: 14
   wallRunStickiness: 10
   wallrunMaxDistance: 3
   wallrunTiltDegreesMax: 65
@@ -11251,7 +11250,7 @@ MonoBehaviour:
   driftTiltDegreesPerSec: 65
   thePlayerVisuals: {fileID: 3061299230270106769}
   groundedParticles: {fileID: 5195338909523273430}
-  grindingParticles: {fileID: 5476970440991732045}
+  driftingParticles: {fileID: 5476970440991732045}
   wallrunLeftParticles: {fileID: 4951171119072544239}
   wallrunRightParticles: {fileID: 536008214006660400}
   animator: {fileID: 6975417632941208329}
@@ -11368,7 +11367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2764273876890616679}
   m_Layer: 0
-  m_Name: 'GrindChaseCamPoint '
+  m_Name: 'DriftChaseCamPoint '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11383,7 +11382,7 @@ Transform:
   m_GameObject: {fileID: 3885338415778357404}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: -3}
+  m_LocalPosition: {x: 0, y: 0.6, z: -1.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17498,7 +17497,7 @@ GameObject:
   - component: {fileID: 7860347309562352236}
   - component: {fileID: 5476970440991732045}
   m_Layer: 0
-  m_Name: grindingFX
+  m_Name: driftingFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
