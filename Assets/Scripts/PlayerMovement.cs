@@ -90,9 +90,14 @@ public class PlayerMovement : MonoBehaviour
     {
         Ray rayDown = new Ray(transform.position, -transform.up);
         RaycastHit hitData;
-        Physics.Raycast(rayDown, out hitData, 999f);
-        currentAltitude = hitData.distance;
-        isGrounded = currentAltitude <= groundedMaxAltitude;
+        bool hitSomething = Physics.Raycast(rayDown, out hitData, 999f);
+        if (hitSomething) {
+            currentAltitude = hitData.distance;
+            isGrounded = currentAltitude <= groundedMaxAltitude;
+        } else { // there might be nothing below us
+            isGrounded = false;
+            currentAltitude = 999f;
+        }
 
     }
 

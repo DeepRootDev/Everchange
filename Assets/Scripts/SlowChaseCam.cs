@@ -8,6 +8,8 @@ public class SlowChase : MonoBehaviour
 
     [Header("Camera Pos When Drifting")]
     public Transform driftChaseTarget;
+    public float driftExtraCamRotation = 15f;
+
 
     [Header("Game Intro Flyby")]
     public Transform introStartAt;
@@ -83,6 +85,8 @@ public class SlowChase : MonoBehaviour
         } else if (myPlayerMovement&&myPlayerMovement.isDrifting&&driftChaseTarget) {
             // move back a bit during drifting
             transform.position = Vector3.Slerp(transform.position, driftChaseTarget.position, posT);
+            // and peer around the corner? which side?
+            // transform.Rotate(driftExtraCamRotation, 0f, 0f);
         } else {    
             // follow the normal gameplay chase camera target
             transform.position = Vector3.Slerp(transform.position, chaseTarget.position, posT);
