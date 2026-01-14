@@ -123,8 +123,11 @@ public class PlayerSounds : MonoBehaviour
         {
             if (!wasBoostingLastFrame)
             {
-                Debug.Log("Playing boost sound!");
-                if (boostSound) boostSound.Play();
+                if (boostSound) {
+                    Debug.Log("Playing boost sound!");
+                    boostSound.volume = boostSoundVolume;
+                    boostSound.Play();
+                }
                 wasBoostingLastFrame = true;
             }
         } else {
