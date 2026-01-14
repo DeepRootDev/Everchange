@@ -244,22 +244,20 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    // FIXME: use new input system
     void FixedUpdate()
     {
-        float targetSpeed = 0f;
+        float targetSpeed = 0f; // default to stand still when no input
 
+        // move forward
         if (Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)) {
             targetSpeed = runSpeed;
         }
 
-        // hmm this is never true...
-        if (BoostAbility.isBoosting) targetSpeed = boostSpeed;
-        // ok fake it here
-        //if (Input.GetKey(KeyCode.LeftShift)) targetSpeed = boostSpeed;
-        // but tell the world
-        //isBoosting = (targetSpeed == boostSpeed);
+        // make local state match the global variable
+        isBoosting = BoostAbility.isBoosting;
+        if (isBoosting) targetSpeed = boostSpeed;
 
-        // FIXME:use new input system
         isGliding = (!isGrounded && Input.GetMouseButton(0));
         if (isGliding) { 
             // glide also has a speed boost
