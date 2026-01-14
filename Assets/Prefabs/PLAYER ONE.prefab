@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9159120666335409518}
   m_Layer: 0
-  m_Name: Positions
+  m_Name: PositionMarkers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +36,6 @@ Transform:
   - {fileID: 7121483700501969396}
   - {fileID: 2764273876890616679}
   - {fileID: 4327392799153244798}
-  - {fileID: 8685726632961238568}
   m_Father: {fileID: 6428980938801350228}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &202900021396400980
@@ -137,7 +136,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9159120666335409518}
+  m_Father: {fileID: 6428980938801350228}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2680620011926724759
 MonoBehaviour:
@@ -10969,9 +10968,10 @@ Transform:
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 3061299230270106769}
-  - {fileID: 8945360249471856009}
   - {fileID: 9159120666335409518}
+  - {fileID: 3061299230270106769}
+  - {fileID: 8685726632961238568}
+  - {fileID: 8945360249471856009}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &7095157422358919417
@@ -17284,7 +17284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8945360249471856009}
   m_Layer: 5
-  m_Name: UI Items
+  m_Name: PlayerUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17316,7 +17316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3061299230270106769}
   m_Layer: 0
-  m_Name: Visuals
+  m_Name: PlayerVisuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

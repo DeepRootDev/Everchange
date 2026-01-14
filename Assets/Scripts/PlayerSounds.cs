@@ -63,18 +63,17 @@ public class PlayerSounds : MonoBehaviour
             Debug.Log("ERROR: Not enough audiosources on PlayerSounds! We need six: run boost wallrun grind glide jump"); 
             return; // do nothing! no sounds!
         }
-        //if (myWPD.inAir)
-        if (!myPlayerMovement.isGrounded)
-        {
-            if (runningSound) runningSound.volume = 0f; // instant
-                // fade out
-                //Mathf.Lerp(runningSound.volume,0f,soundFadeInSpeed*Time.deltaTime);
-        }
-        else
-        {
-            if (runningSound) runningSound.volume = runningSoundVolume;
-                // fade in
-                //Mathf.Lerp(runningSound.volume,runningSoundVolume,soundFadeInSpeed*Time.deltaTime);
+
+        if (runningSound!=null) {
+            if (!myPlayerMovement.isGrounded) {
+                runningSound.volume = 0f; // no footstep sfx when in the air
+            } else  {
+                if (myPlayerMovement.currentSpeed > 0.25) {
+                    runningSound.volume = runningSoundVolume;
+                } else {
+                    runningSound.volume = 0; // not moving
+                }
+            }
         }
 
         if (myPlayerMovement.isWallRunning)
