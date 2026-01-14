@@ -264,7 +264,7 @@ public class WaypointDrive:MonoBehaviour {
 		{
 			randomizeTrackLaneOffset();
 		}
-		totalDistToNextWP = Vector3.Distance(transform.position, myWaypoint.trackPtForOffset(myTrackLaneOffset));
+		if (myWaypoint!=null) totalDistToNextWP = Vector3.Distance(transform.position, myWaypoint.trackPtForOffset(myTrackLaneOffset));
 		percLeftToNextWP = 1.0f;
 	}
 
