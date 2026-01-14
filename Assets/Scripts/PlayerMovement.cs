@@ -224,7 +224,8 @@ public class PlayerMovement : MonoBehaviour
         if (isWallRunning)
         {
             float hitAngle = Vector3.Angle(hitData.normal, transform.up) - 90f;
-            Debug.Log("WALL RUNNING on " + hitData.collider.name + " at point: " + hitData.point + " angle:"+hitAngle+" dist:"+hitData.distance);
+            // handy but spammy debug log commented out
+            // Debug.Log("WALL RUNNING on " + hitData.collider.name + " at point: " + hitData.point + " angle:"+hitAngle+" dist:"+hitData.distance);
             // while wall running, there's no gravity applied in update function
         }        
 
