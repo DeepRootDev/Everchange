@@ -11,9 +11,9 @@ public class MuteHandler : MonoBehaviour
         //audioListener = FindFirstObjectByType<AudioListener>();
     }
 
-    void OnToggleMute(InputValue value)
+    public void OnToggleMute(InputAction.CallbackContext context)
     {
-        if(value.isPressed)
+        if(context.performed)
         {
             isMuted = !isMuted;
             AudioListener.pause = isMuted;

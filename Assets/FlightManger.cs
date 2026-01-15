@@ -15,9 +15,8 @@ public class FlightManger : MonoBehaviour
     {
         flightTimer = flightDuration;
     }
-    void OnFly(InputValue value)
+    void OnFly(InputAction.CallbackContext context)
     {
-        isFlying = value.isPressed;
     }
 
     private void Update()
