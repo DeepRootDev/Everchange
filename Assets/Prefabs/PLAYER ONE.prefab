@@ -11050,7 +11050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -11064,8 +11064,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: WaypointDrive, Assembly-CSharp
+      - m_Target: {fileID: 1088541510760150509}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -11254,7 +11254,8 @@ MonoBehaviour:
   wallrunMaxDistance: 3
   wallrunTiltDegreesMax: 65
   wallrunTiltDegreesPerSec: 65
-  glideTime: 3
+  glideTimeMax: 3
+  glideTimeCur: 0
   glideSpeed: 75
   glideLeanAngle: 90
   glideLeanSpeed: 1

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -80,6 +81,9 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     private float globalPlaybackSpeed = 1.0f;    
 
+    //WIP: Migrate to New Unity Input System
+    private Vector2 moveInput;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -110,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
         checkGrounded(); // uses a simple raycast instead
 
         // Get Input
-        float horizontalInput = Input.GetAxis("Horizontal");
+        float horizontalInput = moveInput.x;
 
         // tilt as we turn sharper
         float myTiltNow = -1*horizontalInput*corneringTiltDegreesMax;
@@ -253,7 +257,7 @@ public class PlayerMovement : MonoBehaviour
         float targetSpeed = 0f; // default to stand still when no input
 
         // move forward
-        if (Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)) {
+        if (moveInput.y > 0) {
             targetSpeed = runSpeed;
         }
 
@@ -300,7 +304,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGliding)
         {
             
-            if (Input.GetKey(KeyCode.S))
+            if (moveInput.y <= 0)
             {
                 rb.AddForce(new Vector3(0, gravityPower, 0), ForceMode.Acceleration);
             }
@@ -320,4 +324,14 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z); 
         rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
     }
+
+    #region InputSystem
+
+    public void OnMove(InputAction.CallbackContext ctx)
+    {
+        moveInput = ctx.ReadValue<Vector2>();
+       //Debug.Log($"move inp: {moveInput}");
+    }
+    #endregion
+
 }
