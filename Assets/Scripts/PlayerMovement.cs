@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private bool jumpInputPerformed;
     private bool flyInputPerformed;
+    private bool glideInputPerformed;
 
     void Start()
     {
@@ -127,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
             horizontalInput != 0f &&
             //this decides we are drifting if we are tilting a lot
             // ((myTiltNow <= -minTiltToBeDrifting) || (myTiltNow >= minTiltToBeDrifting)
-            Input.GetMouseButton(1); // right mouse button
+            glideInputPerformed; // right mouse button
 
         // float verticalInput = 1;//  always going forward! Input.GetAxis("Vertical");
         // normal platformer movement - strafe and fwd+back:
@@ -343,6 +344,11 @@ public class PlayerMovement : MonoBehaviour
     public void onFly(InputAction.CallbackContext ctx)
     {
         flyInputPerformed = ctx.performed;
+    }
+
+    public void onGlide(InputAction.CallbackContext ctx)
+    {
+        glideInputPerformed = ctx.performed;
     }
 
     #endregion
