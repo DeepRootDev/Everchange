@@ -7,7 +7,7 @@ public class FlightManger : MonoBehaviour
     public static event System.Action<float> OnFlightValueChange;
 
 
-    private bool isFlying;
+    private bool isFlying = false;
     [SerializeField] private float flightDuration = 5;
     private float flightTimer;
 
@@ -15,16 +15,9 @@ public class FlightManger : MonoBehaviour
     {
         flightTimer = flightDuration;
     }
-    public void OnFly(InputAction.CallbackContext ctx)
+    void OnFly(InputValue value)
     {
-        if (ctx.action.WasPerformedThisFrame())
-        {
-            isFlying = true;
-        }
-        if (ctx.action.WasReleasedThisFrame())
-        {
-            isFlying = false;
-        }
+        isFlying = value.isPressed;
     }
 
     private void Update()
