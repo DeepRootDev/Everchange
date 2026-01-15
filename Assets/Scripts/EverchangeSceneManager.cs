@@ -11,4 +11,11 @@ public class EverchangeSceneManager : MonoBehaviour
     {
         SceneManager.LoadScene(loadingSceneName);
     }
+
+    // debug version only
+    public void LoadTestPlayground()
+    {
+        SceneManager.LoadScene("Test Playground");
+    }
+
 }
