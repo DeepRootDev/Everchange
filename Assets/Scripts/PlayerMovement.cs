@@ -83,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
     //WIP: Migrate to New Unity Input System
     private Vector2 moveInput;
+    private bool jumpInputPerformed;
 
     void Start()
     {
@@ -163,8 +164,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Jump Input
         if (isGrounded &&
-            (Input.GetButtonDown("Jump") || // hmm not working
-            Input.GetKey(KeyCode.Space))
+            (jumpInputPerformed)
             ) // oldschool
         {
             Jump();
@@ -308,7 +308,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.AddForce(new Vector3(0, gravityPower, 0), ForceMode.Acceleration);
             }
-            if (Input.GetKey(KeyCode.Space))
+
+            if (jumpInputPerformed)
             {
                 rb.AddForce(new Vector3(0, -gravityPower, 0), ForceMode.Acceleration);
             }
@@ -332,6 +333,12 @@ public class PlayerMovement : MonoBehaviour
         moveInput = ctx.ReadValue<Vector2>();
        //Debug.Log($"move inp: {moveInput}");
     }
+
+    public void OnJump(InputAction.CallbackContext ctx)
+    {
+        jumpInputPerformed = ctx.performed;
+    }
+
     #endregion
 
 }
