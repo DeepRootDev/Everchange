@@ -84,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
     //WIP: Migrate to New Unity Input System
     private Vector2 moveInput;
     private bool jumpInputPerformed;
+    private bool flyInputPerformed;
 
     void Start()
     {
@@ -165,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
         // Jump Input
         if (isGrounded &&
             (jumpInputPerformed)
-            ) // oldschool
+            )
         {
             Jump();
             justJumped = true;
@@ -265,7 +266,7 @@ public class PlayerMovement : MonoBehaviour
         isBoosting = BoostAbility.isBoosting;
         if (isBoosting) targetSpeed = boostSpeed;
 
-        isGliding = (!isGrounded && Input.GetMouseButton(0));
+        isGliding = (!isGrounded && flyInputPerformed);
         if (isGliding) { 
             // glide also has a speed boost
             targetSpeed = glideSpeed;
@@ -337,6 +338,11 @@ public class PlayerMovement : MonoBehaviour
     public void OnJump(InputAction.CallbackContext ctx)
     {
         jumpInputPerformed = ctx.performed;
+    }
+
+    public void onFly(InputAction.CallbackContext ctx)
+    {
+        flyInputPerformed = ctx.performed;
     }
 
     #endregion
