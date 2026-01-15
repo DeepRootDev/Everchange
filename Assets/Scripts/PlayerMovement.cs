@@ -37,7 +37,8 @@ public class PlayerMovement : MonoBehaviour
     public float wallrunTiltDegreesPerSec = 65f;
 
     [Header("Wingsuit-style Gliding:")]
-    public float glideTime = 3f;
+    public float glideTimeMax = 3f;
+    public float glideTimeCur;
     public float glideSpeed = 75f;
     public float glideLeanAngle = 90;
     public float glideLeanSpeed = 1;
@@ -84,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         // this won't work as it's on a child object
         if (!animator) animator = GetComponent<Animator>();
+        glideTimeCur = glideTimeMax;
     }
 
     void checkGrounded()
@@ -263,6 +265,19 @@ public class PlayerMovement : MonoBehaviour
         if (isGliding) { 
             // glide also has a speed boost
             targetSpeed = glideSpeed;
+
+            glideTimeCur -= Time.deltaTime;
+            glideTimeCur = Mathf.Clamp(glideTimeCur,0,glideTimeMax);
+
+            if (glideTimeCur <= 0.1f)
+            {
+                isGliding = false;
+            }
+        }
+        else
+        {
+            glideTimeCur += Time.deltaTime;
+            glideTimeCur = Mathf.Clamp(glideTimeCur, 0, glideTimeMax);
         }
 
         // Apply Movement Force
@@ -284,6 +299,7 @@ public class PlayerMovement : MonoBehaviour
         // fly up or down while gliding
         if (isGliding)
         {
+            
             if (Input.GetKey(KeyCode.S))
             {
                 rb.AddForce(new Vector3(0, gravityPower, 0), ForceMode.Acceleration);
@@ -292,8 +308,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.AddForce(new Vector3(0, -gravityPower, 0), ForceMode.Acceleration);
             }
-
         }
+        
 
     }
 
