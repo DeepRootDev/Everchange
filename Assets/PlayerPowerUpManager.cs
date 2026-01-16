@@ -19,6 +19,10 @@ public class PlayerPowerUpManager : MonoBehaviour
     private ActivatorArea activatorArea;
     public SpeedrunStats myStats;
 
+    private GameObject[] EnemyArray;
+    [SerializeField]
+    private KeyCode greenPowerUpKeyCode = KeyCode.C;
+
     
 
     void Awake()
@@ -37,6 +41,10 @@ public class PlayerPowerUpManager : MonoBehaviour
             currentPickedUpItems[color] = false;
         }
     }
+    void Start()
+    {
+        EnemyArray = GameObject.FindGameObjectsWithTag("Player").Where(x => !GameObject.ReferenceEquals(x, gameObject)).ToArray();
+    }
 
     void Update()
     {
@@ -50,6 +58,13 @@ public class PlayerPowerUpManager : MonoBehaviour
                 if (myStats!=null) myStats.increaseTriggerCount();
             }
 
+        }
+    }
+    private void LateUpdate()
+    {
+        if (Input.GetKeyDown(greenPowerUpKeyCode))
+        {
+            UseGreenPowerUp();
         }
     }
 
@@ -79,6 +94,33 @@ public class PlayerPowerUpManager : MonoBehaviour
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
           //  Debug.Log("Did not Hit");
         }
+    }
+
+    public void UseGreenPowerUp()
+    {
+        GameObject enemy = GetClosestEnemy();
+        enemy.GetComponent<WaypointDrive>().distruptionFromGreenPowerUpActive = true;
+    }
+
+    private GameObject GetClosestEnemy()
+    {
+        GameObject closest = null;
+        float minDistance = float.MaxValue;
+        Vector3 currentPos = transform.position;
+
+        foreach (var enemy in EnemyArray)
+        {
+            if (enemy == null) continue;
+
+            float dist = Vector3.Distance(currentPos, enemy.transform.position);
+            if (dist < minDistance)
+            {
+                minDistance = dist;
+                closest = enemy;
+            }
+        }
+
+        return closest;
     }
 
     public void AddPowerUp(PickUpItemColors color)

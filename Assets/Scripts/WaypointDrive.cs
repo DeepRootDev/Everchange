@@ -38,6 +38,12 @@ public class WaypointDrive:MonoBehaviour {
 	Vector2 moveInput;
 	float verticalOffset = 0.0f;
 
+	public bool distruptionFromGreenPowerUpActive = false;
+	[SerializeField] private float maxTimeForGreenPowerUp = 2.0f;
+	private float timeLeftForGreenPowerUp;
+    [SerializeField] private float greenPowerUpDistruptionMagnitude = 20.0f;
+	private float currentDistruptionFromOutsideFactors = 0.0f;
+
     private void Awake()
     {
 		currentSpeed = defaultSpeed;
@@ -106,6 +112,7 @@ public class WaypointDrive:MonoBehaviour {
 
     private void Update()
     {
+		CheckAndUpdateGreenPowerUp();
         if (!myWaypoint)
         {
             //Debug.Log("ERROR in WaypointDrive.Update(): myWaypoint is null. Maybe the WayPointManager has no startWP?");
@@ -169,12 +176,30 @@ public class WaypointDrive:MonoBehaviour {
 		}
 		float trackLeftRightNormalized = (myTrackLaneOffset + 1.0f) * 0.5f; // math from -1 to 1 into 0.0-1.0
 		// NOTE(marvin): If on ground, only changes x and z so that Unity's gravity physics can continue to work on y.
-		var targetPosition = Vector3.Lerp(positionLeft, positionRight, trackLeftRightNormalized) + Vector3.up* verticalOffset*flyRange;
+		var targetPosition = (Vector3.Lerp(positionLeft, positionRight, trackLeftRightNormalized) + Vector3.up* verticalOffset*flyRange) + new Vector3(currentDistruptionFromOutsideFactors,0,0);
 		transform.position = inAir ? targetPosition : new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
 		lookAheadPt = Vector3.Lerp(nextWPTrackLeft, nextWPTrackRight, trackLeftRightNormalized);
     }
 
-	float heightUnderMe(Vector3 atPos)
+    private void CheckAndUpdateGreenPowerUp()
+    {
+		if (distruptionFromGreenPowerUpActive)
+		{
+			currentDistruptionFromOutsideFactors = greenPowerUpDistruptionMagnitude;
+            timeLeftForGreenPowerUp -= Time.deltaTime;
+			if (timeLeftForGreenPowerUp <= 0)
+			{
+				distruptionFromGreenPowerUpActive = false;
+			}
+		}
+		else 
+		{
+			currentDistruptionFromOutsideFactors = 0.0f;
+            timeLeftForGreenPowerUp = maxTimeForGreenPowerUp;
+        }
+    }
+
+    float heightUnderMe(Vector3 atPos)
 	{
 		int ignoreMask = 0;
 		float lookdownFromAboveHeight = 2.0f;
