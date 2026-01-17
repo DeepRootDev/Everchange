@@ -11,11 +11,12 @@ public class PlayerPowerUpManager : MonoBehaviour
     //[SerializeField] private LayerMask layerMask = LayerMask.NameToLayer("Obstacles");
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float rayCastDistance = 1000;
-
+    [SerializeField] private bool powerTest  = false;
     [SerializeField] public Dictionary<PickUpItemColors, bool> currentPickedUpItems;
     [SerializeField] private int maxNumberOfPickUpItems = 2;
+    private bool allowActivationInsideActivatorArea = false;
 
-    private bool   allowActivation = false;
+    private bool   allowActivationUsingRayCast = false;
     private ActivatorArea activatorArea;
     public SpeedrunStats myStats;
 
@@ -50,7 +51,7 @@ public class PlayerPowerUpManager : MonoBehaviour
     {
         if (activatorArea != null)
         {
-            if (Input.GetKeyDown(activatorArea.GetKeyType()) && allowActivation && CheckAreaColorForPowerUp())
+            if (Input.GetKeyDown(activatorArea.GetKeyType()) && allowActivationUsingRayCast && CheckAreaColorForPowerUp() || Input.GetKeyDown(activatorArea.GetKeyType()) && allowActivationInsideActivatorArea && CheckAreaColorForPowerUp())
             {
                 Debug.Log("Trying to activate " + activatorArea.GetAreaColor() + " Zone");
                 activatorArea.Toggle();
@@ -68,6 +69,15 @@ public class PlayerPowerUpManager : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent<ActivatorArea>(out ActivatorArea area))
+        {
+            allowActivationInsideActivatorArea = true;
+            activatorArea = area;
+        }
+    }
+
 
     private void FixedUpdate()
     {
@@ -76,21 +86,24 @@ public class PlayerPowerUpManager : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, rayCastDistance,layerMask))
         {
-            if(hit.transform.TryGetComponent(out ActivatorArea activatorArea))
+            if(hit.transform.TryGetComponent<ActivatorArea>(out ActivatorArea area))
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
                 // removed this debug log because it ran every frame, hiding other debug text:
                 // Debug.Log("Did Hit");
-                this.activatorArea  = activatorArea;
-                allowActivation=true;
+                if(area!=null)
+                {
+                this.activatorArea  = area;
+                allowActivationUsingRayCast=true;
+
+                }
             }
             
         }
         else
         {
-            allowActivation=false;
-            if(activatorArea != null)
-                activatorArea = null;
+            allowActivationUsingRayCast=false;
+           
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
           //  Debug.Log("Did not Hit");
         }
@@ -133,6 +146,8 @@ public class PlayerPowerUpManager : MonoBehaviour
 
     private bool CheckAreaColorForPowerUp()
     {
+        if (powerTest) return true;
+
         if (activatorArea != null)
         {
             PickUpItemColors areaColor = activatorArea.GetAreaColor();

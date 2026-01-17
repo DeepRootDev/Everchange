@@ -2,20 +2,12 @@ using UnityEngine;
 
 public class ObstacleSpin : Obstacle 
 {
-    float speedAndDir = -30f;
-    public Vector3 rotAxis = Vector3.up;
-    Quaternion startRot;
-
-
-    private void Start()
-    {
-        startRot = transform.rotation;
-    }
+    [SerializeField] private float speed = -30f;
+    [SerializeField] private Vector3 rotAxis = Vector3.up;
+ 
     void Update()
     {
         if(IsActive)
-        transform.rotation = startRot * Quaternion.AngleAxis(Time.timeSinceLevelLoad * speedAndDir, rotAxis);        
+        transform.Rotate(rotAxis * Time.deltaTime * speed, Space.Self);
     }
-
-
 }
