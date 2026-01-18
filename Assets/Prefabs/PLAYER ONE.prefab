@@ -10961,6 +10961,7 @@ GameObject:
   - component: {fileID: 1088541510760150509}
   - component: {fileID: 4555534710643616994}
   - component: {fileID: -79916466989805926}
+  - component: {fileID: 6696792664002695356}
   m_Layer: 0
   m_Name: PLAYER ONE
   m_TagString: Player
@@ -11222,6 +11223,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2d87863f-6599-4335-b682-0f3daf747ebe
     m_ActionName: 'Player/Glide[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e7a5bfc5-2c6b-4e07-a24b-00f7d09eaef8
+    m_ActionName: 'Player/Pause[/Keyboard/escape,/Keyboard/p]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4c9d172a-e019-437e-a10b-a2264e9ef628
+    m_ActionName: 'UI/Pause[/Keyboard/escape,/Keyboard/p]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -11243,8 +11252,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   rayCastDistance: 500
+  powerTest: 1
   maxNumberOfPickUpItems: 2
   myStats: {fileID: 0}
+  greenPowerUpKeyCode: 99
 --- !u!114 &1634083182764889136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11341,6 +11352,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43a9ac728ce04b23a86bcf1f6811196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MuteHandler
+--- !u!114 &6696792664002695356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2501931446074969495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 401c659f5c2abd243a722faa44f30fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCollisionManager
 --- !u!1 &3269701388404813298
 GameObject:
   m_ObjectHideFlags: 0

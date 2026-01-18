@@ -152,13 +152,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle_AmethystForge
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6504741250547430773, guid: 316a9859bfe17f84e993e3c481300c7f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 931733176295256409, guid: 316a9859bfe17f84e993e3c481300c7f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1743863369077117280}
+    - targetCorrespondingSourceObject: {fileID: 931733176295256409, guid: 316a9859bfe17f84e993e3c481300c7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7252008250172077573}
   m_SourcePrefab: {fileID: 100100000, guid: 316a9859bfe17f84e993e3c481300c7f, type: 3}
 --- !u!4 &8196497657346431327 stripped
 Transform:
@@ -183,5 +187,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 1
+  phaseShiftRate: -100
   pos1: {fileID: 9000227324274399815}
   pos2: {fileID: 7002648492350914627}
+--- !u!65 &7252008250172077573
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8852766451888525293}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 12, z: 3}
+  m_Center: {x: -0.024432901, y: 0.32950643, z: 0.16492677}
