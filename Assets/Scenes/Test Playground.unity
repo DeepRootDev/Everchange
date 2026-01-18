@@ -17145,6 +17145,10 @@ PrefabInstance:
       propertyPath: greenPowerUpKeyCode
       value: 99
       objectReference: {fileID: 0}
+    - target: {fileID: 2788404471172673276, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
+      propertyPath: currentPickedUpItems.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3413980288437706520, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: m_Volume
       value: 0

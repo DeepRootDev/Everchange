@@ -12,7 +12,7 @@ public class PlayerPowerUpManager : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float rayCastDistance = 1000;
     [SerializeField] private bool powerTest  = false;
-    [SerializeField] public Dictionary<PickUpItemColors, bool> currentPickedUpItems;
+    [SerializeField] public List<PowerUpItemScriptableObject> currentPickedUpItems;
     [SerializeField] private int maxNumberOfPickUpItems = 2;
     private bool allowActivationInsideActivatorArea = false;
 
@@ -36,10 +36,9 @@ public class PlayerPowerUpManager : MonoBehaviour
 
 
         //initiliaze pickupitems as none picked up at the beginning
-        currentPickedUpItems = new Dictionary<PickUpItemColors, bool>();
-        foreach (PickUpItemColors color in Enum.GetValues(typeof(PickUpItemColors)))
+        foreach (PowerUpItemScriptableObject powerUpItem in currentPickedUpItems)
         {
-            currentPickedUpItems[color] = false;
+            powerUpItem.NumberOfUsesLeft = 0;
         }
     }
     void Start()
@@ -55,7 +54,7 @@ public class PlayerPowerUpManager : MonoBehaviour
             {
                 Debug.Log("Trying to activate " + activatorArea.GetAreaColor() + " Zone");
                 activatorArea.Toggle();
-                currentPickedUpItems[activatorArea.GetAreaColor()] = false; //since we used it once now it is false.
+                currentPickedUpItems.FirstOrDefault(x => x.Color == activatorArea.GetAreaColor()).NumberOfUsesLeft -= 1;
                 if (myStats!=null) myStats.increaseTriggerCount();
             }
 
@@ -111,8 +110,14 @@ public class PlayerPowerUpManager : MonoBehaviour
 
     public void UseGreenPowerUp()
     {
-        GameObject enemy = GetClosestEnemy();
-        enemy.GetComponent<WaypointDrive>().distruptionFromGreenPowerUpActive = true;
+        PowerUpItemScriptableObject greenPowerUp = currentPickedUpItems.FirstOrDefault(x => x.Color == PickUpItemColors.green);
+        if (greenPowerUp?.NumberOfUsesLeft > 0)
+        {
+            GameObject enemy = GetClosestEnemy();
+            enemy.GetComponent<WaypointDrive>().distruptionFromGreenPowerUpActive = true;
+            greenPowerUp.NumberOfUsesLeft -= 1;
+        }
+        
     }
 
     private GameObject GetClosestEnemy()
@@ -138,9 +143,9 @@ public class PlayerPowerUpManager : MonoBehaviour
 
     public void AddPowerUp(PickUpItemColors color)
     {
-        if (currentPickedUpItems.Count(x => x.Value) <= maxNumberOfPickUpItems)
+        if (currentPickedUpItems.Sum(x => x.NumberOfUsesLeft) <= maxNumberOfPickUpItems)
         {
-            currentPickedUpItems[color] = true;
+            currentPickedUpItems.FirstOrDefault(x => x.Color == color).NumberOfUsesLeft += 1;
         }
     }
 
@@ -152,7 +157,7 @@ public class PlayerPowerUpManager : MonoBehaviour
         {
             PickUpItemColors areaColor = activatorArea.GetAreaColor();
 
-            if (currentPickedUpItems[areaColor])
+            if (currentPickedUpItems.FirstOrDefault(x => x.Color == areaColor).NumberOfUsesLeft > 0)
             {
                 return true;
             }

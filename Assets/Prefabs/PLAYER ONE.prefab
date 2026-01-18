@@ -11222,6 +11222,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2d87863f-6599-4335-b682-0f3daf747ebe
     m_ActionName: 'Player/Glide[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e7a5bfc5-2c6b-4e07-a24b-00f7d09eaef8
+    m_ActionName: 'Player/Pause[/Keyboard/escape,/Keyboard/p]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4c9d172a-e019-437e-a10b-a2264e9ef628
+    m_ActionName: 'UI/Pause[/Keyboard/escape,/Keyboard/p]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -11243,8 +11251,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   rayCastDistance: 500
+  powerTest: 0
+  currentPickedUpItems:
+  - {fileID: 11400000, guid: 19bc90e05459f5248a5305d1d3b713d9, type: 2}
+  - {fileID: 11400000, guid: 47d85c27267adc344b471e26668b08ef, type: 2}
+  - {fileID: 11400000, guid: 6f128a6259ccc174ab67812031fb6a73, type: 2}
   maxNumberOfPickUpItems: 2
   myStats: {fileID: 0}
+  greenPowerUpKeyCode: 99
 --- !u!114 &1634083182764889136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16483,6 +16497,7 @@ GameObject:
   - component: {fileID: 7114105559028263823}
   - component: {fileID: 4301677254774736689}
   - component: {fileID: 3762922587070778812}
+  - component: {fileID: 7805575963339094282}
   m_Layer: 5
   m_Name: Green Icon
   m_TagString: Untagged
@@ -16547,6 +16562,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7805575963339094282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389451275978941758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40f2a86d1c04574faeccddf396186fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FillPowerUpUI
+  emptyIcon: {fileID: 21300000, guid: d9ddeeb05a1ed1247aef96b5d4f2fe7f, type: 3}
+  halfFullIcon: {fileID: 21300000, guid: b78d49d718504544a918ed3abb3c2894, type: 3}
+  fullIcon: {fileID: 21300000, guid: 52d8cec834836a344b6492312eeccae8, type: 3}
+  powerUpItemScriptableObject: {fileID: 11400000, guid: 47d85c27267adc344b471e26668b08ef, type: 2}
 --- !u!1 &4719087616170618971
 GameObject:
   m_ObjectHideFlags: 0
@@ -16558,6 +16589,7 @@ GameObject:
   - component: {fileID: 4065948998286771448}
   - component: {fileID: 8675080261393186166}
   - component: {fileID: 6004177474206059471}
+  - component: {fileID: 3883724414478275366}
   m_Layer: 5
   m_Name: Blue Icon
   m_TagString: Untagged
@@ -16622,6 +16654,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3883724414478275366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719087616170618971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40f2a86d1c04574faeccddf396186fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FillPowerUpUI
+  emptyIcon: {fileID: 21300000, guid: 8c3c5070872db084ead8d6779c4a97e0, type: 3}
+  halfFullIcon: {fileID: 21300000, guid: 1f68333eccc2311429698fd4e239d979, type: 3}
+  fullIcon: {fileID: 21300000, guid: 59fe8eadc134819488b3d6770193fcde, type: 3}
+  powerUpItemScriptableObject: {fileID: 11400000, guid: 19bc90e05459f5248a5305d1d3b713d9, type: 2}
 --- !u!1 &4966327947465924214
 GameObject:
   m_ObjectHideFlags: 0
@@ -16948,6 +16996,7 @@ GameObject:
   - component: {fileID: 105402270736468039}
   - component: {fileID: 9036514709920101005}
   - component: {fileID: 9084883914496807996}
+  - component: {fileID: 3307724308689353534}
   m_Layer: 5
   m_Name: Red Icon
   m_TagString: Untagged
@@ -17012,6 +17061,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3307724308689353534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6333300880685018067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40f2a86d1c04574faeccddf396186fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  emptyIcon: {fileID: 21300000, guid: 736c6263beff12b419a0d294b4dcbfe6, type: 3}
+  halfFullIcon: {fileID: 21300000, guid: bd141ad3763b21849abfe66c7484ad18, type: 3}
+  fullIcon: {fileID: 21300000, guid: 6855c7ed08b73584ca0480a48e4fd411, type: 3}
+  powerUpItemScriptableObject: {fileID: 11400000, guid: 6f128a6259ccc174ab67812031fb6a73, type: 2}
 --- !u!1 &6466223641980297325
 GameObject:
   m_ObjectHideFlags: 0
