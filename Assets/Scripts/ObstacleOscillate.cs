@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ObstacleOscillate : Obstacle
 {
-    float phaseShiftRate = -30f;
+    [SerializeField] private float phaseShiftRate = -30f;
     float rateAdj = 0.02f;
     public Transform pos1;
     public Transform pos2;
