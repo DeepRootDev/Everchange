@@ -114,7 +114,11 @@ public class PlayerPowerUpManager : MonoBehaviour
         if (greenPowerUp?.NumberOfUsesLeft > 0)
         {
             GameObject enemy = GetClosestEnemy();
-            enemy.GetComponent<WaypointDrive>()?.GetGreenPowerUp();
+            if (enemy != null)
+            {
+                enemy.GetComponent<WaypointDrive>().GetGreenPowerUp();
+            }
+            
         }
         
     }
