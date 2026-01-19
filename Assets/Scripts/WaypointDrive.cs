@@ -180,8 +180,8 @@ public class WaypointDrive:MonoBehaviour {
 		}
 		float trackLeftRightNormalized = (myTrackLaneOffset + 1.0f) * 0.5f; // math from -1 to 1 into 0.0-1.0
 		// NOTE(marvin): If on ground, only changes x and z so that Unity's gravity physics can continue to work on y.
-		var targetPosition = (Vector3.Lerp(positionLeft, positionRight, trackLeftRightNormalized) + Vector3.up* verticalOffset*flyRange) + new Vector3(0, currentDistruptionFromOutsideFactors, 0);
-		transform.position = inAir ? targetPosition : new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
+		var targetPosition = Vector3.Lerp(positionLeft, positionRight, trackLeftRightNormalized) + Vector3.up* verticalOffset * flyRange;
+		transform.position = (inAir ? targetPosition : new Vector3(targetPosition.x, transform.position.y, targetPosition.z)) + new Vector3(0, currentDistruptionFromOutsideFactors, 0);
 		lookAheadPt = Vector3.Lerp(nextWPTrackLeft, nextWPTrackRight, trackLeftRightNormalized);
     }
 
@@ -208,7 +208,7 @@ public class WaypointDrive:MonoBehaviour {
     }
 	public void GetGreenPowerUp()
     {
-		Debug.Log("Pressed Green power up");
+		//Debug.Log("Pressed Green power up");
 
         distruptionFromGreenPowerUpActive = true;
         currentDistruptionFromOutsideFactors = greenPowerUpDistruptionMagnitude;
