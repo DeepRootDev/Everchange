@@ -162,7 +162,11 @@ public class WaypointDrive:MonoBehaviour {
 		float WPSegmentLength = Vector3.Distance(myWaypoint.transform.position, prevWaypoint.transform.position);
 		if (WPSegmentLength > 0f)
 		{
-			percLeftToNextWP -= (enginePower / WPSegmentLength) * Time.deltaTime;
+			if (Mathf.Abs(currentDistruptionFromOutsideFactors) < 0.1f)
+			{
+                percLeftToNextWP -= (enginePower / WPSegmentLength) * Time.deltaTime;
+            }
+			
 			if(percLeftToNextWP <0f)
             {
 				// advance to next waypoint
@@ -176,7 +180,7 @@ public class WaypointDrive:MonoBehaviour {
 		}
 		float trackLeftRightNormalized = (myTrackLaneOffset + 1.0f) * 0.5f; // math from -1 to 1 into 0.0-1.0
 		// NOTE(marvin): If on ground, only changes x and z so that Unity's gravity physics can continue to work on y.
-		var targetPosition = (Vector3.Lerp(positionLeft, positionRight, trackLeftRightNormalized) + Vector3.up* verticalOffset*flyRange) + new Vector3(currentDistruptionFromOutsideFactors,0,0);
+		var targetPosition = (Vector3.Lerp(positionLeft, positionRight, trackLeftRightNormalized) + Vector3.up* verticalOffset*flyRange) + new Vector3(0, currentDistruptionFromOutsideFactors, 0);
 		transform.position = inAir ? targetPosition : new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
 		lookAheadPt = Vector3.Lerp(nextWPTrackLeft, nextWPTrackRight, trackLeftRightNormalized);
     }
@@ -185,7 +189,11 @@ public class WaypointDrive:MonoBehaviour {
     {
 		if (distruptionFromGreenPowerUpActive)
 		{
-			currentDistruptionFromOutsideFactors = greenPowerUpDistruptionMagnitude;
+			currentDistruptionFromOutsideFactors -= greenPowerUpDistruptionMagnitude * Time.deltaTime / maxTimeForGreenPowerUp;
+			if (currentDistruptionFromOutsideFactors <= 0)
+			{
+				currentDistruptionFromOutsideFactors = 0;
+            }
             timeLeftForGreenPowerUp -= Time.deltaTime;
 			if (timeLeftForGreenPowerUp <= 0)
 			{
@@ -198,7 +206,13 @@ public class WaypointDrive:MonoBehaviour {
             timeLeftForGreenPowerUp = maxTimeForGreenPowerUp;
         }
     }
+	public void GetGreenPowerUp()
+    {
+		Debug.Log("Pressed Green power up");
 
+        distruptionFromGreenPowerUpActive = true;
+        currentDistruptionFromOutsideFactors = greenPowerUpDistruptionMagnitude;
+    }
     float heightUnderMe(Vector3 atPos)
 	{
 		int ignoreMask = 0;
