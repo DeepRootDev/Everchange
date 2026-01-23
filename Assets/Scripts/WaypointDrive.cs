@@ -65,7 +65,13 @@ public class WaypointDrive:MonoBehaviour {
 
 	private void Start() {
 		feetDust = GetComponent<ParticleSystem>();
-		myWaypoint = WayPointManager.instance.startWP;
+		if(WayPointManager.instance) {
+			myWaypoint = WayPointManager.instance.startWP;
+		} else {
+			Debug.Log("WaypointDrive couldn't find WayPointManager.instance.startWP - turning off character");
+			enabled = false;
+			return;
+		}
 		prevWaypoint = myWaypoint;
 		UpdateAirOrGroundState();
 		myWaypoint = prevWaypoint.randNext();
