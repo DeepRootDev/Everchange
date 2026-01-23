@@ -662,7 +662,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pause",
+                    "name": "Resume",
                     "type": "Button",
                     "id": "4c9d172a-e019-437e-a10b-a2264e9ef628",
                     "expectedControlType": "",
@@ -1097,7 +1097,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Pause",
+                    "action": "Resume",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1108,7 +1108,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Pause",
+                    "action": "Resume",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

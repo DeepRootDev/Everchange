@@ -3133,6 +3133,10 @@ PrefabInstance:
       value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 1088541510760150509, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
+      propertyPath: PauseGameManager
+      value: 
+      objectReference: {fileID: 44867755}
+    - target: {fileID: 1088541510760150509, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: driftTriggerAngle
       value: 10
       objectReference: {fileID: 0}
@@ -3159,6 +3163,34 @@ PrefabInstance:
     - target: {fileID: 2501931446074969495, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715442670168440516, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715442670168440516, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715442670168440516, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 44867757}
+    - target: {fileID: 2715442670168440516, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715442670168440516, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: onPause
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715442670168440516, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715442670168440516, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2788404471172673276, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: powerTest
@@ -4457,7 +4489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &44867756
 Transform:
   m_ObjectHideFlags: 0
@@ -4489,6 +4521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseGUI: {fileID: 885834465}
   nameOfMainMenuScene: Menu Scene
+  inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1001 &45468376
 PrefabInstance:
   m_ObjectHideFlags: 0

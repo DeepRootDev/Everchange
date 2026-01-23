@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor; 
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -11,21 +12,32 @@ public class PauseMenu : MonoBehaviour
     [Header("Be sure to include this scene in the project build settings")]
     public string nameOfMainMenuScene = "MainMenu";
 
-    private bool isPaused = false;
+    public static bool isPaused = false;
+
+    [Header("Input Action Asset")]
+    public InputActionAsset inputActions;
+    private InputAction pauseActionUI;
+    private InputAction playerPauseAction;
+    private InputActionMap playerActionMap;
+
+    void Awake()
+    {
+        playerPauseAction = InputSystem.actions.FindAction("Player/Pause");
+        pauseActionUI = InputSystem.actions.FindAction("UI/Resume");
+        playerActionMap = inputActions.FindActionMap("Player");
+        
+        pauseActionUI.Disable();
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) ||
-            Input.GetKeyDown(KeyCode.P))
+        if (playerPauseAction.WasPressedThisFrame())
         {
-            if (isPaused)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-            }
+            PauseGame();
+        }
+        else if (pauseActionUI.WasPressedThisFrame())
+        {
+            ResumeGame();
         }
     }
 
@@ -34,6 +46,8 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Pausing the game!");
         Time.timeScale = 0f;
         pauseGUI.SetActive(true);
+        playerActionMap.Disable();
+        pauseActionUI.Enable();
         isPaused = true;
     }
 
@@ -42,6 +56,8 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Unpausing the game!");
         Time.timeScale = 1f;
         pauseGUI.SetActive(false);
+        playerActionMap.Enable();
+        pauseActionUI.Disable();
         isPaused = false;
     }
 
