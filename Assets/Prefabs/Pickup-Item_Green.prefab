@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2599654608473688302}
   m_Layer: 0
-  m_Name: Pickup-Item
+  m_Name: Pickup-Item_Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 2
-  m_Color: {r: 0.8773585, g: 0.67516404, b: 0.16967781, a: 1}
+  m_Color: {r: 0.22778635, g: 0.8784314, b: 0.16862744, a: 1}
   m_Intensity: 22.57
   m_Range: 7.4
   m_SpotAngle: 30
@@ -298,4 +298,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c324acbbd777af4f9af4f71d8718d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomColor: 1
+  randomColor: 2
