@@ -112,6 +112,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (PauseMenu.instance.isPaused)
+        {
+            return;
+        }
+
         // Ground Check - FIXME: doesn't work for arbitrary polygons without layer/tags
         // isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
         checkGrounded(); // uses a simple raycast instead
@@ -256,6 +261,10 @@ public class PlayerMovement : MonoBehaviour
     // FIXME: use new input system
     void FixedUpdate()
     {
+        if (PauseMenu.instance.isPaused)
+        {
+            return;
+        }
         float targetSpeed = 0f; // default to stand still when no input
 
         // move forward

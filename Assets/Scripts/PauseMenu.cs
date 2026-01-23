@@ -12,7 +12,9 @@ public class PauseMenu : MonoBehaviour
     [Header("Be sure to include this scene in the project build settings")]
     public string nameOfMainMenuScene = "MainMenu";
 
-    public static bool isPaused = false;
+    public static PauseMenu instance;
+
+    public bool isPaused = false;
 
     [Header("Input Action Asset")]
     public InputActionAsset inputActions;
@@ -20,8 +22,10 @@ public class PauseMenu : MonoBehaviour
     private InputAction playerPauseAction;
     private InputActionMap playerActionMap;
 
+
     void Awake()
     {
+        instance = this;
         playerPauseAction = InputSystem.actions.FindAction("Player/Pause");
         pauseActionUI = InputSystem.actions.FindAction("UI/Resume");
         playerActionMap = inputActions.FindActionMap("Player");
