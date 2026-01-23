@@ -93,6 +93,10 @@ public class PlayerMovement : MonoBehaviour
         // this won't work as it's on a child object
         if (!animator) animator = GetComponent<Animator>();
         glideTimeCur = glideTimeMax;
+
+        if(PauseMenu.instance == null) {
+            Debug.Log("note: PauseMenu.instance looks to be missing");
+        }
     }
 
     void checkGrounded()
@@ -112,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (PauseMenu.instance.isPaused)
+        if (PauseMenu.instance && PauseMenu.instance.isPaused)
         {
             return;
         }
@@ -261,7 +265,7 @@ public class PlayerMovement : MonoBehaviour
     // FIXME: use new input system
     void FixedUpdate()
     {
-        if (PauseMenu.instance.isPaused)
+        if (PauseMenu.instance && PauseMenu.instance.isPaused)
         {
             return;
         }
