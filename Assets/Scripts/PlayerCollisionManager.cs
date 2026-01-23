@@ -7,7 +7,8 @@ public class PlayerCollisionManager : MonoBehaviour
     {
         if(collision.transform.TryGetComponent<Obstacle>(out Obstacle obstacle))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //FIXME: Add code for what should occur when the Player collides with an obstacle
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
