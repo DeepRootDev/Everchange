@@ -236,5 +236,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 1
-  speed: -30
+  speed: -120
   rotAxis: {x: 0, y: 1, z: 0}
