@@ -11,7 +11,15 @@ public class PlayerSoundTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerVoicePlayerBox.PlaySound(soundToPlay);
+            if (!playerVoicePlayerBox)
+            {
+                Debug.Log("There is no player voice player box attached to player sound trigger");
+            }
+            else 
+            {
+                playerVoicePlayerBox.PlaySound(soundToPlay);
+            }
+            
         }
     }
 }
