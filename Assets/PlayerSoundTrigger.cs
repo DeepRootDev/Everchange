@@ -5,7 +5,10 @@ public class PlayerSoundTrigger : MonoBehaviour
     [SerializeField]
     private AudioClip soundToPlay;
     [SerializeField]
+    private float soundVolume;
+    [SerializeField]
     private PlayerVoicePlayerBox playerVoicePlayerBox;
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,7 +20,7 @@ public class PlayerSoundTrigger : MonoBehaviour
             }
             else 
             {
-                playerVoicePlayerBox.PlaySound(soundToPlay);
+                playerVoicePlayerBox.PlaySound(soundToPlay, soundVolume);
             }
             
         }

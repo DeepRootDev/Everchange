@@ -10,8 +10,9 @@ public class PlayerVoicePlayerBox : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
     }
-    public void PlaySound(AudioClip soundToPlay)
+    public void PlaySound(AudioClip soundToPlay, float soundVolume)
     {
+        audioSource.volume = soundVolume;
         audioSource.PlayOneShot(soundToPlay);
     }
 }
