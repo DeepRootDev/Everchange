@@ -11296,31 +11296,31 @@ MonoBehaviour:
   justJumped: 0
   currentSpeed: 0
   currentAltitude: 0
-  runSpeed: 50
-  boostSpeed: 100
-  acceleration: 500
+  runSpeed: 115
+  boostSpeed: 120
+  acceleration: 300
   gravityPower: -150
-  jumpPower: 35
+  jumpPower: 22
   groundedMaxAltitude: 7
-  turnSpeed: 2
-  corneringTiltDegreesMax: 15
+  turnSpeed: 1
+  corneringTiltDegreesMax: 25
   corneringTiltDegreesPerSec: 15
   wallRunStickiness: 10
   wallrunMaxDistance: 3
   wallrunTiltDegreesMax: 65
   wallrunTiltDegreesPerSec: 65
-  glideTimeMax: 3
+  glideTimeMax: 8
   glideTimeCur: 0
-  glideSpeed: 75
-  glideLeanAngle: 90
+  glideSpeed: 95
+  glideLeanAngle: 55
   glideLeanSpeed: 1
-  boostPower: 50
+  boostPower: 55
   boostTimespan: 3
-  driftTriggerSpeed: 1
-  driftTriggerAngle: 15
-  driftFriction: 1
-  driftTiltDegreesMax: 65
-  driftTiltDegreesPerSec: 65
+  driftTriggerSpeed: 0
+  driftTriggerAngle: 10
+  driftFriction: 0
+  driftTiltDegreesMax: 100
+  driftTiltDegreesPerSec: 80
   thePlayerVisuals: {fileID: 3061299230270106769}
   groundedParticles: {fileID: 5195338909523273430}
   driftingParticles: {fileID: 5476970440991732045}

@@ -280,6 +280,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -301,9 +303,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2180226696445903944
 GameObject:
@@ -458,6 +462,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -479,9 +485,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &8985995804179085895
 CapsuleCollider:
@@ -513,10 +521,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2184425476445289418}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 2
-  m_AngularDrag: 0.05
+  m_LinearDamping: 2
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -545,10 +553,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236d1bbacda4d47e583e75293ec85ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSpeed: 80
+  defaultSpeed: 215
   currentSpeed: 0
   inAir: 0
-  AInow: 2
+  distruptionFromGreenPowerUpActive: 0
+  maxTimeForGreenPowerUp: 2
+  greenPowerUpDistruptionMagnitude: 20
+  AInow: 0
 --- !u!114 &5583291160001005776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,6 +677,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 84168ae8-0b6b-49d4-bd8b-4c872bb72682
     m_ActionName: 'Player/Fly[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e1b87a95-f27f-4e88-9546-56d7fcacb5ce
+    m_ActionName: 'Player/ToggleMute[/Keyboard/m]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2d87863f-6599-4335-b682-0f3daf747ebe
+    m_ActionName: 'Player/Glide[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e7a5bfc5-2c6b-4e07-a24b-00f7d09eaef8
+    m_ActionName: 'Player/Pause[/Keyboard/escape,/Keyboard/p]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4c9d172a-e019-437e-a10b-a2264e9ef628
+    m_ActionName: 'UI/Resume[/Keyboard/escape,/Keyboard/p]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -5396,7 +5423,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &5697541848028083630
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5415,6 +5442,8 @@ ParticleSystemRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5436,9 +5465,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -5470,7 +5501,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &2793051989988552640
 GameObject:
   m_ObjectHideFlags: 0
@@ -6104,6 +6134,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6125,9 +6157,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &3686602173826586027
 BoxCollider:
@@ -6410,16 +6444,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPlayerMovement: {fileID: 0}
+  soundFadeInSpeed: 2
   runningSoundVolume: 1
   boostSoundVolume: 1
   wallrunSoundVolume: 1
-  grindingSoundVolume: 1
+  driftingSoundVolume: 1
   glidingSoundVolume: 1
   jumpSoundVolume: 1
   currentRunVol: 0
   currentBoostVol: 0
   currentWallrunVol: 0
-  currentGrindingVol: 0
+  currentDriftingVol: 0
 --- !u!82 &3318997565578894896
 AudioSource:
   m_ObjectHideFlags: 0
