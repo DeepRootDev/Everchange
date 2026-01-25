@@ -20,6 +20,11 @@ public class MenuNavigation : MonoBehaviour
         SelectButton(obj);
     }
 
+    private void OnDestroy()
+    {
+        ButtonHoverSelect.OnButtonHoverr -= UIButton_OnButtonHoverr;
+    }
+
     private void SelectButton(int index)
     {
         for (int i = 0; i < buttons.Length; i++)

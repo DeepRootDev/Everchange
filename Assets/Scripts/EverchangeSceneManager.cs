@@ -20,6 +20,11 @@ public class EverchangeSceneManager : MonoBehaviour
         SceneManager.LoadScene("Test Playground");
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     private IEnumerator LoadSceneAfterSecond(string sceneName)
     {
         yield return new WaitForSeconds(timeBeforeLoadingScene);

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEditor; 
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -53,6 +54,8 @@ public class PauseMenu : MonoBehaviour
         playerActionMap.Disable();
         pauseActionUI.Enable();
         isPaused = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void ResumeGame()
@@ -63,6 +66,8 @@ public class PauseMenu : MonoBehaviour
         playerActionMap.Enable();
         pauseActionUI.Disable();
         isPaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void clickMainMenuButton()
@@ -73,10 +78,12 @@ public class PauseMenu : MonoBehaviour
     public void clickRestartButton()
     {
         Debug.Log("Restart Button was clicked!");
+        Time.timeScale = 1f;
         // FIXME: not sure how to reset everything using waypoint drive etc
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
         SceneManager.LoadScene(sceneName);
+
     }
 
     public void clickExitButton()
