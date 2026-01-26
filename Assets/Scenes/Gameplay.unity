@@ -3460,7 +3460,7 @@ PrefabInstance:
     - target: {fileID: 1088541510760150509, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: debugTeleportPoint
       value: 
-      objectReference: {fileID: 832143606}
+      objectReference: {fileID: 1325023700}
     - target: {fileID: 1088541510760150509, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: driftTiltDegreesMax
       value: 100
@@ -194951,7 +194951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2123020012
 MonoBehaviour:
   m_ObjectHideFlags: 0
