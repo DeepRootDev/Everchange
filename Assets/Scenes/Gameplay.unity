@@ -194946,12 +194946,12 @@ GameObject:
   - component: {fileID: 2123020013}
   - component: {fileID: 2123020012}
   m_Layer: 0
-  m_Name: Waypoints
+  m_Name: Waypoints (leave this activated)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2123020012
 MonoBehaviour:
   m_ObjectHideFlags: 0

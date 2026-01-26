@@ -8,7 +8,8 @@ public class PlayerSoundTrigger : MonoBehaviour
     private float soundVolume;
     [SerializeField]
     private PlayerVoicePlayerBox playerVoicePlayerBox;
-    
+
+    private bool soundPlayedYet = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,6 +21,12 @@ public class PlayerSoundTrigger : MonoBehaviour
             }
             else 
             {
+                if(soundPlayedYet)
+                {
+                    Debug.Log("prevented audio from double playing");
+                    return;
+                }
+                soundPlayedYet = true;
                 playerVoicePlayerBox.PlaySound(soundToPlay, soundVolume);
             }
             
