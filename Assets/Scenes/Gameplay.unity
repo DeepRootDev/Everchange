@@ -3415,7 +3415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1088541510760150509, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: turnSpeed
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1088541510760150509, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: boostPower
@@ -194951,7 +194951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2123020012
 MonoBehaviour:
   m_ObjectHideFlags: 0
