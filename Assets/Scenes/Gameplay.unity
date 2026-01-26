@@ -94546,6 +94546,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1409290523784533467, guid: 0295f853eeba07a4c89f5bba01319437, type: 3}
+      propertyPath: inputActions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 1409290523784533467, guid: 0295f853eeba07a4c89f5bba01319437, type: 3}
       propertyPath: activateThisWhenTriggered
       value: 
       objectReference: {fileID: 1589251253}
@@ -99064,6 +99068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activateThisWhenTriggered: {fileID: 7616037735168311474}
   saveResultsHere: {fileID: 1475288540}
+  inputActions: {fileID: 0}
 --- !u!4 &1079357462
 Transform:
   m_ObjectHideFlags: 0
