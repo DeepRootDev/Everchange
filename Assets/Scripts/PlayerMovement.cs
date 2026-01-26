@@ -155,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
         
         // always running forward style:
         // turn like a car on left+right inputs
-        Vector3 turnForce = new Vector3(0,horizontalInput*turnSpeed,0);
+        Vector3 turnForce = new Vector3(0,horizontalInput*turnSpeed*Time.deltaTime,0);
         transform.Rotate(turnForce);
 
         moveDirection = transform.forward;
