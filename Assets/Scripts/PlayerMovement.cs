@@ -73,6 +73,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public float groundCheckRadius = 0.2f;
     */
+
+    public Transform debugTeleportPoint; // added to, for example, teleport to finish liine
     
     private Vector3 moveDirection;
     private Rigidbody rb;
@@ -119,6 +121,14 @@ public class PlayerMovement : MonoBehaviour
         if (PauseMenu.instance && PauseMenu.instance.isPaused)
         {
             return;
+        }
+
+        if(debugTeleportPoint != null)
+        {
+            if(Input.GetKeyDown(KeyCode.T))
+            {
+                transform.position = debugTeleportPoint.transform.position;
+            }
         }
 
         // Ground Check - FIXME: doesn't work for arbitrary polygons without layer/tags
