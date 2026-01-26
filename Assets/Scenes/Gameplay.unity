@@ -3415,7 +3415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1088541510760150509, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: turnSpeed
-      value: 30
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 1088541510760150509, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: boostPower
@@ -3460,7 +3460,7 @@ PrefabInstance:
     - target: {fileID: 1088541510760150509, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: debugTeleportPoint
       value: 
-      objectReference: {fileID: 1325023700}
+      objectReference: {fileID: 853133023}
     - target: {fileID: 1088541510760150509, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: driftTiltDegreesMax
       value: 100
@@ -25786,7 +25786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1936372685678754903, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: defaultSpeed
-      value: 215
+      value: 255
       objectReference: {fileID: 0}
     - target: {fileID: 2184425476445289418, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: m_Name
@@ -46783,7 +46783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1936372685678754903, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: defaultSpeed
-      value: 215
+      value: 255
       objectReference: {fileID: 0}
     - target: {fileID: 2184425476445289418, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: m_Name
@@ -49267,7 +49267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1936372685678754903, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: defaultSpeed
-      value: 215
+      value: 255
       objectReference: {fileID: 0}
     - target: {fileID: 2184425476445289418, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: m_Name
@@ -68486,6 +68486,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2081587003}
   - {fileID: 1575729917}
   m_Father: {fileID: 1589251254}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78040,7 +78041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1936372685678754903, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: defaultSpeed
-      value: 215
+      value: 255
       objectReference: {fileID: 0}
     - target: {fileID: 2184425476445289418, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: m_Name
@@ -81632,7 +81633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1936372685678754903, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: defaultSpeed
-      value: 215
+      value: 255
       objectReference: {fileID: 0}
     - target: {fileID: 2184425476445289418, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: m_Name
@@ -104542,7 +104543,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Drift: A or S    +'
+  m_text: 'Drift: A or D    +'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2e0fe422b664bb46aeed58e77d2f1af, type: 2}
   m_sharedMaterial: {fileID: 390810934111521873, guid: d2e0fe422b664bb46aeed58e77d2f1af, type: 2}
@@ -188133,7 +188134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1936372685678754903, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: defaultSpeed
-      value: 215
+      value: 255
       objectReference: {fileID: 0}
     - target: {fileID: 2184425476445289418, guid: 879e6f88fc72f4a68ad97cb152f6074a, type: 3}
       propertyPath: m_Name
@@ -192483,6 +192484,81 @@ MonoBehaviour:
   next:
   - {fileID: 1181197323}
   inAir: 0
+--- !u!1 &2081587002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2081587003}
+  - component: {fileID: 2081587005}
+  - component: {fileID: 2081587004}
+  m_Layer: 5
+  m_Name: Background Art Filled
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2081587003
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081587002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 8.0156, y: 4.5244, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 746793337}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2081587004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081587002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.039438475, g: 0.025542898, b: 0.13207549, a: 0.972549}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2081587005
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081587002}
+  m_CullTransparentMesh: 1
 --- !u!114 &2081888393
 MonoBehaviour:
   m_ObjectHideFlags: 0
