@@ -3460,7 +3460,7 @@ PrefabInstance:
     - target: {fileID: 1088541510760150509, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: debugTeleportPoint
       value: 
-      objectReference: {fileID: 1667139842}
+      objectReference: {fileID: 832143606}
     - target: {fileID: 1088541510760150509, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: driftTiltDegreesMax
       value: 100
@@ -153285,11 +153285,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!4 &1667139842 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8951312971374436770, guid: 0295f853eeba07a4c89f5bba01319437, type: 3}
-  m_PrefabInstance: {fileID: 1029002921}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1667143527 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a67a71cef22048a428511cb84ca864d6, type: 3}

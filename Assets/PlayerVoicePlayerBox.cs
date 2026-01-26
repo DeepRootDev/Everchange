@@ -13,6 +13,7 @@ public class PlayerVoicePlayerBox : MonoBehaviour
     public void PlaySound(AudioClip soundToPlay, float soundVolume)
     {
         audioSource.volume = soundVolume;
+        audioSource.loop = false;
         audioSource.PlayOneShot(soundToPlay);
     }
 }
