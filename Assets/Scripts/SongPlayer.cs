@@ -31,7 +31,7 @@ public class SongPlayer : MonoBehaviour
         audioSource.loop = false;
         audioSource.Play();
 
-        yield return new WaitForSeconds(0.5f/*FirstSong.length*/);
+        yield return new WaitForSeconds(FirstSong.length);
 
         audioSource.clip = SecondSong;
         audioSource.loop = true;
