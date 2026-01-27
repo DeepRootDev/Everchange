@@ -18,7 +18,10 @@ public class MenuNavigation : MonoBehaviour
         SelectButton(0);
         ButtonHoverSelect.OnButtonHoverr += UIButton_OnButtonHoverr;
 
-        inputActions.FindActionMap("UI").Enable();
+        if (inputActions != null)
+        {
+            inputActions.FindActionMap("UI").Enable();   
+        }
         uiUpAction = InputSystem.actions.FindAction("UI/MenuUp");
         uiDownAction = InputSystem.actions.FindAction("UI/MenuDown");
         uiReturnAction = InputSystem.actions.FindAction("UI/MenuSelect");
@@ -49,6 +52,14 @@ public class MenuNavigation : MonoBehaviour
 
     private void Update()
     {
+        //FIXME: Should be removed; Input Actions need to referenced in Menu Navigation Object
+        //Gameplay.scene needs to updated
+        //Adding this to prevent errors
+        if (uiUpAction == null || uiDownAction == null || uiReturnAction == null)
+        {
+            return;    
+        }
+
         if (uiUpAction.WasPressedThisFrame())
         {
             index--;
