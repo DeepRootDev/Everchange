@@ -25,7 +25,6 @@ public class EverchangeSceneManager : MonoBehaviour
     {
         #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
-        // If not in the Editor, assume it's a built application
         #else
             Application.Quit();
         #endif
