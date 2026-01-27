@@ -52,13 +52,6 @@ public class MenuNavigation : MonoBehaviour
 
     private void Update()
     {
-        //FIXME: Should be removed; Input Actions need to referenced in Menu Navigation Object
-        //Gameplay.scene needs to updated
-        //Adding this to prevent errors
-        if (uiUpAction == null || uiDownAction == null || uiReturnAction == null)
-        {
-            return;    
-        }
 
         if (uiUpAction.WasPressedThisFrame())
         {
