@@ -1,8 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayFootStepSound : MonoBehaviour
 {
     AudioSource audioSource;
+    [SerializeField] PlayerMovement playerMovement;
 
     void Start()
     {
@@ -11,6 +13,6 @@ public class PlayFootStepSound : MonoBehaviour
 
     public void PlaySound()
     {
-        audioSource.Play();
+        if (playerMovement.isGrounded) audioSource.Play();
     }
 }
