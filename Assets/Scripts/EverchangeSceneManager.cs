@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class EverchangeSceneManager : MonoBehaviour
 {
@@ -22,7 +23,12 @@ public class EverchangeSceneManager : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
+        #if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+        // If not in the Editor, assume it's a built application
+        #else
+            Application.Quit();
+        #endif
     }
 
     private IEnumerator LoadSceneAfterSecond(string sceneName)
