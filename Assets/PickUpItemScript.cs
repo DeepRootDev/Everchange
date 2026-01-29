@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PickUpItemScript : MonoBehaviour
 {
-
+    public GameObject spawnEffect;
     [SerializeField]
     private PickUpItemColors color;
     [SerializeField]
@@ -20,6 +20,12 @@ public class PickUpItemScript : MonoBehaviour
             }
 
             Debug.Log("Player picked up " + color.ToString() + " Item");
+            Destroy(gameObject);
+            if (spawnEffect != null)
+            {
+                GameObject.Instantiate(spawnEffect,transform.position,transform.rotation);
+            }
+
 
             //We might want a parent class for PlayerPowerUpManager and whatever class the AI will have for the manager so we can have one unified variable and method for both
             //If not AI will need different code here.

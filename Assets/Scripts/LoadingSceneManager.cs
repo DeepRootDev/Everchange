@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 // NOTE(marvin): It is separate from the EverchangeSceneManager because of the extra logic with loading the next
 // scene asynchronously and updating the percentage.
@@ -14,18 +15,24 @@ public class LoadingSceneManager : MonoBehaviour
     [SerializeField] private string gameScene;
 
     private AsyncOperation loadOperation;
+
+    public InputActionAsset inputActions;
+    private InputAction uiClickAction;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         PresentContinueButton(false);
         StartCoroutine(LoadGameSceneAsync());
+
+        inputActions.FindActionMap("UI").Enable();
+        uiClickAction = InputSystem.actions.FindAction("UI/Click");
     }
 
     private void Update()
     {
         if (loadOperation != null && ReadyForNextScene() &&
-            Input.GetMouseButtonDown(0))
+            uiClickAction.WasPressedThisFrame())
         {
             ContinueToNextScene();
         }

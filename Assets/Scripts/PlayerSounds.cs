@@ -36,7 +36,7 @@ public class PlayerSounds : MonoBehaviour
         // but after inits it works!!
         // seems like Start() is being called TWICE?
         Debug.Log("We need 6 audiosources (run boost, wallrun, grind, glide, jump) and have "+GetComponents<AudioSource>().Length);
-        runningSound = GetComponents<AudioSource>()[0];
+        // runningSound = GetComponents<AudioSource>()[0];
         boostSound = GetComponents<AudioSource>()[1];
         wallrunSound = GetComponents<AudioSource>()[2];
         driftingSound = GetComponents<AudioSource>()[3];
@@ -52,7 +52,7 @@ public class PlayerSounds : MonoBehaviour
         // during the awake and start events, we don't always have all six
         // so keep trying until they are ready to use
         if (GetComponents<AudioSource>().Length==6) {
-            if (!runningSound) runningSound = GetComponents<AudioSource>()[0];
+            // if (!runningSound) runningSound = GetComponents<AudioSource>()[0];
             if (!boostSound) boostSound = GetComponents<AudioSource>()[1];
             if (!wallrunSound) wallrunSound = GetComponents<AudioSource>()[2];
             if (!driftingSound) driftingSound = GetComponents<AudioSource>()[3];
@@ -64,17 +64,17 @@ public class PlayerSounds : MonoBehaviour
             return; // do nothing! no sounds!
         }
 
-        if (runningSound!=null) {
-            if (!myPlayerMovement.isGrounded) {
-                runningSound.volume = 0f; // no footstep sfx when in the air
-            } else  {
-                if (myPlayerMovement.currentSpeed > 0.25) {
-                    runningSound.volume = runningSoundVolume;
-                } else {
-                    runningSound.volume = 0; // not moving
-                }
-            }
-        }
+        // if (runningSound!=null) {
+        //     if (!myPlayerMovement.isGrounded) {
+        //         runningSound.volume = 0f; // no footstep sfx when in the air
+        //     } else  {
+        //         if (myPlayerMovement.currentSpeed > 0.25) {
+        //             runningSound.volume = runningSoundVolume;
+        //         } else {
+        //             runningSound.volume = 0; // not moving
+        //         }
+        //     }
+        // }
 
         if (myPlayerMovement.isWallRunning)
         {
@@ -135,7 +135,7 @@ public class PlayerSounds : MonoBehaviour
         }
 
     // for debug only!!!! 
-    currentRunVol = runningSound.volume;
+    // currentRunVol = runningSound.volume;
     currentBoostVol = boostSound.volume;
     currentWallrunVol = wallrunSound.volume;
     currentDriftingVol = driftingSound.volume;

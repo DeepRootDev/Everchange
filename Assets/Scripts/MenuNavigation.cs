@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem.Editor;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MenuNavigation : MonoBehaviour
@@ -8,10 +8,23 @@ public class MenuNavigation : MonoBehaviour
     [SerializeField] private Button[] buttons;
     private int index = 0;
 
+    public InputActionAsset inputActions;
+    private InputAction uiUpAction;
+    private InputAction uiDownAction;
+    private InputAction uiReturnAction;
+
     private void Start()
     {
         SelectButton(0);
         ButtonHoverSelect.OnButtonHoverr += UIButton_OnButtonHoverr;
+
+        if (inputActions != null)
+        {
+            inputActions.FindActionMap("UI").Enable();   
+        }
+        uiUpAction = InputSystem.actions.FindAction("UI/MenuUp");
+        uiDownAction = InputSystem.actions.FindAction("UI/MenuDown");
+        uiReturnAction = InputSystem.actions.FindAction("UI/MenuSelect");
     }
 
     private void UIButton_OnButtonHoverr(int obj)
@@ -39,14 +52,16 @@ public class MenuNavigation : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+
+        if (uiUpAction.WasPressedThisFrame())
         {
             index--;
-        index = Mathf.Clamp(index, 0, buttons.Length);
+            index = Mathf.Clamp(index, 0, buttons.Length);
 
             SelectButton(index);
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        
+        if (uiDownAction.WasPressedThisFrame())
         {
 
             index++;
@@ -55,7 +70,7 @@ public class MenuNavigation : MonoBehaviour
 
         }
 
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(uiReturnAction.WasPressedThisFrame())
         {
             buttons[index].onClick.Invoke();
         }
