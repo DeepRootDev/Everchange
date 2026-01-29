@@ -3460,7 +3460,7 @@ PrefabInstance:
     - target: {fileID: 1088541510760150509, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: debugTeleportPoint
       value: 
-      objectReference: {fileID: 1325023700}
+      objectReference: {fileID: 1647595230}
     - target: {fileID: 1088541510760150509, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: driftTiltDegreesMax
       value: 100
@@ -56240,7 +56240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &613787387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104542,7 +104542,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Drift: A or S    +'
+  m_text: 'Drift: A or D    +'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2e0fe422b664bb46aeed58e77d2f1af, type: 2}
   m_sharedMaterial: {fileID: 390810934111521873, guid: d2e0fe422b664bb46aeed58e77d2f1af, type: 2}
