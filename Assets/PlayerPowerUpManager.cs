@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -48,17 +47,17 @@ public class PlayerPowerUpManager : MonoBehaviour
 
     void Update()
     {
-        if (activatorArea != null)
-        {
-            if (Input.GetKeyDown(activatorArea.GetKeyType()) && allowActivationUsingRayCast && CheckAreaColorForPowerUp() || Input.GetKeyDown(activatorArea.GetKeyType()) && allowActivationInsideActivatorArea && CheckAreaColorForPowerUp())
-            {
-                Debug.Log("Trying to activate " + activatorArea.GetAreaColor() + " Zone");
-                activatorArea.Toggle();
-                currentPickedUpItems.FirstOrDefault(x => x.Color == activatorArea.GetAreaColor()).NumberOfUsesLeft -= 1;
-                if (myStats!=null) myStats.increaseTriggerCount();
-            }
+        // if (activatorArea != null)
+        // {
+        //     if (Input.GetKeyDown(activatorArea.GetKeyType()) && allowActivationUsingRayCast && CheckAreaColorForPowerUp() || Input.GetKeyDown(activatorArea.GetKeyType()) && allowActivationInsideActivatorArea && CheckAreaColorForPowerUp())
+        //     {
+        //         Debug.Log("Trying to activate " + activatorArea.GetAreaColor() + " Zone");
+        //         activatorArea.Toggle();
+        //         currentPickedUpItems.FirstOrDefault(x => x.Color == activatorArea.GetAreaColor()).NumberOfUsesLeft -= 1;
+        //         if (myStats!=null) myStats.increaseTriggerCount();
+        //     }
 
-        }
+        // }
     }
     private void LateUpdate()
     {
@@ -71,9 +70,24 @@ public class PlayerPowerUpManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent<ActivatorArea>(out ActivatorArea area))
-        {
+        {            
+            if (activatorArea == area)
+                return;
+
             allowActivationInsideActivatorArea = true;
             activatorArea = area;
+            ActivatorArea.onActivatorActionPerformed += OnActivatorAreaActionPerformed;   
+            
+        }
+    }
+
+    private void OnActivatorAreaActionPerformed()
+    {
+        if (activatorArea != null && (allowActivationUsingRayCast && CheckAreaColorForPowerUp() ||  allowActivationInsideActivatorArea && CheckAreaColorForPowerUp()))
+        {
+            activatorArea.Toggle();
+            currentPickedUpItems.FirstOrDefault(x => x.Color == activatorArea.GetAreaColor()).NumberOfUsesLeft -= 1;
+            if (myStats!=null) myStats.increaseTriggerCount();
         }
     }
 
@@ -92,9 +106,14 @@ public class PlayerPowerUpManager : MonoBehaviour
                 // Debug.Log("Did Hit");
                 if(area!=null)
                 {
-                this.activatorArea  = area;
-                allowActivationUsingRayCast=true;
+                    if (activatorArea != area && activatorArea != null)
+                        ActivatorArea.onActivatorActionPerformed -= OnActivatorAreaActionPerformed;
 
+                    allowActivationUsingRayCast=true;
+                }
+                else
+                {
+                    allowActivationUsingRayCast=false;
                 }
             }
             
