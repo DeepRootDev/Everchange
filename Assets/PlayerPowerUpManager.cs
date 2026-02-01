@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class PlayerPowerUpManager : MonoBehaviour
 {
+    public static event Action<PickUpItemColors> OnObstacleTriggered;
 
     // we aren't allowed to access layer names at editor startup
     // (only after awake or start)
@@ -86,6 +88,7 @@ public class PlayerPowerUpManager : MonoBehaviour
         if (activatorArea != null && (allowActivationUsingRayCast && CheckAreaColorForPowerUp() ||  allowActivationInsideActivatorArea && CheckAreaColorForPowerUp()))
         {
             activatorArea.Toggle();
+            OnObstacleTriggered?.Invoke(activatorArea.GetAreaColor());
             currentPickedUpItems.FirstOrDefault(x => x.Color == activatorArea.GetAreaColor()).NumberOfUsesLeft -= 1;
             if (myStats!=null) myStats.increaseTriggerCount();
         }
