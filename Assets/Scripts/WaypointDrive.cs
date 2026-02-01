@@ -1,7 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
+
+// NOTE(marvin): This component is the closest thing to an EnemyAI component. I integrated code for obstacle activation
+// into this component. Admittedly not related at all to the name of the component. Perhaps should move AI obstacle
+// activation out or rename the component. Regions of code that has to do with obstacle activation is wrapped in
+// #region OBSTACLE_ACTIVATION.
 
 public class WaypointDrive:MonoBehaviour {
 
@@ -43,6 +52,14 @@ public class WaypointDrive:MonoBehaviour {
 	private float timeLeftForGreenPowerUp;
     [SerializeField] private float greenPowerUpDistruptionMagnitude = 20.0f;
 	private float currentDistruptionFromOutsideFactors = 0.0f;
+	
+	#region OBSTACLE_ACTIVATION
+
+	private Transform playerTransform;
+	private readonly HashSet<ActivatorArea> withinActivatorAreas = new();
+	private readonly float checkObstacleActivationEveryXSeconds = 0.5f;
+	private float checkObstacleActivationTimeAccumulator = 0.0f;
+	#endregion
 
     private void Awake()
     {
@@ -80,6 +97,10 @@ public class WaypointDrive:MonoBehaviour {
         // if (AInow != AIMode.HumanControl)
         StartCoroutine(AIbehavior());
 
+        #region OBSTACLE_ACTIVATION
+        var playerGo = GameObject.FindGameObjectWithTag("Player");
+        playerTransform = playerGo.transform;
+        #endregion
 	}
 
     
@@ -113,7 +134,41 @@ public class WaypointDrive:MonoBehaviour {
 	    }
 		transform.rotation = Quaternion.Slerp(transform.rotation,
 			targetRotation, 0.2f);
+
+		#region OBSTACLE_ACTIVATION
+	    // NOTE(marvin): Every frame-independent amount of time has passed, the AI checks whether should activate an
+	    // obstacle. The closer to the player the more likely.
+	    checkObstacleActivationTimeAccumulator += Time.fixedDeltaTime;
+	    if (checkObstacleActivationTimeAccumulator >= checkObstacleActivationEveryXSeconds)
+	    {
+		    checkObstacleActivationTimeAccumulator -= checkObstacleActivationEveryXSeconds;
+		    if (withinActivatorAreas.Count > 0 && ShouldActivateObstacle())
+		    {
+			    // NOTE(marvin): Not terribly efficient, but in practice, there's going to be 1 area only. 
+			    var areaToActivate = withinActivatorAreas.ElementAt(Random.Range(0, withinActivatorAreas.Count));
+			    areaToActivate.Activate();
+		    }
+	    }
+
+	    #endregion
     }
+
+	private bool ShouldActivateObstacle()
+	{
+		const float baseChance = 0.05f;
+
+		const float maximumChanceBonus = 0.1f;
+		const float maximumDistance = 300.0f;
+
+		float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+		float bonusChance = (1.0f - Mathf.Clamp(distanceToPlayer / maximumDistance, 0.0f, 1.0f)) * maximumChanceBonus;
+		float chance = baseChance + bonusChance;
+		
+		// NOTE(marvin): The fact that 1 is excluded means that probabilities aren't represented properly, but whatever.
+		var diceRoll = Random.Range(0.0f, 1.0f);
+		var shouldActivateObstacle = diceRoll <= chance;
+		return shouldActivateObstacle;
+	}
 
 
     private void Update()
@@ -348,4 +403,27 @@ public class WaypointDrive:MonoBehaviour {
 		ShowDebugLines(transform.position, driveToPt, Color.cyan);
 	}
 	
+	#region OBSTACLE_ACTIVATION
+	// NOTE(marvin): The trigger may occur for the same activator area multiple times. The code has been designed with
+	// that in mind.
+	void OnTriggerEnter(Collider other)
+	{
+		GameObject collidedGo = other.gameObject;
+		bool enteredActivatorArea = collidedGo.TryGetComponent(out ActivatorArea area);
+		if (enteredActivatorArea)
+		{
+			withinActivatorAreas.Add(area);
+		}
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		GameObject collidedGo = other.gameObject;
+		bool exitedActivatorArea = collidedGo.TryGetComponent(out ActivatorArea area);
+		if (exitedActivatorArea)
+		{
+			withinActivatorAreas.Remove(area);
+		}
+	}
+	#endregion
 }

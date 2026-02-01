@@ -37,11 +37,16 @@ public class ActivatorArea : MonoBehaviour
         return areaColor;
     }
 
+    public void Activate()
+    {
+        onActivatorActionPerformed?.Invoke();   
+    }
+
     private void OnActivateArea(InputAction.CallbackContext ctx)
     {
         if (activateAreaAction.WasPerformedThisFrame())
         {
-            onActivatorActionPerformed?.Invoke();   
+            Activate();
         }
     }
 
