@@ -83,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     private float globalPlaybackSpeed = 1.0f;    
 
-    //WIP: Migrate to New Unity Input System
     private Vector2 moveInput;
     private bool jumpInputPerformed;
     private bool flyInputPerformed;
