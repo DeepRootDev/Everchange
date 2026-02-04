@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SlowChase : MonoBehaviour
 {
@@ -21,9 +22,9 @@ public class SlowChase : MonoBehaviour
     [Header("Mouse Look")]
     public bool mouseLookEnabled = true;
     public bool hideMouseCursor = true;
-    public float mouseLookSpeedX = 2f;
-    public float mouseLookSpeedY = 2f;
-    public float mouseLookVertRange = 80f; // degrees + or -
+    public float mouseLookSpeedX = 1.3f;
+    public float mouseLookSpeedY = 1.3f;
+    public float mouseLookVertRange = 65f; // degrees + or -
 
     private float rotationX = 0f;
     private float rotationY = 0f;
@@ -32,6 +33,9 @@ public class SlowChase : MonoBehaviour
     private float rotHalfLife = 0.10f;
 
     public PlayerMovement myPlayerMovement;
+
+    private InputAction lookAction;
+
 
     void Start()
     {
@@ -42,6 +46,8 @@ public class SlowChase : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+
+        lookAction = InputSystem.actions.FindAction("Player/Look");
     }
 
     private void LateUpdate()
@@ -57,8 +63,9 @@ public class SlowChase : MonoBehaviour
 
         if (mouseLookEnabled)
         {
-            rotationX += Input.GetAxis("Mouse X") * mouseLookSpeedX;
-            rotationY += -1 * Input.GetAxis("Mouse Y") * mouseLookSpeedY;
+            Vector2 look = lookAction.ReadValue<Vector2>();
+            rotationX += look.x * mouseLookSpeedX;
+            rotationY += -1 * look.y * mouseLookSpeedY;
             rotationY = Mathf.Clamp(rotationY, -mouseLookVertRange, mouseLookVertRange);
 
             // adds just this frame's movement: works great
