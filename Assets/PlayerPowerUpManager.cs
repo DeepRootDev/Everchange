@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerPowerUpManager : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class PlayerPowerUpManager : MonoBehaviour
     private GameObject[] EnemyArray;
     [SerializeField]
     private KeyCode greenPowerUpKeyCode = KeyCode.C;
+    private InputAction greenPowerUpAction;
+
 
     
 
@@ -41,32 +44,15 @@ public class PlayerPowerUpManager : MonoBehaviour
         {
             powerUpItem.NumberOfUsesLeft = 0;
         }
+
+        greenPowerUpAction = new InputAction(name: "GreenPowerUpAction", type: InputActionType.Button);
+        greenPowerUpAction.AddBinding("<Keyboard>/" + greenPowerUpKeyCode.ToString());
+        greenPowerUpAction.performed += onGreenPowerUp;
+        greenPowerUpAction.Enable();
     }
     void Start()
     {
         EnemyArray = GameObject.FindGameObjectsWithTag("Player").Where(x => !GameObject.ReferenceEquals(x, gameObject)).ToArray();
-    }
-
-    void Update()
-    {
-        // if (activatorArea != null)
-        // {
-        //     if (Input.GetKeyDown(activatorArea.GetKeyType()) && allowActivationUsingRayCast && CheckAreaColorForPowerUp() || Input.GetKeyDown(activatorArea.GetKeyType()) && allowActivationInsideActivatorArea && CheckAreaColorForPowerUp())
-        //     {
-        //         Debug.Log("Trying to activate " + activatorArea.GetAreaColor() + " Zone");
-        //         activatorArea.Toggle();
-        //         currentPickedUpItems.FirstOrDefault(x => x.Color == activatorArea.GetAreaColor()).NumberOfUsesLeft -= 1;
-        //         if (myStats!=null) myStats.increaseTriggerCount();
-        //     }
-
-        // }
-    }
-    private void LateUpdate()
-    {
-        if (Input.GetKeyDown(greenPowerUpKeyCode))
-        {
-            UseGreenPowerUp();
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -195,5 +181,21 @@ public class PlayerPowerUpManager : MonoBehaviour
         {
             return false;
         }
+    }
+
+    #region Input Action Handling
+    public void onGreenPowerUp(InputAction.CallbackContext ctx)
+    {
+        if (greenPowerUpAction.WasPerformedThisFrame())
+        {
+            UseGreenPowerUp();
+        }
+    }
+    #endregion
+
+    void OnDestroy()
+    {
+        greenPowerUpAction.Disable();
+        greenPowerUpAction.Dispose();
     }
 }
