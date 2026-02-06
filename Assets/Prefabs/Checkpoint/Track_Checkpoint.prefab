@@ -159,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   lineLength: 100
   invertVisualLine: 0
+  width: 1
 --- !u!1 &3015796386123324508
 GameObject:
   m_ObjectHideFlags: 0
