@@ -18865,7 +18865,7 @@ PrefabInstance:
       objectReference: {fileID: 8985995803327094113}
     - target: {fileID: 3231651022204553404, guid: 939d151a8ec3ce74ba68293470934a5a, type: 3}
       propertyPath: introLengthInSeconds
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4019715421586067365, guid: 939d151a8ec3ce74ba68293470934a5a, type: 3}
       propertyPath: myPlayerMovement
