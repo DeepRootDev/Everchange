@@ -5,7 +5,7 @@ public class TrackCheckpoint : MonoBehaviour
 {
     LineRenderer visualLineCheckpoint;
     float startingPositionY = -60f;
-    public float lineLength = 100f;
+    public float lineLength = 0;
     public Boolean invertVisualLine;
     void Start()
     {
