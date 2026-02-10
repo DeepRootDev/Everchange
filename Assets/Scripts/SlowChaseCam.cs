@@ -82,8 +82,9 @@ public class SlowChase : MonoBehaviour
             // transform.rotation *= QuatOffsetY;
 
         }
+        transform.position = Vector3.Slerp(transform.position, chaseTarget.position, posT);
 
-        if (introTimeleft > 0f && introStartAt != null) // intro flyby time?
+        /*if (introTimeleft > 0f && introStartAt != null) // intro flyby time?
         {
             // do a face closeup camera effect during the 3..2..1
             introTimeleft -= Time.deltaTime;
@@ -97,6 +98,6 @@ public class SlowChase : MonoBehaviour
         } else {    
             // follow the normal gameplay chase camera target
             transform.position = Vector3.Slerp(transform.position, chaseTarget.position, posT);
-        }
+        }*/
     }
 }
