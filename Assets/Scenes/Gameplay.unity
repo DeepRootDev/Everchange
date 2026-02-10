@@ -78174,12 +78174,12 @@ RectTransform:
   - {fileID: 884622197}
   - {fileID: 1201132803}
   - {fileID: 891171445}
+  - {fileID: 1309730585}
   - {fileID: 1429950660}
   - {fileID: 1957296943}
   - {fileID: 1578656082}
   - {fileID: 338227437}
   - {fileID: 1477251254}
-  - {fileID: 1309730585}
   m_Father: {fileID: 769093985}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -112950,7 +112950,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1201132803
 RectTransform:
   m_ObjectHideFlags: 0
@@ -122394,6 +122394,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 850814875}
     m_Modifications:
+    - target: {fileID: 7780786100080423244, guid: 56a6d8411b6506e4eb44ce35f38ee3f1, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8111641741628421397, guid: 56a6d8411b6506e4eb44ce35f38ee3f1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -179364,7 +179368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1920860917
 RectTransform:
   m_ObjectHideFlags: 0
