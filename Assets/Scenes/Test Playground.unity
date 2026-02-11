@@ -19488,6 +19488,10 @@ PrefabInstance:
       propertyPath: updateThisText
       value: 
       objectReference: {fileID: 1328939733}
+    - target: {fileID: 2799502610825800312, guid: 0f29d2f39f034d148899bde906b4bd65, type: 3}
+      propertyPath: theWaypointManager
+      value: 
+      objectReference: {fileID: 2123020012}
     - target: {fileID: 8498318160865674234, guid: 0f29d2f39f034d148899bde906b4bd65, type: 3}
       propertyPath: m_Name
       value: RacePositionDetector

@@ -28,8 +28,10 @@ public class WaypointDrive:MonoBehaviour {
 	private Waypoint myWaypoint = null;
 	private float myTrackLaneOffset = 0.0f;
 	private float myTrackLaneOffsetAITarget = 0.0f;
-	private float percLeftToNextWP = 1.0f;
+	public float percLeftToNextWP = 1.0f;
+    public float distanceToNextWaypoint = 0f;
 	private float totalDistToNextWP = 0.0f;
+    public int hasPassedWaypointNumber = 0;
 
 	private float turnControl = 0.0f;
 	private float runControl = 0.7f;
@@ -227,7 +229,9 @@ public class WaypointDrive:MonoBehaviour {
 			{
                 percLeftToNextWP -= (enginePower / WPSegmentLength) * Time.deltaTime;
             }
-			
+
+            distanceToNextWaypoint = Vector3.Distance(transform.position, myWaypoint.transform.position);
+
 			if(percLeftToNextWP <0f)
             {
 				// advance to next waypoint
@@ -349,7 +353,8 @@ public class WaypointDrive:MonoBehaviour {
 
 	void AdvanceWP()
     {
-		prevWaypoint = myWaypoint;
+		hasPassedWaypointNumber++; // incremenet by one (FIXME: branching paths?)
+        prevWaypoint = myWaypoint;
 		int nextWPCount = myWaypoint.next.Length;
 		if (nextWPCount > 1)
         {

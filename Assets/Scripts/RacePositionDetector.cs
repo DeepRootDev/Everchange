@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class RacePositionDetector : MonoBehaviour
 {
@@ -31,7 +32,21 @@ public class RacePositionDetector : MonoBehaviour
 
     void Start()
     {
-        
+        // please ensure these are filled in in the inspector!
+        if (!theWaypointManager) Debug.LogError("RacePositiondetector needs a waypointManager");
+        if (!thePlayer) Debug.LogError("RacePositiondetector needs player");
+        if (!theFinishLine) Debug.LogError("RacePositiondetector needs a finish line");
+        if (!updateThisText) Debug.LogError("RacePositiondetector needs a text control");
+    }
+
+    int whatRacePositionAreWe()
+    {
+        int rank = 1;
+        if (thePlayer.hasPassedWaypointNumber < opponent1.hasPassedWaypointNumber) rank++;
+        if (thePlayer.hasPassedWaypointNumber < opponent2.hasPassedWaypointNumber) rank++;
+        if (thePlayer.hasPassedWaypointNumber < opponent3.hasPassedWaypointNumber) rank++;
+        if (thePlayer.hasPassedWaypointNumber < opponent4.hasPassedWaypointNumber) rank++;
+        return rank;        
     }
 
     void Update()
@@ -45,22 +60,23 @@ public class RacePositionDetector : MonoBehaviour
         // to break a tie: measure distance to next waypoint
         int newPosition = UnityEngine.Random.Range(1, 6); // faked for now
 
-        if (theWaypointManager != null) {
+        //if (theWaypointManager != null) {
             // then we can loop through this List:
             // theWaypointManager.levelWayPointList
-        }
+        //}
 
-        if (theFinishLine != null && thePlayer != null)
-        {
-            float dist = Vector3.Distance(thePlayer.transform.position,theFinishLine.transform.position);
-            debugString += "\nDistance to finish line: "+dist.ToString("F2");
-        }
+        debugString += "\nPlayer hit waypoint: "+thePlayer.hasPassedWaypointNumber;
+        debugString += "\nPlayer next wp dist: "+thePlayer.distanceToNextWaypoint.ToString("F2")+"\n";
 
-        if (thePlayer != null)
-        {
-            debugString += "\nHighest waypoint reached: "+thePlayer.hasPassedWaypointNumber;
-            debugString += "\nDistance to next waypoint: "+thePlayer.distanceToNextWaypoint.ToString("F2");
-        }
+        if (opponent1) debugString += "\nOpponent 1 hit waypoint: "+opponent1.hasPassedWaypointNumber;
+        if (opponent1) debugString += "\nOpponent 1 next wp dist: "+opponent1.distanceToNextWaypoint.ToString("F2");
+        if (opponent2) debugString += "\nOpponent 2 hit waypoint: "+opponent2.hasPassedWaypointNumber;
+        if (opponent2) debugString += "\nOpponent 2 next wp dist: "+opponent2.distanceToNextWaypoint.ToString("F2");
+        if (opponent3) debugString += "\nOpponent 3 hit waypoint: "+opponent3.hasPassedWaypointNumber;
+        if (opponent3) debugString += "\nOpponent 3 next wp dist: "+opponent3.distanceToNextWaypoint.ToString("F2");
+        if (opponent4) debugString += "\nOpponent 4 hit waypoint: "+opponent4.hasPassedWaypointNumber;
+        if (opponent4) debugString += "\nOpponent 4 next wp dist: "+opponent4.distanceToNextWaypoint.ToString("F2");
+
 
         if (updateThisText != null && newPosition != currentPosition) { // changed?
             switch (newPosition) {
@@ -81,9 +97,12 @@ public class RacePositionDetector : MonoBehaviour
 
         timeTillNextupdate = updateDelay;
 
+        float dist = Vector3.Distance(thePlayer.transform.position,theFinishLine.transform.position);
+        debugString += "\n\nPlayer distance to finish line: "+dist.ToString("F2");
+
         if (debugTextGUI != null) {
-            debugString += "\nCurrent Race Position: "+currentPosition;
-            debugString += "\nDistance Travelled: "+thePlayer.totalDistanceTravelled.ToString("F2");
+            debugString += "\nPlayer total distance travelled: "+thePlayer.totalDistanceTravelled.ToString("F2");
+            debugString += "\nPlayer Race Position: "+currentPosition;
             debugTextGUI.text = debugString;
         }
 
