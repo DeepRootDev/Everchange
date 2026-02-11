@@ -10,13 +10,14 @@ public class FinishLine : MonoBehaviour
     [Header("Drag the SpeedrunStats GUI here:")]
     public SpeedrunStats saveResultsHere;
 
-    public InputActionAsset inputActions;
-
-    private InputActionMap playerActionMap;
+    // why is this here?
+    // public InputActionAsset inputActions;
+    // private InputActionMap playerActionMap;
 
     void Start()
     {
-        playerActionMap = inputActions.FindActionMap("Player");
+        // buggy:
+        // playerActionMap = inputActions.FindActionMap("Player");
     }
 
     void OnTriggerEnter(Collider other)
@@ -31,7 +32,7 @@ public class FinishLine : MonoBehaviour
                 // TODO:
                 Debug.Log("Pausing the game!");
                 Time.timeScale = 0f;
-                playerActionMap.Disable();
+                // playerActionMap.Disable();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 // - save the results to speedrunstats db
