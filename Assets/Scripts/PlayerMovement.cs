@@ -15,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
     public bool justJumped = false; // only true on the frame we started jumping
     public float currentSpeed = 0f; // public only to help debugging =)
     public float currentAltitude = 0f; // ground check result dist
+    public float totalDistanceTravelled = 0f;
+    private Vector3 previousFramePosition = new Vector3();
+    public int hasPassedWaypointNumber = 0;
+    public float distanceToNextWaypoint = 0f;
+    private int prevWaypointNumber = -1;
 
     [Header("Movement Settings:")]
     public float runSpeed = 50f;
@@ -76,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform debugTeleportPoint; // added to, for example, teleport to finish liine
     
+
     private Vector3 moveDirection;
     private Rigidbody rb;
     
@@ -98,6 +104,8 @@ public class PlayerMovement : MonoBehaviour
         if(PauseMenu.instance == null) {
             Debug.Log("note: PauseMenu.instance looks to be missing");
         }
+
+         previousFramePosition = transform.position;
     }
 
     void checkGrounded()
@@ -206,6 +214,10 @@ public class PlayerMovement : MonoBehaviour
             if (isDrifting) animator.speed = 0f;
             if (isGliding) animator.speed = 0f;
         }
+
+        // odometer
+        totalDistanceTravelled += Vector3.Distance(previousFramePosition,transform.position);
+        previousFramePosition = transform.position;
     }
 
     void updateParticleFX()

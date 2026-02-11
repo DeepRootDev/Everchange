@@ -4,8 +4,19 @@ using System;
 
 public class RacePositionDetector : MonoBehaviour
 {
+    [Header("The GUI with 1st, 2nd, 3rd:")]
     public TextMeshProUGUI updateThisText;
+
+    [Header("Debug Info Goes Here:")]
+    public TextMeshProUGUI debugTextGUI;
+
+    [Header("Update interval in seconds:")]
     public float updateDelay = 0.5f;
+
+    [Header("To get the list of waypoints:")]
+    public WayPointManager theWaypointManager;
+
+    [Header("The Racers!")]
     public PlayerMovement thePlayer;
     public WaypointDrive opponent1;
     public WaypointDrive opponent2;
@@ -25,11 +36,17 @@ public class RacePositionDetector : MonoBehaviour
         if (updateThisText==null) return;
         timeTillNextupdate -= Time.deltaTime;
         if (timeTillNextupdate>0f) return;
-
+        string debugString = "Race Position Debug:\n";
+        
         // FIXME TODO
         // compare highest waypoint # reached
         // to break a tie: measure distance to next waypoint
         int newPosition = UnityEngine.Random.Range(1, 6); // faked for now
+
+        if (theWaypointManager != null) {
+            // then we can loop through this List:
+            // theWaypointManager.levelWayPointList
+        }
 
         if (newPosition != currentPosition) { // changed?
             switch (newPosition) {
@@ -46,9 +63,16 @@ public class RacePositionDetector : MonoBehaviour
                 default: updateThisText.text = "1st"; break;
             }
             currentPosition = newPosition;
+
         }
 
         timeTillNextupdate = updateDelay;
+
+        if (debugTextGUI != null) {
+            debugString += "Player Rank: "+currentPosition;
+            debugString += "\nDistance Travelled: "+thePlayer.totalDistanceTravelled.ToString("F2");;
+            debugTextGUI.text = debugString;
+        }
 
     }
 }
