@@ -16,6 +16,9 @@ public class RacePositionDetector : MonoBehaviour
     [Header("To get the list of waypoints:")]
     public WayPointManager theWaypointManager;
 
+    [Header("The position of the finish line:")]
+    public Transform theFinishLine;
+
     [Header("The Racers!")]
     public PlayerMovement thePlayer;
     public WaypointDrive opponent1;
@@ -33,7 +36,6 @@ public class RacePositionDetector : MonoBehaviour
 
     void Update()
     {
-        if (updateThisText==null) return;
         timeTillNextupdate -= Time.deltaTime;
         if (timeTillNextupdate>0f) return;
         string debugString = "Race Position Debug:\n";
@@ -48,7 +50,19 @@ public class RacePositionDetector : MonoBehaviour
             // theWaypointManager.levelWayPointList
         }
 
-        if (newPosition != currentPosition) { // changed?
+        if (theFinishLine != null && thePlayer != null)
+        {
+            float dist = Vector3.Distance(thePlayer.transform.position,theFinishLine.transform.position);
+            debugString += "\nDistance to finish line: "+dist.ToString("F2");
+        }
+
+        if (thePlayer != null)
+        {
+            debugString += "\nHighest waypoint reached: "+thePlayer.hasPassedWaypointNumber;
+            debugString += "\nDistance to next waypoint: "+thePlayer.distanceToNextWaypoint.ToString("F2");
+        }
+
+        if (updateThisText != null && newPosition != currentPosition) { // changed?
             switch (newPosition) {
                 case 1: updateThisText.text = "1st"; break;
                 case 2: updateThisText.text = "2nd"; break;
@@ -63,14 +77,13 @@ public class RacePositionDetector : MonoBehaviour
                 default: updateThisText.text = "1st"; break;
             }
             currentPosition = newPosition;
-
         }
 
         timeTillNextupdate = updateDelay;
 
         if (debugTextGUI != null) {
-            debugString += "Player Rank: "+currentPosition;
-            debugString += "\nDistance Travelled: "+thePlayer.totalDistanceTravelled.ToString("F2");;
+            debugString += "\nCurrent Race Position: "+currentPosition;
+            debugString += "\nDistance Travelled: "+thePlayer.totalDistanceTravelled.ToString("F2");
             debugTextGUI.text = debugString;
         }
 
