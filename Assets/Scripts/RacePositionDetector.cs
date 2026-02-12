@@ -40,27 +40,62 @@ public class RacePositionDetector : MonoBehaviour
         if (!updateThisText) Debug.LogError("RacePositiondetector needs a text control");
     }
 
+
     // FIXME: counting how many waypoints everyone has hit is not quite enough
     // what if you go out of order (cheat and cut corners)?
     // what about a tie - we need to compare distance to next wp
     int whatRacePositionAreWe()
     {
         int rank = 1;
-        if (thePlayer.hasPassedWaypointNumber < opponent1.hasPassedWaypointNumber 
-        || (thePlayer.hasPassedWaypointNumber == opponent1.hasPassedWaypointNumber && thePlayer.distanceToNextWaypoint > opponent1.distanceToNextWaypoint)
-        ) rank++;
+        float tooFar = 20f; // once farther than this from player bots start rubberbanding
+
+        if (opponent1) {
+            bool rubberband1 = Vector3.Distance(opponent1.transform.position,thePlayer.transform.position) > tooFar;
+            if (thePlayer.hasPassedWaypointNumber < opponent1.hasPassedWaypointNumber 
+            || (thePlayer.hasPassedWaypointNumber == opponent1.hasPassedWaypointNumber && thePlayer.distanceToNextWaypoint > opponent1.distanceToNextWaypoint)
+            ) {
+                if (rubberband1) opponent1.pleaseSlowDown();
+                rank++;
+            } else {
+                if (rubberband1) opponent1.pleaseSpeedUp();
+            }
+        }
         
-        if (thePlayer.hasPassedWaypointNumber < opponent2.hasPassedWaypointNumber
-        || (thePlayer.hasPassedWaypointNumber == opponent2.hasPassedWaypointNumber && thePlayer.distanceToNextWaypoint > opponent2.distanceToNextWaypoint)
-        ) rank++;
+        if (opponent2) {
+            bool rubberband2 = Vector3.Distance(opponent2.transform.position,thePlayer.transform.position) > tooFar;
+            if (thePlayer.hasPassedWaypointNumber < opponent2.hasPassedWaypointNumber
+            || (thePlayer.hasPassedWaypointNumber == opponent2.hasPassedWaypointNumber && thePlayer.distanceToNextWaypoint > opponent2.distanceToNextWaypoint)
+            ) {
+                if (rubberband2) opponent2.pleaseSlowDown();
+                rank++;
+            } else {
+                if (rubberband2) opponent2.pleaseSpeedUp();
+            }
+        }
         
-        if (thePlayer.hasPassedWaypointNumber < opponent3.hasPassedWaypointNumber
-        || (thePlayer.hasPassedWaypointNumber == opponent3.hasPassedWaypointNumber && thePlayer.distanceToNextWaypoint > opponent3.distanceToNextWaypoint)
-        ) rank++;
+        if (opponent3) {
+            bool rubberband3 = Vector3.Distance(opponent3.transform.position,thePlayer.transform.position) > tooFar;
+            if (thePlayer.hasPassedWaypointNumber < opponent3.hasPassedWaypointNumber
+            || (thePlayer.hasPassedWaypointNumber == opponent3.hasPassedWaypointNumber && thePlayer.distanceToNextWaypoint > opponent3.distanceToNextWaypoint)
+            ) {
+                if (rubberband3) opponent3.pleaseSlowDown();
+                rank++;
+            } else {
+                if (rubberband3) opponent3.pleaseSpeedUp();
+            }
+        }
         
-        if (thePlayer.hasPassedWaypointNumber < opponent4.hasPassedWaypointNumber
-        || (thePlayer.hasPassedWaypointNumber == opponent4.hasPassedWaypointNumber && thePlayer.distanceToNextWaypoint > opponent4.distanceToNextWaypoint)
-        ) rank++;
+        if (opponent4) {
+            bool rubberband4 = Vector3.Distance(opponent4.transform.position,thePlayer.transform.position) > tooFar;
+            if (thePlayer.hasPassedWaypointNumber < opponent4.hasPassedWaypointNumber
+            || (thePlayer.hasPassedWaypointNumber == opponent4.hasPassedWaypointNumber && thePlayer.distanceToNextWaypoint > opponent4.distanceToNextWaypoint)
+            ) {
+                if (rubberband4) opponent4.pleaseSlowDown();
+                rank++;
+            } else {
+                if (rubberband4) opponent4.pleaseSpeedUp();
+            }
+        }
         
         return rank;        
     }

@@ -172,10 +172,18 @@ public class WaypointDrive:MonoBehaviour {
 		return shouldActivateObstacle;
 	}
 
+    private void rubberBanding()
+    {
+        // always slowly return to normal speed
+        // after a boost from pleaseSpeedUp/Down
+        // 0.25 means take 4 seconds to settle back down
+        currentSpeed = Mathf.Lerp(currentSpeed, defaultSpeed, 0.25f * Time.deltaTime);
+    }
 
     private void Update()
     {
-		CheckAndUpdateGreenPowerUp();
+		rubberBanding();
+        CheckAndUpdateGreenPowerUp();
         if (!myWaypoint)
         {
             //Debug.Log("ERROR in WaypointDrive.Update(): myWaypoint is null. Maybe the WayPointManager has no startWP?");
@@ -408,6 +416,21 @@ public class WaypointDrive:MonoBehaviour {
 		ShowDebugLines(transform.position, driveToPt, Color.cyan);
 	}
 	
+    // rubberbanding controlled by RacePositionDetector
+    // fixme: we would Lerp this smoothly
+    public void pleaseSlowDown()
+    {
+        // currentSpeed = defaultSpeed * 0.75f;
+        currentSpeed -= 10;
+        Debug.Log(gameObject.name+" rubberbanding: SLOW DOWN TO "+currentSpeed);
+    }
+    public void pleaseSpeedUp()
+    {
+        // currentSpeed = defaultSpeed * 1.25f;
+        currentSpeed += 10;
+        Debug.Log(gameObject.name+" rubberbanding: SPEED UP TO "+currentSpeed);
+    }
+
 	#region OBSTACLE_ACTIVATION
 	// NOTE(marvin): The trigger may occur for the same activator area multiple times. The code has been designed with
 	// that in mind.
