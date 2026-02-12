@@ -10,12 +10,12 @@ public class ObstaclesTriggerCounter : MonoBehaviour
 
     private void Start()
     {
-        PlayerPowerUpManager.OnObstacleTriggered += PlayerPowerUpManager_OnObstacleTriggered;
+        //PlayerPowerUpManager.OnObstacleTriggered += PlayerPowerUpManager_OnObstacleTriggered;
     }
 
     private void OnDestroy()
     {
-        PlayerPowerUpManager.OnObstacleTriggered -= PlayerPowerUpManager_OnObstacleTriggered;
+       // PlayerPowerUpManager.OnObstacleTriggered -= PlayerPowerUpManager_OnObstacleTriggered;
     }
 
     private void PlayerPowerUpManager_OnObstacleTriggered(PickUpItemColors obj)

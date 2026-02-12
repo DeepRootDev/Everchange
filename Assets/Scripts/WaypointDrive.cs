@@ -148,7 +148,7 @@ public class WaypointDrive:MonoBehaviour {
 		    {
 			    // NOTE(marvin): Not terribly efficient, but in practice, there's going to be 1 area only. 
 			    var areaToActivate = withinActivatorAreas.ElementAt(Random.Range(0, withinActivatorAreas.Count));
-			    areaToActivate.Activate();
+			   // areaToActivate.Activate();
 		    }
 	    }
 

@@ -1,24 +1,13 @@
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Rendering.Universal;
+
 
 public class ActivatorArea : MonoBehaviour
 {
     [SerializeField] private Obstacle[] obstacle;
-    [SerializeField] private KeyCode keyCode = KeyCode.None;
     [SerializeField] private PickUpItemColors areaColor;
 
-    private InputAction activateAreaAction;
-    public static event Action onActivatorActionPerformed;
 
-    void Awake()
-    {
-        activateAreaAction = new InputAction(name: "ActivatorAreaAction", type: InputActionType.Button);
-        activateAreaAction.AddBinding("<Keyboard>/" + keyCode.ToString());
-        activateAreaAction.performed += OnActivateArea;
-        activateAreaAction.Enable();
-    }
+
     public void Toggle()
     {
         foreach (Obstacle obs in obstacle)
@@ -27,33 +16,9 @@ public class ActivatorArea : MonoBehaviour
         }
     }
 
-    public KeyCode GetKeyType()
-    {
-        return keyCode;
-    }
 
     public PickUpItemColors GetAreaColor()
     {
         return areaColor;
     }
-
-    public void Activate()
-    {
-        onActivatorActionPerformed?.Invoke();   
-    }
-
-    private void OnActivateArea(InputAction.CallbackContext ctx)
-    {
-        if (activateAreaAction.WasPerformedThisFrame())
-        {
-            Activate();
-        }
-    }
-
-    void OnDestroy()
-    {
-        activateAreaAction.Disable();
-        activateAreaAction.Dispose();
-    }
-
 }

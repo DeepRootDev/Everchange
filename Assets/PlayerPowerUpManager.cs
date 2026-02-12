@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public class PlayerPowerUpManager : MonoBehaviour
 {
-    public static event Action<PickUpItemColors> OnObstacleTriggered;
 
     // we aren't allowed to access layer names at editor startup
     // (only after awake or start)
@@ -26,12 +26,24 @@ public class PlayerPowerUpManager : MonoBehaviour
     [SerializeField]
     private KeyCode greenPowerUpKeyCode = KeyCode.C;
     private InputAction greenPowerUpAction;
+    private InputAction activateAreaActionRed;
+    private InputAction activateAreaActionBlue;
 
 
-    
 
     void Awake()
     {
+        activateAreaActionRed = new InputAction(name: "activateAreaActionRed", type: InputActionType.Button);
+        activateAreaActionBlue = new InputAction(name: "activateAreaActionBlue", type: InputActionType.Button);
+        activateAreaActionRed.AddBinding("<Keyboard>/q");
+        activateAreaActionBlue.AddBinding("<Keyboard>/e");
+        activateAreaActionRed.Enable();
+        activateAreaActionBlue.Enable();
+
+        activateAreaActionRed.performed += ActivateAreaActionRed_performed;
+        activateAreaActionBlue.performed += ActivateAreaActionBlue_performed;
+
+
         if (layerMask == 0)
         {
             Debug.Log("Missing layerMask in PlayerPowerUpManager - assuming Obstacles layer.");
@@ -50,6 +62,56 @@ public class PlayerPowerUpManager : MonoBehaviour
         greenPowerUpAction.performed += onGreenPowerUp;
         greenPowerUpAction.Enable();
     }
+
+    private void ActivateAreaActionRed_performed(InputAction.CallbackContext obj)
+    {
+        TryActivate(PickUpItemColors.red);
+    }
+
+    private void ActivateAreaActionBlue_performed(InputAction.CallbackContext obj)
+    {
+        TryActivate(PickUpItemColors.blue);
+    }
+
+    private void TryActivate(PickUpItemColors inputColor)
+    {
+        if (activatorArea == null)
+            return;
+
+        if (!allowActivationUsingRayCast && !allowActivationInsideActivatorArea)
+            return;
+
+        if (activatorArea.GetAreaColor() != inputColor)
+            return;
+
+        if (!CheckAreaColorForPowerUp())
+            return;
+
+        activatorArea.Toggle();
+
+        var item = currentPickedUpItems
+            .FirstOrDefault(x => x.Color == inputColor);
+
+        if (item != null)
+            item.NumberOfUsesLeft--;
+
+        if (myStats != null)
+            myStats.increaseTriggerCount();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<ActivatorArea>(out ActivatorArea area))
+        {
+            if (activatorArea == area)
+            {
+                allowActivationInsideActivatorArea = false;
+                activatorArea = null;
+            }
+        }
+    }
+
+
     void Start()
     {
         EnemyArray = GameObject.FindGameObjectsWithTag("Player").Where(x => !GameObject.ReferenceEquals(x, gameObject)).ToArray();
@@ -59,26 +121,17 @@ public class PlayerPowerUpManager : MonoBehaviour
     {
         if(other.TryGetComponent<ActivatorArea>(out ActivatorArea area))
         {            
-            if (activatorArea == area)
-                return;
+            
 
             allowActivationInsideActivatorArea = true;
             activatorArea = area;
-            ActivatorArea.onActivatorActionPerformed += OnActivatorAreaActionPerformed;   
             
         }
     }
 
-    private void OnActivatorAreaActionPerformed()
-    {
-        if (activatorArea != null && (allowActivationUsingRayCast && CheckAreaColorForPowerUp() ||  allowActivationInsideActivatorArea && CheckAreaColorForPowerUp()))
-        {
-            activatorArea.Toggle();
-            OnObstacleTriggered?.Invoke(activatorArea.GetAreaColor());
-            currentPickedUpItems.FirstOrDefault(x => x.Color == activatorArea.GetAreaColor()).NumberOfUsesLeft -= 1;
-            if (myStats!=null) myStats.increaseTriggerCount();
-        }
-    }
+
+   
+
 
 
     private void FixedUpdate()
@@ -95,10 +148,8 @@ public class PlayerPowerUpManager : MonoBehaviour
                 // Debug.Log("Did Hit");
                 if(area!=null)
                 {
-                    if (activatorArea != area && activatorArea != null)
-                        ActivatorArea.onActivatorActionPerformed -= OnActivatorAreaActionPerformed;
-
                     allowActivationUsingRayCast=true;
+                    activatorArea = area;
                 }
                 else
                 {
