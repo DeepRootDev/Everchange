@@ -10769,6 +10769,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoints (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 938788247968945282, guid: 9b606b35f889c4c51bde412a89e53746, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8619154190756155091, guid: 9b606b35f889c4c51bde412a89e53746, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.8
@@ -18676,6 +18680,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoints
       objectReference: {fileID: 0}
+    - target: {fileID: 2725153621620622701, guid: 9b606b35f889c4c51bde412a89e53746, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8619154190756155091, guid: 9b606b35f889c4c51bde412a89e53746, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.87882
@@ -19077,7 +19085,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428980938801350228, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 31.2
+      value: 195.4
       objectReference: {fileID: 0}
     - target: {fileID: 6428980938801350228, guid: a1211ee5060279a43940ca5b70fd179c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -19348,7 +19356,7 @@ PrefabInstance:
       objectReference: {fileID: 8985995803327094113}
     - target: {fileID: 3231651022204553404, guid: 939d151a8ec3ce74ba68293470934a5a, type: 3}
       propertyPath: introLengthInSeconds
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4019715421586067365, guid: 939d151a8ec3ce74ba68293470934a5a, type: 3}
       propertyPath: myPlayerMovement
