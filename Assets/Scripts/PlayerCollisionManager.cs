@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCollisionManager : MonoBehaviour
 {
+    public static Vector3 playerPositionOnExit;
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.TryGetComponent<Obstacle>(out Obstacle obstacle))
@@ -10,5 +12,10 @@ public class PlayerCollisionManager : MonoBehaviour
             //FIXME: Add code for what should occur when the Player collides with an obstacle
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        playerPositionOnExit = transform.position;
     }
 }
