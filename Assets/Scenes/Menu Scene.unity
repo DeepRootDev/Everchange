@@ -397,8 +397,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Fahad Muntaz:
 
-    obstacle collision reload, checkpoint hookup and visual
-    debug feature, input upgraded to the latest input system '
+    obstacle collision reload, checkpoint hookup and animated
+    visual guide, input upgraded to the latest input system '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}
   m_sharedMaterial: {fileID: 390810934111521873, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}
@@ -2436,7 +2436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &399027702
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2665,6 +2665,7 @@ MonoBehaviour:
   buttons:
   - {fileID: 891275827}
   - {fileID: 1527310731}
+  - {fileID: 1991332245}
   - {fileID: 1228368054}
   inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!4 &403479642
@@ -3894,7 +3895,7 @@ MonoBehaviour:
   m_text: 'Tim Ruswick:
 
     pickup particle visuals, pickup particles connected
-    for other items'
+    for other items, item pickup sound'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}
   m_sharedMaterial: {fileID: 390810934111521873, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}
@@ -6029,7 +6030,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1075238839
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7058,7 +7059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603c9129325d46e41b58aff9625cb626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 2
+  index: 3
 --- !u!1 &1257558916
 GameObject:
   m_ObjectHideFlags: 0
@@ -8351,7 +8352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1503239439
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9785,7 +9786,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1774206925
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11079,7 +11080,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2027670894
 RectTransform:
   m_ObjectHideFlags: 0
