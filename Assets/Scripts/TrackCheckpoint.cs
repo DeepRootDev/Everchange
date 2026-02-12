@@ -10,10 +10,10 @@ public class TrackCheckpoint : MonoBehaviour
     public float width = 3;
     private GameObject animatedPulseObject;
     float timer;
-    private float duration = 3f;
+    private float duration = 1.2f;
     Vector3 pulseObjectStartingPosition;
     Vector3 pulseObjectEndPosition;
-    float pulseObjectEndPositionXOffset = 2.0f;
+    float pulseObjectEndPositionXOffset = 4.0f;
     Vector3 lineEndPosition;
 
     void Start()
