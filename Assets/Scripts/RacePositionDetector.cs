@@ -27,6 +27,7 @@ public class RacePositionDetector : MonoBehaviour
     public WaypointDrive opponent3;
     public WaypointDrive opponent4;
 
+    private float waypointMaxDistToTrigger = 30; // FIXME: use a trigger collider instead?
     private int currentPosition = -1;
     private float timeTillNextupdate = 0f;
 
@@ -39,18 +40,77 @@ public class RacePositionDetector : MonoBehaviour
         if (!updateThisText) Debug.LogError("RacePositiondetector needs a text control");
     }
 
+    // FIXME: counting how many waypoints everyone has hit is not quite enough
+    // what if you go out of order (cheat and cut corners)?
+    // what about a tie - we need to compare distance to next wp
     int whatRacePositionAreWe()
     {
         int rank = 1;
-        if (thePlayer.hasPassedWaypointNumber < opponent1.hasPassedWaypointNumber) rank++;
-        if (thePlayer.hasPassedWaypointNumber < opponent2.hasPassedWaypointNumber) rank++;
-        if (thePlayer.hasPassedWaypointNumber < opponent3.hasPassedWaypointNumber) rank++;
-        if (thePlayer.hasPassedWaypointNumber < opponent4.hasPassedWaypointNumber) rank++;
+        if (thePlayer.hasPassedWaypointNumber < opponent1.hasPassedWaypointNumber 
+        || (thePlayer.hasPassedWaypointNumber == opponent1.hasPassedWaypointNumber && thePlayer.distanceToNextWaypoint > opponent1.distanceToNextWaypoint)
+        ) rank++;
+        
+        if (thePlayer.hasPassedWaypointNumber < opponent2.hasPassedWaypointNumber
+        || (thePlayer.hasPassedWaypointNumber == opponent2.hasPassedWaypointNumber && thePlayer.distanceToNextWaypoint > opponent2.distanceToNextWaypoint)
+        ) rank++;
+        
+        if (thePlayer.hasPassedWaypointNumber < opponent3.hasPassedWaypointNumber
+        || (thePlayer.hasPassedWaypointNumber == opponent3.hasPassedWaypointNumber && thePlayer.distanceToNextWaypoint > opponent3.distanceToNextWaypoint)
+        ) rank++;
+        
+        if (thePlayer.hasPassedWaypointNumber < opponent4.hasPassedWaypointNumber
+        || (thePlayer.hasPassedWaypointNumber == opponent4.hasPassedWaypointNumber && thePlayer.distanceToNextWaypoint > opponent4.distanceToNextWaypoint)
+        ) rank++;
+        
         return rank;        
+    }
+
+    void detectPlayerNearWaypoints()
+    {
+        Waypoint wp;
+        float dist = 0f;
+        float minDist = 999999999f;
+        int closestOne = -999;
+        
+        for (int i=0; i< theWaypointManager.levelWayPointList.Count; i++)
+        {
+            wp = theWaypointManager.levelWayPointList[i];
+            if (wp != null)
+            {
+                dist = Vector3.Distance(wp.transform.position, thePlayer.transform.position);
+                if (dist < minDist)
+                {
+                    closestOne = i;
+                    minDist = dist;        
+                } // close enough
+            } // wp
+        } // loop through all WPs
+
+        if (minDist < waypointMaxDistToTrigger)
+        {
+            if (thePlayer.hasPassedWaypointNumber < closestOne)
+            {
+                Debug.Log("Player just passed WP#"+closestOne);
+                thePlayer.hasPassedWaypointNumber = closestOne;
+            }
+        }
+
+        // measure remaining dist to next wp
+        if (thePlayer.hasPassedWaypointNumber+1 < theWaypointManager.levelWayPointList.Count) {
+            wp = theWaypointManager.levelWayPointList[thePlayer.hasPassedWaypointNumber+1];
+            thePlayer.distanceToNextWaypoint = Vector3.Distance(wp.transform.position, thePlayer.transform.position);
+        } 
+        else // must be at the last wp?
+        {
+            thePlayer.distanceToNextWaypoint = minDist;
+        }
+
     }
 
     void Update()
     {
+        detectPlayerNearWaypoints();
+
         timeTillNextupdate -= Time.deltaTime;
         if (timeTillNextupdate>0f) return;
         string debugString = "Race Position Debug:\n";
@@ -58,25 +118,20 @@ public class RacePositionDetector : MonoBehaviour
         // FIXME TODO
         // compare highest waypoint # reached
         // to break a tie: measure distance to next waypoint
-        int newPosition = UnityEngine.Random.Range(1, 6); // faked for now
+        //int newPosition = UnityEngine.Random.Range(1, 6); // fake
+        int newPosition = whatRacePositionAreWe();
 
         //if (theWaypointManager != null) {
             // then we can loop through this List:
             // theWaypointManager.levelWayPointList
         //}
 
-        debugString += "\nPlayer hit waypoint: "+thePlayer.hasPassedWaypointNumber;
-        debugString += "\nPlayer next wp dist: "+thePlayer.distanceToNextWaypoint.ToString("F2")+"\n";
+        debugString += "\nPlayer WP#"+thePlayer.hasPassedWaypointNumber+" dist:"+thePlayer.distanceToNextWaypoint.ToString("F1")+"\n";
 
-        if (opponent1) debugString += "\nOpponent 1 hit waypoint: "+opponent1.hasPassedWaypointNumber;
-        if (opponent1) debugString += "\nOpponent 1 next wp dist: "+opponent1.distanceToNextWaypoint.ToString("F2");
-        if (opponent2) debugString += "\nOpponent 2 hit waypoint: "+opponent2.hasPassedWaypointNumber;
-        if (opponent2) debugString += "\nOpponent 2 next wp dist: "+opponent2.distanceToNextWaypoint.ToString("F2");
-        if (opponent3) debugString += "\nOpponent 3 hit waypoint: "+opponent3.hasPassedWaypointNumber;
-        if (opponent3) debugString += "\nOpponent 3 next wp dist: "+opponent3.distanceToNextWaypoint.ToString("F2");
-        if (opponent4) debugString += "\nOpponent 4 hit waypoint: "+opponent4.hasPassedWaypointNumber;
-        if (opponent4) debugString += "\nOpponent 4 next wp dist: "+opponent4.distanceToNextWaypoint.ToString("F2");
-
+        if (opponent1) debugString += "\nOpponent 1 WP#"+opponent1.hasPassedWaypointNumber+" dist:"+opponent1.distanceToNextWaypoint.ToString("F1");
+        if (opponent2) debugString += "\nOpponent 2 WP#"+opponent2.hasPassedWaypointNumber+" dist:"+opponent2.distanceToNextWaypoint.ToString("F1");
+        if (opponent3) debugString += "\nOpponent 3 WP#"+opponent3.hasPassedWaypointNumber+" dist:"+opponent3.distanceToNextWaypoint.ToString("F1");
+        if (opponent4) debugString += "\nOpponent 4 WP#"+opponent4.hasPassedWaypointNumber+" dist: "+opponent4.distanceToNextWaypoint.ToString("F1");
 
         if (updateThisText != null && newPosition != currentPosition) { // changed?
             switch (newPosition) {
@@ -98,11 +153,11 @@ public class RacePositionDetector : MonoBehaviour
         timeTillNextupdate = updateDelay;
 
         float dist = Vector3.Distance(thePlayer.transform.position,theFinishLine.transform.position);
-        debugString += "\n\nPlayer distance to finish line: "+dist.ToString("F2");
+        debugString += "\n\nPlayer distance to finish line: "+dist.ToString("F1");
 
         if (debugTextGUI != null) {
             debugString += "\nPlayer total distance travelled: "+thePlayer.totalDistanceTravelled.ToString("F2");
-            debugString += "\nPlayer Race Position: "+currentPosition;
+            debugString += "\nPlayer Current Race Position: "+currentPosition;
             debugTextGUI.text = debugString;
         }
 
