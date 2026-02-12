@@ -298,4 +298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c324acbbd777af4f9af4f71d8718d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomColor: 2
+  spawnEffect: {fileID: 900794352883462936, guid: 2d423c03a6a557c4281470f38e2ad12a, type: 3}
+  color: 0
+  isRandom: 1
