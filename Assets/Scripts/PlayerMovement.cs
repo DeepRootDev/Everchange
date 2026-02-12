@@ -94,6 +94,8 @@ public class PlayerMovement : MonoBehaviour
     private bool flyInputPerformed;
     private bool glideInputPerformed;
 
+    private bool isStartInstructionsHidden = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -322,6 +324,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Apply Movement Force
         if (targetSpeed>0) {
+            HideStartInstructions();
             rb.AddForce(moveDirection * acceleration * Time.fixedDeltaTime, ForceMode.VelocityChange);
             // Limit horizontal velocity to prevent excessive speed
             Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
@@ -386,5 +389,18 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #endregion
+
+    void HideStartInstructions()
+    {
+        if (!isStartInstructionsHidden)
+        {
+            Transform child = transform.Find("PlayerInstructions");
+            if (child)
+            {
+                child.gameObject.SetActive(false);
+                isStartInstructionsHidden = true;
+            }    
+        }  
+    }
 
 }
