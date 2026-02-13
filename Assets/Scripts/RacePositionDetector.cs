@@ -132,7 +132,9 @@ public class RacePositionDetector : MonoBehaviour
 
         // measure remaining dist to next wp
         if (thePlayer.hasPassedWaypointNumber+1 < theWaypointManager.levelWayPointList.Count) {
+            //Debug.Log("DEBUG: thePlayer.hasPassedWaypointNumber="+thePlayer.hasPassedWaypointNumber+" theWaypointManager.levelWayPointList.Count="+theWaypointManager.levelWayPointList.Count);
             wp = theWaypointManager.levelWayPointList[thePlayer.hasPassedWaypointNumber+1];
+            //Debug.Log("DEBUG: wp = ",wp);
             thePlayer.distanceToNextWaypoint = Vector3.Distance(wp.transform.position, thePlayer.transform.position);
         } 
         else // must be at the last wp?
