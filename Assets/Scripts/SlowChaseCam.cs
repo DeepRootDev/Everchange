@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class SlowChase : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class SlowChase : MonoBehaviour
     public PlayerMovement myPlayerMovement;
 
     private InputAction lookAction;
+
+    public static event Action OnCameraAnimationComplete;
+
 
 
     void Start()
@@ -98,6 +102,7 @@ public class SlowChase : MonoBehaviour
         } else {    
             // follow the normal gameplay chase camera target
             transform.position = Vector3.Slerp(transform.position, chaseTarget.position, posT);
+            OnCameraAnimationComplete?.Invoke();
         }
     }
 }

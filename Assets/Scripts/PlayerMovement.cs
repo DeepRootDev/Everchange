@@ -96,6 +96,10 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isStartInstructionsHidden = false;
 
+    void Awake()
+    {
+        SlowChase.OnCameraAnimationComplete += DisplayStartInstructions;
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -390,17 +394,28 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    void DisplayStartInstructions()
+    {
+        Transform child = transform.Find("PlayerInstructions");
+        if (!child)
+            return;
+        
+        child.gameObject.SetActive(true);
+        isStartInstructionsHidden = false;
+        SlowChase.OnCameraAnimationComplete -= DisplayStartInstructions;
+    }
+
     void HideStartInstructions()
     {
         if (!isStartInstructionsHidden)
         {
             Transform child = transform.Find("PlayerInstructions");
-            if (child)
-            {
-                child.gameObject.SetActive(false);
-                isStartInstructionsHidden = true;
-            }    
-        }  
+            if (!child)
+                return;
+            
+            child.gameObject.SetActive(false);
+            isStartInstructionsHidden = true;
+        }      
     }
 
 }
