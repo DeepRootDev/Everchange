@@ -571,6 +571,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9eeaffe407e4a456ba4421dade490e06, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a362a87111a5473397f331c7631f264, type: 2}
     - target: {fileID: 919132149155446097, guid: 9eeaffe407e4a456ba4421dade490e06, type: 3}
       propertyPath: m_Name
       value: animatedPulseObject
@@ -613,7 +617,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chevron
   tip: {fileID: 1319974083017145879}
-  line: {fileID: 0}
 --- !u!1001 &6846945929294705448
 PrefabInstance:
   m_ObjectHideFlags: 0
