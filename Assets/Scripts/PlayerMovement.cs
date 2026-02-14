@@ -134,6 +134,14 @@ public class PlayerMovement : MonoBehaviour
         if (hitSomething) {
             currentAltitude = hitData.distance;
             isGrounded = currentAltitude <= groundedMaxAltitude;
+
+            // unused: experiment to get player to snap to consistent height
+            // without something like this sometimes seems taller/shorter than AI runners
+            // but turning this on as-is seems to affect jump behavior
+            if(isGrounded && rb.linearVelocity.y < 0.0f)
+            {
+                // transform.position = hitData.point + Vector3.up * groundedMaxAltitude*0.9f;
+            }
         } else { // there might be nothing below us
             isGrounded = false;
             currentAltitude = 999f;
@@ -228,7 +236,9 @@ public class PlayerMovement : MonoBehaviour
         // change animations depending on state
         if (animator) {
             // scale depending on rb velocity
-            animator.speed = rb.linearVelocity.magnitude/runSpeed*globalPlaybackSpeed;
+            Vector3 speedWithoutVertical = rb.linearVelocity;
+            speedWithoutVertical.y = 0.0f;
+            animator.speed = speedWithoutVertical.magnitude/runSpeed*globalPlaybackSpeed;
             // Debug.Log(rb.linearVelocity.magnitude);
             animator.SetFloat(SpeedAnim, rb.linearVelocity.magnitude);
             animator.SetBool(GroundedAnim, isGrounded);
