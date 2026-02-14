@@ -241,6 +241,11 @@ public class PlayerMovement : MonoBehaviour
             if(speedWithoutVertical.magnitude> 1.0f)
             {
                 animator.speed = speedWithoutVertical.magnitude/runSpeed*globalPlaybackSpeed;
+                // Debug.Log(animator.speed);
+                if(animator.speed>1.0f)
+                {
+                    animator.speed = 1.0f;
+                }
             } else
             {
                 animator.speed = 1.0f;
