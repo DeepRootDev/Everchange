@@ -62,47 +62,60 @@ public class SlowChase : MonoBehaviour
         float posT = Mathf.Clamp01(1f - Mathf.Pow(0.5f, Time.deltaTime / Mathf.Max(Mathf.Epsilon, posHalfLife)));
         float rotT = Mathf.Clamp01(1f - Mathf.Pow(0.5f, Time.deltaTime / Mathf.Max(Mathf.Epsilon, rotHalfLife)));
 
+        Vector3 desiredPos;
+        Quaternion desiredRot;
+
         transform.rotation = Quaternion.Slerp(transform.rotation,
             Quaternion.LookRotation(lookPoint.position - transform.position), rotT);
 
-        if (mouseLookEnabled)
-        {
-            Vector2 look = lookAction.ReadValue<Vector2>();
-            rotationX += look.x * mouseLookSpeedX;
-            rotationY += -1 * look.y * mouseLookSpeedY;
-            rotationY = Mathf.Clamp(rotationY, -mouseLookVertRange, mouseLookVertRange);
-
-            // adds just this frame's movement: works great
-            // howeverwe lerp back once we stop moving the mouse
-            transform.Rotate(rotationY, rotationX, 0f);
-            rotationX = 0f;
-            rotationY = 0f;
-
-            // alternate way - not quite working
-            // add the rotational offset fresh every frame without resetting
-            // Quaternion QuatOffsetX = Quaternion.AngleAxis(rotationX, Vector3.up);
-            // Quaternion QuatOffsetY = Quaternion.AngleAxis(rotationY, Vector3.left);
-            // transform.rotation *= QuatOffsetX;
-            // transform.rotation *= QuatOffsetY;
-
-        }
         transform.position = Vector3.Slerp(transform.position, chaseTarget.position, posT);
 
         if (introTimeleft > 0f && introStartAt != null) // intro flyby time?
         {
             // do a face closeup camera effect during the 3..2..1
             introTimeleft -= Time.deltaTime;
-            transform.position = Vector3.Slerp(introStartAt.position, introEndAt.position, 1f-(introTimeleft/introLengthInSeconds));
-            transform.rotation = Quaternion.LookRotation(introLookAt.position - transform.position);
+            transform.position = Vector3.Lerp(introStartAt.position, introEndAt.position, 1f-(introTimeleft/introLengthInSeconds));
+            transform.rotation = Quaternion.LookRotation(introLookAt.position - transform.position);            
+            return;
         } else if (myPlayerMovement&&myPlayerMovement.isDrifting&&driftChaseTarget) {
             // move back a bit during drifting
-            transform.position = Vector3.Slerp(transform.position, driftChaseTarget.position, posT);
+            desiredPos = driftChaseTarget.position;
             // and peer around the corner? which side?
             // transform.Rotate(driftExtraCamRotation, 0f, 0f);
         } else {    
             // follow the normal gameplay chase camera target
-            transform.position = Vector3.Slerp(transform.position, chaseTarget.position, posT);
+            desiredPos = chaseTarget.position;
             OnCameraAnimationComplete?.Invoke();
+        }
+
+        transform.position = Vector3.Lerp(transform.position, desiredPos, posT);
+
+        if (introTimeleft > 0f && introStartAt != null)
+            desiredRot = Quaternion.LookRotation(introLookAt.position - transform.position);
+        else
+            desiredRot = Quaternion.LookRotation(lookPoint.position - transform.position);
+
+        if (mouseLookEnabled)
+        {
+            Vector2 look = lookAction.ReadValue<Vector2>();
+
+            rotationX += look.x * mouseLookSpeedX;
+            rotationY += -look.y * mouseLookSpeedY;
+            rotationY = Mathf.Clamp(rotationY, -mouseLookVertRange, mouseLookVertRange);
+
+            Quaternion yawQ = Quaternion.AngleAxis(rotationX, Vector3.up);
+            Quaternion yawed = yawQ * Quaternion.LookRotation(lookPoint.position - transform.position);
+
+            Vector3 rightAxis = yawed * Vector3.right;
+            Quaternion pitchQ = Quaternion.AngleAxis(rotationY, rightAxis);
+
+            Quaternion desired = pitchQ * yawed;
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, desired, rotT);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(lookPoint.position - transform.position),rotT);
         }
     }
 }
