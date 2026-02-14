@@ -1426,7 +1426,8 @@ MonoBehaviour:
   m_text: 'Chris DeLeon:
 
     tutorial tips and related trigger scripts with scene
-    placement, menu button sound, footstep sounds, red artifact sound'
+    placement, menu button sound, footstep sounds, red artifact sound, character
+    animation integration'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}
   m_sharedMaterial: {fileID: 390810934111521873, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}
@@ -3906,7 +3907,7 @@ MonoBehaviour:
   m_text: 'Tim Ruswick:
 
     pickup particle visuals, pickup particles connected
-    for other items, item pickup sound'
+    for other items, item pickup sound incl. integration, credits/options hookups'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}
   m_sharedMaterial: {fileID: 390810934111521873, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}
@@ -4747,7 +4748,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Liyi Zhang:
 
-    player model and texture, font rendering fix '
+    character (including model, texture, and animation authoring),
+    font rendering fix '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}
   m_sharedMaterial: {fileID: 390810934111521873, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}
@@ -5920,9 +5922,9 @@ MonoBehaviour:
   m_text: 'Christer "McFunkypants" Kaitila:
 
     player free movement, menu music,
-    racing rank detection, speed and trail lines, dust effects, intro flyby, sounds
-    (glide, jump, grinding, wall run), speed fov changes, occlusion baking optimization,
-    finish line, race stat tracking and related UI, pause menu'
+    racing rank detection, rubber banding, speed and trail lines, dust effects, intro
+    flyby, sounds (glide, jump, grinding, wall run), speed fov, occlusion baking
+    optimization, finish line, race stat tracking and related UI, pause menu'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}
   m_sharedMaterial: {fileID: 390810934111521873, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}
