@@ -383,9 +383,20 @@ public class WaypointDrive:MonoBehaviour {
 		return myWaypoint.trackPtForOffset(myTrackLaneOffset);
 	}
 
+    int calculateHighestWaypointreached()
+    {
+        int wpNum = WayPointManager.instance.levelWayPointList.IndexOf(myWaypoint);
+        //Debug.Log("Found my waypoint number: "+wpNum);
+        return wpNum;
+    }
+
 	void AdvanceWP()
     {
-		hasPassedWaypointNumber++; // incremenet by one (FIXME: branching paths?)
+		// this doesn't account for branching paths
+        // hasPassedWaypointNumber++; // incremenet by one
+
+        hasPassedWaypointNumber = calculateHighestWaypointreached();
+
         prevWaypoint = myWaypoint;
 		int nextWPCount = myWaypoint.next.Length;
 		if (nextWPCount > 1)

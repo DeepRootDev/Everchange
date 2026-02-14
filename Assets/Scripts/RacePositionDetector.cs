@@ -20,6 +20,9 @@ public class RacePositionDetector : MonoBehaviour
     [Header("The position of the finish line:")]
     public Transform theFinishLine;
 
+    [Header("How far away from player until AI slows/speeds")]
+    public float rubberbandingStartDistance = 50f;
+
     [Header("The Racers! (optional)")]
     public PlayerMovement thePlayer;
     public WaypointDrive opponent1;
@@ -53,7 +56,7 @@ public class RacePositionDetector : MonoBehaviour
     int whatRacePositionAreWe()
     {
         int rank = 1;
-        float tooFar = 20f; // once farther than this from player bots start rubberbanding
+        float tooFar = rubberbandingStartDistance; // once farther than this from player bots start rubberbanding
 
         if (opponent1) {
             bool rubberband1 = Vector3.Distance(opponent1.transform.position,thePlayer.transform.position) > tooFar;
@@ -180,6 +183,13 @@ public class RacePositionDetector : MonoBehaviour
         return rank;        
     }
 
+    int calculateWaypointNumber(Waypoint myWaypoint)
+    {
+        int wpNum = WayPointManager.instance.levelWayPointList.IndexOf(myWaypoint);
+        //Debug.Log("Found player waypoint: "+wpNum);
+        return wpNum;
+    }
+
     void detectPlayerNearWaypoints()
     {
         Waypoint wp;
@@ -203,11 +213,15 @@ public class RacePositionDetector : MonoBehaviour
 
         if (minDist < waypointMaxDistToTrigger)
         {
-            if (thePlayer.hasPassedWaypointNumber < closestOne)
-            {
-                Debug.Log("Player just passed WP#"+closestOne);
-                thePlayer.hasPassedWaypointNumber = closestOne;
-            }
+            // does not account for branching paths
+            //if (thePlayer.hasPassedWaypointNumber < closestOne)
+            //{
+            //    Debug.Log("Player just passed WP#"+closestOne);
+            //    thePlayer.hasPassedWaypointNumber = closestOne;
+            //}
+
+            wp = theWaypointManager.levelWayPointList[closestOne];
+            thePlayer.hasPassedWaypointNumber = calculateWaypointNumber(wp);
         }
 
         // measure remaining dist to next wp
