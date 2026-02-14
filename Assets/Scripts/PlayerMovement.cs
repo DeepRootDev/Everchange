@@ -84,6 +84,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 moveDirection;
     private Rigidbody rb;
+    private float tiltSmooth = 0.0f;
+    private float tiltSmoothFactor = 0.2f; // 0.0-1.0 probably below 0.3
+    private float myTiltNow = 0.0f;
     
     [Header("Drag the player's animated mesh here")]
     public Animator animator;
@@ -161,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = moveInput.x;
 
         // tilt as we turn sharper
-        float myTiltNow = -1*horizontalInput*corneringTiltDegreesMax;
+        myTiltNow = -1*horizontalInput*corneringTiltDegreesMax;
 
         // we drift if we're tilting a lot (due to a sharp turn held for a long time)
         isDrifting = isGrounded && // only drift when not in the air!!
@@ -190,18 +193,19 @@ public class PlayerMovement : MonoBehaviour
             thePlayerVisuals.transform.localRotation = Quaternion.Euler(
                 thePlayerVisuals.transform.localRotation.x,
                 thePlayerVisuals.transform.localRotation.y,
-                myTiltNow);
+                tiltSmooth);
 
             // tilt the player forwards to glide like a wingsuit
             if (isGliding) {
                 // counteract gravity?
                 // rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z); 
                 // lean forward
+                /* // commending out, animator now handles body orientation
                 thePlayerVisuals.transform.localRotation = Quaternion.Euler(
                     glideLeanAngle, // FIXME: tween using glideLeanSpeed
                     thePlayerVisuals.transform.localRotation.y,
                     thePlayerVisuals.transform.localRotation.z
-                    );
+                    );*/
             }
         }
 
@@ -230,10 +234,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool(GroundedAnim, isGrounded);
             animator.SetBool(DriftAnim, isDrifting);
             animator.SetBool(BoostAnim, isBoosting);
-            animator.SetBool(JumpHeldAnim, isGrounded == false);
-            
-            if (isDrifting) animator.speed = 0f;
-            if (isGliding) animator.speed = 0f;
+            animator.SetBool(JumpHeldAnim, isGrounded == false);            
         }
 
         // odometer
@@ -311,6 +312,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+        tiltSmooth = myTiltNow*tiltSmoothFactor+tiltSmooth*(1.0f-tiltSmoothFactor);
         float targetSpeed = 0f; // default to stand still when no input
 
         // move forward
