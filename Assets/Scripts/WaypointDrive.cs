@@ -422,13 +422,13 @@ public class WaypointDrive:MonoBehaviour {
     {
         // currentSpeed = defaultSpeed * 0.75f;
         currentSpeed -= 10;
-        Debug.Log(gameObject.name+" rubberbanding: SLOW DOWN TO "+currentSpeed);
+        // Debug.Log(gameObject.name+" rubberbanding: SLOW DOWN TO "+currentSpeed);
     }
     public void pleaseSpeedUp()
     {
         // currentSpeed = defaultSpeed * 1.25f;
         currentSpeed += 10;
-        Debug.Log(gameObject.name+" rubberbanding: SPEED UP TO "+currentSpeed);
+        // Debug.Log(gameObject.name+" rubberbanding: SPEED UP TO "+currentSpeed);
     }
 
 	#region OBSTACLE_ACTIVATION

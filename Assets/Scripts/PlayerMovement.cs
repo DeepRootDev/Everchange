@@ -87,6 +87,8 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Drag the player's animated mesh here")]
     public Animator animator;
+    int SpeedAnim, GroundedAnim, DriftAnim, BoostAnim, JumpHeldAnim;
+
     private float globalPlaybackSpeed = 1.0f;    
 
     private Vector2 moveInput;
@@ -104,7 +106,14 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         // this won't work as it's on a child object
-        if (!animator) animator = GetComponent<Animator>();
+        if (!animator) animator = transform.GetComponentInChildren<Animator>();
+
+        SpeedAnim = Animator.StringToHash("RunSpeed");
+        GroundedAnim = Animator.StringToHash("Grounded");
+        DriftAnim = Animator.StringToHash("DriftHold");
+        BoostAnim = Animator.StringToHash("BoostHold");
+        JumpHeldAnim = Animator.StringToHash("JumpHold");
+
         glideTimeCur = glideTimeMax;
 
         if(PauseMenu.instance == null) {
@@ -216,7 +225,13 @@ public class PlayerMovement : MonoBehaviour
         if (animator) {
             // scale depending on rb velocity
             animator.speed = rb.linearVelocity.magnitude/runSpeed*globalPlaybackSpeed;
-            // TODO: actually change animation
+            // Debug.Log(rb.linearVelocity.magnitude);
+            animator.SetFloat(SpeedAnim, rb.linearVelocity.magnitude);
+            animator.SetBool(GroundedAnim, isGrounded);
+            animator.SetBool(DriftAnim, isDrifting);
+            animator.SetBool(BoostAnim, isBoosting);
+            animator.SetBool(JumpHeldAnim, isGrounded == false);
+            
             if (isDrifting) animator.speed = 0f;
             if (isGliding) animator.speed = 0f;
         }
