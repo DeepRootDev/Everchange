@@ -426,6 +426,7 @@ Transform:
   - {fileID: 5076210876439815949}
   - {fileID: 3070537121530623087}
   - {fileID: 3702964318750652756}
+  - {fileID: 6636833455809134181}
   - {fileID: 2222591378143397302}
   - {fileID: 4753218811088129953}
   - {fileID: 278733473275568878}
@@ -556,6 +557,9 @@ MonoBehaviour:
   defaultSpeed: 215
   currentSpeed: 0
   inAir: 0
+  percLeftToNextWP: 1
+  distanceToNextWaypoint: 0
+  hasPassedWaypointNumber: 0
   distruptionFromGreenPowerUpActive: 0
   maxTimeForGreenPowerUp: 2
   greenPowerUpDistruptionMagnitude: 20
@@ -6851,6 +6855,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tetsu-WIP-2025-nov-14-placeholder-01
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1c104e3f5697d3d49b41ccae6a29149d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6860,6 +6868,98 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1c104e3f5697d3d49b41ccae6a29149d, type: 3}
   m_PrefabInstance: {fileID: 3812625910447300287}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6597911580922550670
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4983316242961718891}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 3cc098861610c23479a29eee3bc56d43, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3cc098861610c23479a29eee3bc56d43, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.122
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3cc098861610c23479a29eee3bc56d43, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.016
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3cc098861610c23479a29eee3bc56d43, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3cc098861610c23479a29eee3bc56d43, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3cc098861610c23479a29eee3bc56d43, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3cc098861610c23479a29eee3bc56d43, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3cc098861610c23479a29eee3bc56d43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3cc098861610c23479a29eee3bc56d43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3cc098861610c23479a29eee3bc56d43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3cc098861610c23479a29eee3bc56d43, type: 3}
+      propertyPath: m_Name
+      value: tetsu-WIP-2026-feb-13-03-anim
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3cc098861610c23479a29eee3bc56d43, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1863740110872339298}
+  m_SourcePrefab: {fileID: 100100000, guid: 3cc098861610c23479a29eee3bc56d43, type: 3}
+--- !u!1 &6291832633405875423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3cc098861610c23479a29eee3bc56d43, type: 3}
+  m_PrefabInstance: {fileID: 6597911580922550670}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1863740110872339298
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6291832633405875423}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 207d6e2997ba623479bba3ccba6d8224, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &6636833455809134181 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3cc098861610c23479a29eee3bc56d43, type: 3}
+  m_PrefabInstance: {fileID: 6597911580922550670}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9009567678873396207
 PrefabInstance:
