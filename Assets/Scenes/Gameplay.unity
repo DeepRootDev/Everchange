@@ -65888,7 +65888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 26377540}
-  inAir: 1
+  inAir: 0
 --- !u!4 &703048497 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7422134120710908086, guid: 5d7ee53b49971044489b19899637332d, type: 3}
@@ -74507,7 +74507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 2047151423}
-  inAir: 0
+  inAir: 1
 --- !u!4 &797193004
 Transform:
   m_ObjectHideFlags: 0
@@ -74517,7 +74517,7 @@ Transform:
   m_GameObject: {fileID: 797193002}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.017359426, z: -0, w: 0.9998493}
-  m_LocalPosition: {x: -38789, y: 573, z: 2112}
+  m_LocalPosition: {x: -38789, y: 590, z: 2278}
   m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
   m_ConstrainProportionsScale: 1
   m_Children: []

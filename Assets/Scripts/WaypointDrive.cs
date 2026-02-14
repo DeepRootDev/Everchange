@@ -82,6 +82,9 @@ public class WaypointDrive:MonoBehaviour {
 	};
 	public AIMode AInow = AIMode.FollowTrack;
 
+	public Animator animator;
+    int SpeedAnim, GroundedAnim, DriftAnim, BoostAnim, JumpHeldAnim;
+
 	private void Start() {
 		feetDust = GetComponent<ParticleSystem>();
 		if(WayPointManager.instance) {
@@ -91,6 +94,14 @@ public class WaypointDrive:MonoBehaviour {
 			enabled = false;
 			return;
 		}
+		if (!animator) animator = transform.GetComponentInChildren<Animator>();
+
+        SpeedAnim = Animator.StringToHash("RunSpeed");
+        GroundedAnim = Animator.StringToHash("Grounded");
+        DriftAnim = Animator.StringToHash("DriftHold");
+        BoostAnim = Animator.StringToHash("BoostHold");
+        JumpHeldAnim = Animator.StringToHash("JumpHold");
+
 		prevWaypoint = myWaypoint;
 		UpdateAirOrGroundState();
 		myWaypoint = prevWaypoint.randNext();
@@ -256,6 +267,17 @@ public class WaypointDrive:MonoBehaviour {
 		var targetPosition = Vector3.Lerp(positionLeft, positionRight, trackLeftRightNormalized) + Vector3.up* verticalOffset * flyRange;
 		transform.position = (inAir ? targetPosition : new Vector3(targetPosition.x, transform.position.y, targetPosition.z)) + new Vector3(0, currentDistruptionFromOutsideFactors, 0);
 		lookAheadPt = Vector3.Lerp(nextWPTrackLeft, nextWPTrackRight, trackLeftRightNormalized);
+
+		if (animator) {
+            // scale depending on rb velocity
+            animator.speed = 1.0f;//rb.linearVelocity.magnitude/runSpeed*globalPlaybackSpeed;
+            // Debug.Log(rb.linearVelocity.magnitude);
+            animator.SetFloat(SpeedAnim, runControl*100.0f);
+            animator.SetBool(GroundedAnim, inAir == false);
+            animator.SetBool(DriftAnim, false); // note: bots don't do this (yet?)
+            animator.SetBool(BoostAnim, false); // note: bots don't do this (yet?)
+            animator.SetBool(JumpHeldAnim, inAir);  
+        }
     }
 
     private void CheckAndUpdateGreenPowerUp()
