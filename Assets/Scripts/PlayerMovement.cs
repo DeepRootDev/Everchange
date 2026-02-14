@@ -238,7 +238,13 @@ public class PlayerMovement : MonoBehaviour
             // scale depending on rb velocity
             Vector3 speedWithoutVertical = rb.linearVelocity;
             speedWithoutVertical.y = 0.0f;
-            animator.speed = speedWithoutVertical.magnitude/runSpeed*globalPlaybackSpeed;
+            if(speedWithoutVertical.magnitude> 1.0f)
+            {
+                animator.speed = speedWithoutVertical.magnitude/runSpeed*globalPlaybackSpeed;
+            } else
+            {
+                animator.speed = 1.0f;
+            }
             // Debug.Log(rb.linearVelocity.magnitude);
             animator.SetFloat(SpeedAnim, rb.linearVelocity.magnitude);
             animator.SetBool(GroundedAnim, isGrounded);
