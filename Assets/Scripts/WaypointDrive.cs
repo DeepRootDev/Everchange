@@ -14,7 +14,8 @@ using Random = UnityEngine.Random;
 
 public class WaypointDrive:MonoBehaviour {
 
-	public float defaultSpeed = 80.0f;
+	public float defaultSpeed = 83.0f;
+	private float defaultSpeedRandSpread = 15.0f; // to help stagger runners
 	public float currentSpeed = 0;
 
 	private float flySpeed = 130.0f;
@@ -65,6 +66,7 @@ public class WaypointDrive:MonoBehaviour {
 
     private void Awake()
     {
+		defaultSpeed -= Random.Range(0.0f,defaultSpeedRandSpread);
 		currentSpeed = defaultSpeed;
     }
 

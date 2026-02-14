@@ -328,7 +328,17 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        tiltSmooth = myTiltNow*tiltSmoothFactor+tiltSmooth*(1.0f-tiltSmoothFactor);
+
+        Vector3 speedWithoutVertical = rb.linearVelocity;
+        speedWithoutVertical.y = 0.0f;
+        if(speedWithoutVertical.magnitude> 1.0f) // avoid tilting if stationary
+        {
+            tiltSmooth = myTiltNow*tiltSmoothFactor+tiltSmooth*(1.0f-tiltSmoothFactor);
+        } else // gradually zero it out
+        {
+            tiltSmooth = 0.0f*tiltSmoothFactor+tiltSmooth*(1.0f-tiltSmoothFactor);
+        }
+
         float targetSpeed = 0f; // default to stand still when no input
 
         // move forward

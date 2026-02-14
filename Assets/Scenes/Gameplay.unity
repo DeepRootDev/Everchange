@@ -46889,7 +46889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next:
   - {fileID: 417510406}
-  inAir: 0
+  inAir: 1
 --- !u!4 &510951758
 Transform:
   m_ObjectHideFlags: 0
@@ -46899,7 +46899,7 @@ Transform:
   m_GameObject: {fileID: 510951756}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9999285, z: -0, w: 0.011963263}
-  m_LocalPosition: {x: -39719, y: 573, z: 2114.2}
+  m_LocalPosition: {x: -39719, y: 590, z: 2351}
   m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -55433,7 +55433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   next:
-  - {fileID: 1942879548}
+  - {fileID: 1429533279}
   inAir: 0
 --- !u!4 &592790337
 Transform:
@@ -55838,7 +55838,7 @@ Transform:
   m_GameObject: {fileID: 596736453}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -42194, y: 363, z: 3100.6}
+  m_LocalPosition: {x: -42194, y: 364, z: 3100.6}
   m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -63837,7 +63837,7 @@ Transform:
   m_GameObject: {fileID: 681054794}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -43655, y: 363, z: 3106}
+  m_LocalPosition: {x: -43655, y: 364, z: 3106}
   m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -67741,7 +67741,7 @@ Transform:
   m_GameObject: {fileID: 719367857}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -42471.1, y: 363, z: 3106}
+  m_LocalPosition: {x: -42471.1, y: 364, z: 3106}
   m_LocalScale: {x: 78.099075, y: 78.099075, z: 78.099075}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -79449,6 +79449,10 @@ PrefabInstance:
     - target: {fileID: 3231651022204553404, guid: 939d151a8ec3ce74ba68293470934a5a, type: 3}
       propertyPath: mouseLookSpeedY
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231651022204553404, guid: 939d151a8ec3ce74ba68293470934a5a, type: 3}
+      propertyPath: mouseLookEnabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3231651022204553404, guid: 939d151a8ec3ce74ba68293470934a5a, type: 3}
       propertyPath: mouseLookVertRange
@@ -136349,6 +136353,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f09c162044cb7c04e9c2eaa2ed1e3532, type: 3}
   m_PrefabInstance: {fileID: 1429400248}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1429533278
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1429533280}
+  - component: {fileID: 1429533279}
+  m_Layer: 0
+  m_Name: WP1.5 Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1429533279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429533278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549fb3ed9f1457f8262e40d6903ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next:
+  - {fileID: 1942879548}
+  inAir: 0
+--- !u!4 &1429533280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429533278}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -48101.4, y: 563, z: 3082.9}
+  m_LocalScale: {x: 66.776924, y: 66.776924, z: 66.776924}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2041676893}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1429950659
 GameObject:
   m_ObjectHideFlags: 0
@@ -193879,6 +193930,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 592790337}
+  - {fileID: 1429533280}
   - {fileID: 1942879549}
   - {fileID: 2067637360}
   - {fileID: 306728967}
