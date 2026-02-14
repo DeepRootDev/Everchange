@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public int hasPassedWaypointNumber = 0;
     public float distanceToNextWaypoint = 0f;
     private int prevWaypointNumber = -1;
+    [SerializeField] private float decelerationRate = 5;
 
     [Header("Movement Settings:")]
     public float runSpeed = 50f;
@@ -349,6 +350,10 @@ public class PlayerMovement : MonoBehaviour
         // move forward
         if (moveInput.y > 0) {
             targetSpeed = runSpeed;
+        }
+        else
+        {
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, Time.deltaTime * decelerationRate);
         }
 
         // make local state match the global variable
