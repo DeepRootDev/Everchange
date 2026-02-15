@@ -358,14 +358,14 @@ RectTransform:
   m_GameObject: {fileID: 135244053}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.50046766, y: 0.16179615, z: 0.50046766}
+  m_LocalScale: {x: 0.677383, y: 0.2189911, z: 0.677383}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 451496459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100.1, y: 27.38412}
+  m_AnchoredPosition: {x: -70, y: 27.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &135244055
@@ -794,7 +794,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 63, y: 13.377296}
+  m_AnchoredPosition: {x: 33, y: 13.377296}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &371341787
@@ -817,8 +817,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "+       - Flight Mode\n   -  Raise Elevation\nS - Lower Elevation\nA /
-    D - Left / Right Turning"
+  m_text: "+       - Flight Mode\n   \t       -  Raise Elevation\n              S
+    - Lower Elevation\n               A / D - Left / Right Turning"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}
   m_sharedMaterial: {fileID: 390810934111521873, guid: 90b1b06799c1e87479b9b6cb12820720, type: 2}
@@ -884,7 +884,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -96.85687, y: 0, z: 0, w: 0}
+  m_margin: {x: -96.85687, y: 0, z: -57.63424, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1069,7 +1069,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.0000038, y: -93}
+  m_AnchoredPosition: {x: 2.0000038, y: -87.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &429383158
@@ -2994,14 +2994,14 @@ RectTransform:
   m_GameObject: {fileID: 1589418196}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.50046766, y: 0.16179615, z: 0.50046766}
+  m_LocalScale: {x: 0.677383, y: 0.2189911, z: 0.677383}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 451496459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -107.2, y: 51.2}
+  m_AnchoredPosition: {x: -115.615036, y: 53.1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1589418198
